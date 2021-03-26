@@ -1,0 +1,1619 @@
+
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\stm32f10x_flash.o:     file format elf32-littlearm
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\stm32f10x_flash.o
+
+Disassembly of section .text.FLASH_SetLatency:
+
+00000000 <FLASH_SetLatency>:
+FLASH_SetLatency():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:92
+{
+  /* Check the parameters */
+  assert_param(IS_FLASH_LATENCY(FLASH_Latency));
+  
+  /* Sets the Latency value */
+  FLASH->ACR &= ACR_LATENCY_Mask;
+   0:	4a04      	ldr	r2, [pc, #16]	(14 <FLASH_SetLatency+0x14>)
+   2:	6813      	ldr	r3, [r2, #0]
+   4:	f003 0338 	and.w	r3, r3, #56	; 0x38
+   8:	6013      	str	r3, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:93
+  FLASH->ACR |= FLASH_Latency;
+   a:	6813      	ldr	r3, [r2, #0]
+   c:	4318      	orrs	r0, r3
+   e:	6010      	str	r0, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:94
+}
+  10:	4770      	bx	lr
+  12:	46c0      	nop			(mov r8, r8)
+  14:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_HalfCycleAccessCmd:
+
+00000000 <FLASH_HalfCycleAccessCmd>:
+FLASH_HalfCycleAccessCmd():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:112
+{
+  /* Check the parameters */
+  assert_param(IS_FLASH_HALFCYCLEACCESS_STATE(FLASH_HalfCycleAccess));
+  
+  /* Enable or disable the Half cycle access */
+  FLASH->ACR &= ACR_HLFCYA_Mask;
+   0:	4a04      	ldr	r2, [pc, #16]	(14 <FLASH_HalfCycleAccessCmd+0x14>)
+   2:	6813      	ldr	r3, [r2, #0]
+   4:	f023 0308 	bic.w	r3, r3, #8	; 0x8
+   8:	6013      	str	r3, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:113
+  FLASH->ACR |= FLASH_HalfCycleAccess;
+   a:	6813      	ldr	r3, [r2, #0]
+   c:	4318      	orrs	r0, r3
+   e:	6010      	str	r0, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:114
+}
+  10:	4770      	bx	lr
+  12:	46c0      	nop			(mov r8, r8)
+  14:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_PrefetchBufferCmd:
+
+00000000 <FLASH_PrefetchBufferCmd>:
+FLASH_PrefetchBufferCmd():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:132
+{
+  /* Check the parameters */
+  assert_param(IS_FLASH_PREFETCHBUFFER_STATE(FLASH_PrefetchBuffer));
+  
+  /* Enable or disable the Prefetch Buffer */
+  FLASH->ACR &= ACR_PRFTBE_Mask;
+   0:	4a04      	ldr	r2, [pc, #16]	(14 <FLASH_PrefetchBufferCmd+0x14>)
+   2:	6813      	ldr	r3, [r2, #0]
+   4:	f023 0310 	bic.w	r3, r3, #16	; 0x10
+   8:	6013      	str	r3, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:133
+  FLASH->ACR |= FLASH_PrefetchBuffer;
+   a:	6813      	ldr	r3, [r2, #0]
+   c:	4318      	orrs	r0, r3
+   e:	6010      	str	r0, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:134
+}
+  10:	4770      	bx	lr
+  12:	46c0      	nop			(mov r8, r8)
+  14:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_Unlock:
+
+00000000 <FLASH_Unlock>:
+FLASH_Unlock():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:147
+* Return         : None
+*******************************************************************************/
+void FLASH_Unlock(void)
+{
+  /* Authorize the FPEC Access */
+  FLASH->KEYR = FLASH_KEY1;
+   0:	4b03      	ldr	r3, [pc, #12]	(10 <FLASH_Unlock+0x10>)
+   2:	4a04      	ldr	r2, [pc, #16]	(14 <FLASH_Unlock+0x14>)
+   4:	605a      	str	r2, [r3, #4]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:148
+  FLASH->KEYR = FLASH_KEY2;
+   6:	f102 3288 	add.w	r2, r2, #2290649224	; 0x88888888
+   a:	605a      	str	r2, [r3, #4]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:149
+}
+   c:	4770      	bx	lr
+   e:	46c0      	nop			(mov r8, r8)
+  10:	40022000 	.word	0x40022000
+  14:	45670123 	.word	0x45670123
+Disassembly of section .text.FLASH_Lock:
+
+00000000 <FLASH_Lock>:
+FLASH_Lock():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:161
+* Return         : None
+*******************************************************************************/
+void FLASH_Lock(void)
+{
+  /* Set the Lock Bit to lock the FPEC and the FCR */
+  FLASH->CR |= CR_LOCK_Set;
+   0:	4a02      	ldr	r2, [pc, #8]	(c <FLASH_Lock+0xc>)
+   2:	6913      	ldr	r3, [r2, #16]
+   4:	f043 0380 	orr.w	r3, r3, #128	; 0x80
+   8:	6113      	str	r3, [r2, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:162
+}
+   a:	4770      	bx	lr
+   c:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_GetUserOptionByte:
+
+00000000 <FLASH_GetUserOptionByte>:
+FLASH_GetUserOptionByte():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:665
+*                  and RST_STDBY(Bit2).
+*******************************************************************************/
+u32 FLASH_GetUserOptionByte(void)
+{
+  /* Return the User Option Byte */
+  return (u32)(FLASH->OBR >> 2);
+   0:	4b01      	ldr	r3, [pc, #4]	(8 <FLASH_GetUserOptionByte+0x8>)
+   2:	69d8      	ldr	r0, [r3, #28]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:666
+}
+   4:	0880      	lsrs	r0, r0, #2
+   6:	4770      	bx	lr
+   8:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_GetWriteProtectionOptionByte:
+
+00000000 <FLASH_GetWriteProtectionOptionByte>:
+FLASH_GetWriteProtectionOptionByte():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:678
+* Return         : The FLASH Write Protection  Option Bytes Register value
+*******************************************************************************/
+u32 FLASH_GetWriteProtectionOptionByte(void)
+{
+  /* Return the Falsh write protection Register value */
+  return (u32)(FLASH->WRPR);
+   0:	4b01      	ldr	r3, [pc, #4]	(8 <FLASH_GetWriteProtectionOptionByte+0x8>)
+   2:	6a18      	ldr	r0, [r3, #32]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:679
+}
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+   8:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_GetReadOutProtectionStatus:
+
+00000000 <FLASH_GetReadOutProtectionStatus>:
+FLASH_GetReadOutProtectionStatus():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:693
+*******************************************************************************/
+FlagStatus FLASH_GetReadOutProtectionStatus(void)
+{
+  FlagStatus readoutstatus = RESET;
+
+  if ((FLASH->OBR & RDPRT_Mask) != (u32)RESET)
+   0:	4b02      	ldr	r3, [pc, #8]	(c <FLASH_GetReadOutProtectionStatus+0xc>)
+   2:	69d8      	ldr	r0, [r3, #28]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:702
+  else
+  {
+    readoutstatus = RESET;
+  }
+  return readoutstatus;
+}
+   4:	f3c0 0040 	ubfx	r0, r0, #1, #1
+   8:	4770      	bx	lr
+   a:	46c0      	nop			(mov r8, r8)
+   c:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_GetPrefetchBufferStatus:
+
+00000000 <FLASH_GetPrefetchBufferStatus>:
+FLASH_GetPrefetchBufferStatus():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:715
+*******************************************************************************/
+FlagStatus FLASH_GetPrefetchBufferStatus(void)
+{
+  FlagStatus bitstatus = RESET;
+  
+  if ((FLASH->ACR & ACR_PRFTBS_Mask) != (u32)RESET)
+   0:	4b02      	ldr	r3, [pc, #8]	(c <FLASH_GetPrefetchBufferStatus+0xc>)
+   2:	6818      	ldr	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:725
+  {
+    bitstatus = RESET;
+  }
+  /* Return the new state of FLASH Prefetch Buffer Status (SET or RESET) */
+  return bitstatus; 
+}
+   4:	f3c0 1040 	ubfx	r0, r0, #5, #1
+   8:	4770      	bx	lr
+   a:	46c0      	nop			(mov r8, r8)
+   c:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_ITConfig:
+
+00000000 <FLASH_ITConfig>:
+FLASH_ITConfig():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:744
+{
+  /* Check the parameters */
+  assert_param(IS_FLASH_IT(FLASH_IT)); 
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+
+  if(NewState != DISABLE)
+   0:	b121      	cbz	r1, c <FLASH_ITConfig+0xc>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:747
+  {
+    /* Enable the interrupt sources */
+    FLASH->CR |= FLASH_IT;
+   2:	4a05      	ldr	r2, [pc, #20]	(18 <FLASH_ITConfig+0x18>)
+   4:	6913      	ldr	r3, [r2, #16]
+   6:	ea40 0303 	orr.w	r3, r0, r3
+   a:	e003      	b.n	14 <FLASH_ITConfig+0x14>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:752
+  }
+  else
+  {
+    /* Disable the interrupt sources */
+    FLASH->CR &= ~(u32)FLASH_IT;
+   c:	4a02      	ldr	r2, [pc, #8]	(18 <FLASH_ITConfig+0x18>)
+   e:	6913      	ldr	r3, [r2, #16]
+  10:	ea23 0300 	bic.w	r3, r3, r0
+  14:	6113      	str	r3, [r2, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:754
+  }
+}
+  16:	4770      	bx	lr
+  18:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_GetFlagStatus:
+
+00000000 <FLASH_GetFlagStatus>:
+FLASH_GetFlagStatus():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:776
+  FlagStatus bitstatus = RESET;
+
+  /* Check the parameters */
+  assert_param(IS_FLASH_GET_FLAG(FLASH_FLAG)) ;
+
+  if(FLASH_FLAG == FLASH_FLAG_OPTERR) 
+   0:	2801      	cmp	r0, #1
+   2:	d104      	bne.n	e <FLASH_GetFlagStatus+0xe>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:778
+  {
+    if((FLASH->OBR & FLASH_FLAG_OPTERR) != (u32)RESET)
+   4:	4b05      	ldr	r3, [pc, #20]	(1c <FLASH_GetFlagStatus+0x1c>)
+   6:	69db      	ldr	r3, [r3, #28]
+   8:	f003 0001 	and.w	r0, r3, #1	; 0x1
+   c:	e005      	b.n	1a <FLASH_GetFlagStatus+0x1a>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:789
+      bitstatus = RESET;
+    }
+  }
+  else
+  {
+   if((FLASH->SR & FLASH_FLAG) != (u32)RESET)
+   e:	4b03      	ldr	r3, [pc, #12]	(1c <FLASH_GetFlagStatus+0x1c>)
+  10:	68db      	ldr	r3, [r3, #12]
+  12:	4218      	tst	r0, r3
+  14:	bf0c      	ite	eq
+  16:	2000      	moveq	r0, #0
+  18:	2001      	movne	r0, #1
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:800
+      bitstatus = RESET;
+    }
+  }
+  /* Return the new state of FLASH_FLAG (SET or RESET) */
+  return bitstatus;
+}
+  1a:	4770      	bx	lr
+  1c:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_ClearFlag:
+
+00000000 <FLASH_ClearFlag>:
+FLASH_ClearFlag():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:820
+{
+  /* Check the parameters */
+  assert_param(IS_FLASH_CLEAR_FLAG(FLASH_FLAG)) ;
+  
+  /* Clear the flags */
+  FLASH->SR = FLASH_FLAG;
+   0:	4b01      	ldr	r3, [pc, #4]	(8 <FLASH_ClearFlag+0x8>)
+   2:	60d8      	str	r0, [r3, #12]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:821
+}
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+   8:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_GetStatus:
+
+00000000 <FLASH_GetStatus>:
+FLASH_GetStatus():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:835
+*******************************************************************************/
+FLASH_Status FLASH_GetStatus(void)
+{
+  FLASH_Status flashstatus = FLASH_COMPLETE;
+  
+  if((FLASH->SR & FLASH_FLAG_BSY) == FLASH_FLAG_BSY) 
+   0:	4a09      	ldr	r2, [pc, #36]	(28 <FLASH_GetStatus+0x28>)
+   2:	68d3      	ldr	r3, [r2, #12]
+   4:	f013 0f01 	tst.w	r3, #1	; 0x1
+   8:	d001      	beq.n	e <FLASH_GetStatus+0xe>
+   a:	2001      	movs	r0, #1
+   c:	e00b      	b.n	26 <FLASH_GetStatus+0x26>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:841
+  {
+    flashstatus = FLASH_BUSY;
+  }
+  else 
+  {  
+    if(FLASH->SR & FLASH_FLAG_PGERR)
+   e:	68d3      	ldr	r3, [r2, #12]
+  10:	f013 0f04 	tst.w	r3, #4	; 0x4
+  14:	d001      	beq.n	1a <FLASH_GetStatus+0x1a>
+  16:	2002      	movs	r0, #2
+  18:	e005      	b.n	26 <FLASH_GetStatus+0x26>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:847
+    { 
+      flashstatus = FLASH_ERROR_PG;
+    }
+    else 
+    {
+      if(FLASH->SR & FLASH_FLAG_WRPRTERR)
+  1a:	68d3      	ldr	r3, [r2, #12]
+  1c:	f013 0f10 	tst.w	r3, #16	; 0x10
+  20:	bf14      	ite	ne
+  22:	2003      	movne	r0, #3
+  24:	2004      	moveq	r0, #4
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:859
+      }
+    }
+  }
+  /* Return the Flash Status */
+  return flashstatus;
+}
+  26:	4770      	bx	lr
+  28:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_WaitForLastOperation:
+
+00000000 <FLASH_WaitForLastOperation>:
+FLASH_WaitForLastOperation():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:871
+* Return         : FLASH Status: The returned value can be: FLASH_BUSY, 
+*                  FLASH_ERROR_PG, FLASH_ERROR_WRP, FLASH_COMPLETE or 
+*                  FLASH_TIMEOUT.
+*******************************************************************************/
+FLASH_Status FLASH_WaitForLastOperation(u32 Timeout)
+{ 
+   0:	b513      	push	{r0, r1, r4, lr}
+   2:	4604      	mov	r4, r0
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:875
+  FLASH_Status status = FLASH_COMPLETE;
+   
+  /* Check for the Flash Status */
+  status = FLASH_GetStatus();
+   4:	f7ff fffe 	bl	0 <FLASH_WaitForLastOperation>
+   8:	e00c      	b.n	24 <FLASH_WaitForLastOperation+0x24>
+delay():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:903
+* Output         : None
+* Return         : None
+*******************************************************************************/
+static void delay(void)
+{
+  vu32 i = 0;
+   a:	2300      	movs	r3, #0
+   c:	9301      	str	r3, [sp, #4]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:905
+
+  for(i = 0xFF; i != 0; i--)
+   e:	33ff      	adds	r3, #255
+  10:	e001      	b.n	16 <FLASH_WaitForLastOperation+0x16>
+  12:	9b01      	ldr	r3, [sp, #4]
+  14:	3b01      	subs	r3, #1
+  16:	9301      	str	r3, [sp, #4]
+  18:	9b01      	ldr	r3, [sp, #4]
+  1a:	2b00      	cmp	r3, #0
+  1c:	d1f9      	bne.n	12 <FLASH_WaitForLastOperation+0x12>
+FLASH_WaitForLastOperation():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:881
+
+  /* Wait for a Flash operation to complete or a TIMEOUT to occur */
+  while((status == FLASH_BUSY) && (Timeout != 0x00))
+  {
+    delay();
+    status = FLASH_GetStatus();
+  1e:	f7ff fffe 	bl	0 <FLASH_WaitForLastOperation>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:882
+    Timeout--;
+  22:	3c01      	subs	r4, #1
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:878
+   
+  /* Check for the Flash Status */
+  status = FLASH_GetStatus();
+
+  /* Wait for a Flash operation to complete or a TIMEOUT to occur */
+  while((status == FLASH_BUSY) && (Timeout != 0x00))
+  24:	2801      	cmp	r0, #1
+  26:	d102      	bne.n	2e <FLASH_WaitForLastOperation+0x2e>
+  28:	2c00      	cmp	r4, #0
+  2a:	d1ee      	bne.n	a <FLASH_WaitForLastOperation+0xa>
+  2c:	e000      	b.n	30 <FLASH_WaitForLastOperation+0x30>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:885
+    delay();
+    status = FLASH_GetStatus();
+    Timeout--;
+  }
+
+  if(Timeout == 0x00 )
+  2e:	b904      	cbnz	r4, 32 <FLASH_WaitForLastOperation+0x32>
+  30:	2005      	movs	r0, #5
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:892
+    status = FLASH_TIMEOUT;
+  }
+
+  /* Return the operation status */
+  return status;
+}
+  32:	bd1c      	pop	{r2, r3, r4, pc}
+Disassembly of section .text.FLASH_UserOptionByteConfig:
+
+00000000 <FLASH_UserOptionByteConfig>:
+FLASH_UserOptionByteConfig():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:619
+* Return         : FLASH Status: The returned value can be: FLASH_BUSY, 
+*                  FLASH_ERROR_PG, FLASH_ERROR_WRP, FLASH_COMPLETE or 
+*                  FLASH_TIMEOUT.
+*******************************************************************************/
+FLASH_Status FLASH_UserOptionByteConfig(u16 OB_IWDG, u16 OB_STOP, u16 OB_STDBY)
+{
+   0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:628
+  assert_param(IS_OB_IWDG_SOURCE(OB_IWDG));
+  assert_param(IS_OB_STOP_SOURCE(OB_STOP));
+  assert_param(IS_OB_STDBY_SOURCE(OB_STDBY));
+
+  /* Authorize the small information block programming */
+  FLASH->OPTKEYR = FLASH_KEY1;
+   4:	4b13      	ldr	r3, [pc, #76]	(54 <FLASH_UserOptionByteConfig+0x54>)
+   6:	4c14      	ldr	r4, [pc, #80]	(58 <FLASH_UserOptionByteConfig+0x58>)
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:619
+* Return         : FLASH Status: The returned value can be: FLASH_BUSY, 
+*                  FLASH_ERROR_PG, FLASH_ERROR_WRP, FLASH_COMPLETE or 
+*                  FLASH_TIMEOUT.
+*******************************************************************************/
+FLASH_Status FLASH_UserOptionByteConfig(u16 OB_IWDG, u16 OB_STOP, u16 OB_STDBY)
+{
+   8:	4605      	mov	r5, r0
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:628
+  assert_param(IS_OB_IWDG_SOURCE(OB_IWDG));
+  assert_param(IS_OB_STOP_SOURCE(OB_STOP));
+  assert_param(IS_OB_STDBY_SOURCE(OB_STDBY));
+
+  /* Authorize the small information block programming */
+  FLASH->OPTKEYR = FLASH_KEY1;
+   a:	60a3      	str	r3, [r4, #8]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:629
+  FLASH->OPTKEYR = FLASH_KEY2;
+   c:	f103 3388 	add.w	r3, r3, #2290649224	; 0x88888888
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:632
+  
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+  10:	200f      	movs	r0, #15
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:629
+  assert_param(IS_OB_STOP_SOURCE(OB_STOP));
+  assert_param(IS_OB_STDBY_SOURCE(OB_STDBY));
+
+  /* Authorize the small information block programming */
+  FLASH->OPTKEYR = FLASH_KEY1;
+  FLASH->OPTKEYR = FLASH_KEY2;
+  12:	60a3      	str	r3, [r4, #8]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:619
+* Return         : FLASH Status: The returned value can be: FLASH_BUSY, 
+*                  FLASH_ERROR_PG, FLASH_ERROR_WRP, FLASH_COMPLETE or 
+*                  FLASH_TIMEOUT.
+*******************************************************************************/
+FLASH_Status FLASH_UserOptionByteConfig(u16 OB_IWDG, u16 OB_STOP, u16 OB_STDBY)
+{
+  14:	460e      	mov	r6, r1
+  16:	4617      	mov	r7, r2
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:632
+  /* Authorize the small information block programming */
+  FLASH->OPTKEYR = FLASH_KEY1;
+  FLASH->OPTKEYR = FLASH_KEY2;
+  
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+  18:	f7ff fffe 	bl	0 <FLASH_UserOptionByteConfig>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:634
+  
+  if(status == FLASH_COMPLETE)
+  1c:	2804      	cmp	r0, #4
+  1e:	d116      	bne.n	4e <FLASH_UserOptionByteConfig+0x4e>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:637
+  {  
+    /* Enable the Option Bytes Programming operation */
+    FLASH->CR |= CR_OPTPG_Set; 
+  20:	6923      	ldr	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:639
+           
+    OB->USER = ( OB_IWDG | OB_STOP |OB_STDBY) | (u16)0xF8; 
+  22:	4a0e      	ldr	r2, [pc, #56]	(5c <FLASH_UserOptionByteConfig+0x5c>)
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:637
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+  
+  if(status == FLASH_COMPLETE)
+  {  
+    /* Enable the Option Bytes Programming operation */
+    FLASH->CR |= CR_OPTPG_Set; 
+  24:	f043 0310 	orr.w	r3, r3, #16	; 0x10
+  28:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:639
+           
+    OB->USER = ( OB_IWDG | OB_STOP |OB_STDBY) | (u16)0xF8; 
+  2a:	f045 03f8 	orr.w	r3, r5, #248	; 0xf8
+  2e:	ea46 0303 	orr.w	r3, r6, r3
+  32:	ea47 0303 	orr.w	r3, r7, r3
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:642
+  
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(ProgramTimeout);
+  36:	300b      	adds	r0, #11
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:639
+  if(status == FLASH_COMPLETE)
+  {  
+    /* Enable the Option Bytes Programming operation */
+    FLASH->CR |= CR_OPTPG_Set; 
+           
+    OB->USER = ( OB_IWDG | OB_STOP |OB_STDBY) | (u16)0xF8; 
+  38:	8053      	strh	r3, [r2, #2]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:642
+  
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(ProgramTimeout);
+  3a:	f7ff fffe 	bl	0 <FLASH_UserOptionByteConfig>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:644
+
+    if(status != FLASH_BUSY)
+  3e:	2801      	cmp	r0, #1
+  40:	d005      	beq.n	4e <FLASH_UserOptionByteConfig+0x4e>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:647
+    {
+      /* if the program operation is completed, disable the OPTPG Bit */
+      FLASH->CR &= CR_OPTPG_Reset;
+  42:	6922      	ldr	r2, [r4, #16]
+  44:	f641 73ef 	movw	r3, #8175	; 0x1fef
+  48:	ea02 0303 	and.w	r3, r2, r3
+  4c:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:652
+    }
+  }    
+  /* Return the Option Byte program Status */
+  return status;
+}
+  4e:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  52:	46c0      	nop			(mov r8, r8)
+  54:	45670123 	.word	0x45670123
+  58:	40022000 	.word	0x40022000
+  5c:	1ffff800 	.word	0x1ffff800
+Disassembly of section .text.FLASH_ReadOutProtection:
+
+00000000 <FLASH_ReadOutProtection>:
+FLASH_ReadOutProtection():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:538
+* Return         : FLASH Status: The returned value can be: FLASH_BUSY, 
+*                  FLASH_ERROR_PG, FLASH_ERROR_WRP, FLASH_COMPLETE or 
+*                  FLASH_TIMEOUT.
+*******************************************************************************/
+FLASH_Status FLASH_ReadOutProtection(FunctionalState NewState)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:544
+  FLASH_Status status = FLASH_COMPLETE;
+
+  /* Check the parameters */
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+
+  status = FLASH_WaitForLastOperation(EraseTimeout);
+   4:	f640 70ff 	movw	r0, #4095	; 0xfff
+   8:	f7ff fffe 	bl	0 <FLASH_ReadOutProtection>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:546
+
+  if(status == FLASH_COMPLETE)
+   c:	2804      	cmp	r0, #4
+   e:	d13c      	bne.n	8a <FLASH_ReadOutProtection+0x8a>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:549
+  {
+    /* Authorizes the small information block programming */
+    FLASH->OPTKEYR = FLASH_KEY1;
+  10:	4c1e      	ldr	r4, [pc, #120]	(8c <FLASH_ReadOutProtection+0x8c>)
+  12:	4b1f      	ldr	r3, [pc, #124]	(90 <FLASH_ReadOutProtection+0x90>)
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:556
+
+    FLASH->CR |= CR_OPTER_Set;
+    FLASH->CR |= CR_STRT_Set;
+
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(EraseTimeout);
+  14:	f640 70ff 	movw	r0, #4095	; 0xfff
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:549
+  status = FLASH_WaitForLastOperation(EraseTimeout);
+
+  if(status == FLASH_COMPLETE)
+  {
+    /* Authorizes the small information block programming */
+    FLASH->OPTKEYR = FLASH_KEY1;
+  18:	60a3      	str	r3, [r4, #8]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:550
+    FLASH->OPTKEYR = FLASH_KEY2;
+  1a:	f103 3388 	add.w	r3, r3, #2290649224	; 0x88888888
+  1e:	60a3      	str	r3, [r4, #8]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:552
+
+    FLASH->CR |= CR_OPTER_Set;
+  20:	6923      	ldr	r3, [r4, #16]
+  22:	f043 0320 	orr.w	r3, r3, #32	; 0x20
+  26:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:553
+    FLASH->CR |= CR_STRT_Set;
+  28:	6923      	ldr	r3, [r4, #16]
+  2a:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+  2e:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:556
+
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(EraseTimeout);
+  30:	f7ff fffe 	bl	0 <FLASH_ReadOutProtection>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:558
+
+    if(status == FLASH_COMPLETE)
+  34:	2804      	cmp	r0, #4
+  36:	d120      	bne.n	7a <FLASH_ReadOutProtection+0x7a>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:561
+    {
+      /* if the erase operation is completed, disable the OPTER Bit */
+      FLASH->CR &= CR_OPTER_Reset;
+  38:	6923      	ldr	r3, [r4, #16]
+  3a:	f641 72df 	movw	r2, #8159	; 0x1fdf
+  3e:	ea03 0202 	and.w	r2, r3, r2
+  42:	6122      	str	r2, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:564
+
+      /* Enable the Option Bytes Programming operation */
+      FLASH->CR |= CR_OPTPG_Set; 
+  44:	6923      	ldr	r3, [r4, #16]
+  46:	f043 0310 	orr.w	r3, r3, #16	; 0x10
+  4a:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:566
+
+      if(NewState != DISABLE)
+  4c:	b11d      	cbz	r5, 56 <FLASH_ReadOutProtection+0x56>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:568
+      {
+        OB->RDP = 0x00;
+  4e:	4b11      	ldr	r3, [pc, #68]	(94 <FLASH_ReadOutProtection+0x94>)
+  50:	f04f 0200 	mov.w	r2, #0	; 0x0
+  54:	e002      	b.n	5c <FLASH_ReadOutProtection+0x5c>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:572
+      }
+      else
+      {
+        OB->RDP = RDP_Key;  
+  56:	4b0f      	ldr	r3, [pc, #60]	(94 <FLASH_ReadOutProtection+0x94>)
+  58:	f04f 02a5 	mov.w	r2, #165	; 0xa5
+  5c:	801a      	strh	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:576
+      }
+
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(EraseTimeout); 
+  5e:	f640 70ff 	movw	r0, #4095	; 0xfff
+  62:	f7ff fffe 	bl	0 <FLASH_ReadOutProtection>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:578
+    
+      if(status != FLASH_BUSY)
+  66:	2801      	cmp	r0, #1
+  68:	d00f      	beq.n	8a <FLASH_ReadOutProtection+0x8a>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:581
+      {
+        /* if the program operation is completed, disable the OPTPG Bit */
+        FLASH->CR &= CR_OPTPG_Reset;
+  6a:	4908      	ldr	r1, [pc, #32]	(8c <FLASH_ReadOutProtection+0x8c>)
+  6c:	f641 73ef 	movw	r3, #8175	; 0x1fef
+  70:	690a      	ldr	r2, [r1, #16]
+  72:	ea02 0303 	and.w	r3, r2, r3
+  76:	610b      	str	r3, [r1, #16]
+  78:	e007      	b.n	8a <FLASH_ReadOutProtection+0x8a>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:586
+      }
+    }
+    else 
+    {
+      if(status != FLASH_BUSY)
+  7a:	2801      	cmp	r0, #1
+  7c:	d005      	beq.n	8a <FLASH_ReadOutProtection+0x8a>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:589
+      {
+        /* Disable the OPTER Bit */
+        FLASH->CR &= CR_OPTER_Reset;
+  7e:	6922      	ldr	r2, [r4, #16]
+  80:	f641 73df 	movw	r3, #8159	; 0x1fdf
+  84:	ea02 0303 	and.w	r3, r2, r3
+  88:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:595
+      }
+    }
+  }
+  /* Return the protection operation Status */
+  return status;      
+}
+  8a:	bd70      	pop	{r4, r5, r6, pc}
+  8c:	40022000 	.word	0x40022000
+  90:	45670123 	.word	0x45670123
+  94:	1ffff800 	.word	0x1ffff800
+Disassembly of section .text.FLASH_EnableWriteProtection:
+
+00000000 <FLASH_EnableWriteProtection>:
+FLASH_EnableWriteProtection():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:459
+* Return         : FLASH Status: The returned value can be: FLASH_BUSY, 
+*                  FLASH_ERROR_PG, FLASH_ERROR_WRP, FLASH_COMPLETE or 
+*                  FLASH_TIMEOUT.
+*******************************************************************************/
+FLASH_Status FLASH_EnableWriteProtection(u32 FLASH_Pages)
+{
+   0:	b510      	push	{r4, lr}
+   2:	4604      	mov	r4, r0
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:474
+  WRP1_Data = (vu16)((FLASH_Pages & WRP1_Mask) >> 8);
+  WRP2_Data = (vu16)((FLASH_Pages & WRP2_Mask) >> 16);
+  WRP3_Data = (vu16)((FLASH_Pages & WRP3_Mask) >> 24);
+  
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+   4:	200f      	movs	r0, #15
+   6:	f7ff fffe 	bl	0 <FLASH_EnableWriteProtection>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:476
+  
+  if(status == FLASH_COMPLETE)
+   a:	2804      	cmp	r0, #4
+   c:	d13d      	bne.n	8a <FLASH_EnableWriteProtection+0x8a>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:479
+  {
+    /* Authorizes the small information block programming */
+    FLASH->OPTKEYR = FLASH_KEY1;
+   e:	4a1f      	ldr	r2, [pc, #124]	(8c <FLASH_EnableWriteProtection+0x8c>)
+  10:	4b1f      	ldr	r3, [pc, #124]	(90 <FLASH_EnableWriteProtection+0x90>)
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:467
+  FLASH_Status status = FLASH_COMPLETE;
+  
+  /* Check the parameters */
+  assert_param(IS_FLASH_WRPROT_PAGE(FLASH_Pages));
+  
+  FLASH_Pages = (u32)(~FLASH_Pages);
+  12:	43e4      	mvns	r4, r4
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:479
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+  
+  if(status == FLASH_COMPLETE)
+  {
+    /* Authorizes the small information block programming */
+    FLASH->OPTKEYR = FLASH_KEY1;
+  14:	6093      	str	r3, [r2, #8]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:480
+    FLASH->OPTKEYR = FLASH_KEY2;
+  16:	f103 3388 	add.w	r3, r3, #2290649224	; 0x88888888
+  1a:	6093      	str	r3, [r2, #8]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:481
+    FLASH->CR |= CR_OPTPG_Set;
+  1c:	6913      	ldr	r3, [r2, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:468
+  
+  /* Check the parameters */
+  assert_param(IS_FLASH_WRPROT_PAGE(FLASH_Pages));
+  
+  FLASH_Pages = (u32)(~FLASH_Pages);
+  WRP0_Data = (vu16)(FLASH_Pages & WRP0_Mask);
+  1e:	b2e1      	uxtb	r1, r4
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:481
+  if(status == FLASH_COMPLETE)
+  {
+    /* Authorizes the small information block programming */
+    FLASH->OPTKEYR = FLASH_KEY1;
+    FLASH->OPTKEYR = FLASH_KEY2;
+    FLASH->CR |= CR_OPTPG_Set;
+  20:	f043 0310 	orr.w	r3, r3, #16	; 0x10
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:483
+
+    if(WRP0_Data != 0xFF)
+  24:	29ff      	cmp	r1, #255
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:481
+  if(status == FLASH_COMPLETE)
+  {
+    /* Authorizes the small information block programming */
+    FLASH->OPTKEYR = FLASH_KEY1;
+    FLASH->OPTKEYR = FLASH_KEY2;
+    FLASH->CR |= CR_OPTPG_Set;
+  26:	6113      	str	r3, [r2, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:483
+
+    if(WRP0_Data != 0xFF)
+  28:	d006      	beq.n	38 <FLASH_EnableWriteProtection+0x38>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:485
+    {
+      OB->WRP0 = WRP0_Data;
+  2a:	4b1a      	ldr	r3, [pc, #104]	(94 <FLASH_EnableWriteProtection+0x94>)
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:488
+      
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  2c:	200f      	movs	r0, #15
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:485
+    FLASH->OPTKEYR = FLASH_KEY2;
+    FLASH->CR |= CR_OPTPG_Set;
+
+    if(WRP0_Data != 0xFF)
+    {
+      OB->WRP0 = WRP0_Data;
+  2e:	8119      	strh	r1, [r3, #8]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:488
+      
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  30:	f7ff fffe 	bl	0 <FLASH_EnableWriteProtection>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:490
+    }
+    if((status == FLASH_COMPLETE) && (WRP1_Data != 0xFF))
+  34:	2804      	cmp	r0, #4
+  36:	d11f      	bne.n	78 <FLASH_EnableWriteProtection+0x78>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:469
+  /* Check the parameters */
+  assert_param(IS_FLASH_WRPROT_PAGE(FLASH_Pages));
+  
+  FLASH_Pages = (u32)(~FLASH_Pages);
+  WRP0_Data = (vu16)(FLASH_Pages & WRP0_Mask);
+  WRP1_Data = (vu16)((FLASH_Pages & WRP1_Mask) >> 8);
+  38:	f3c4 2207 	ubfx	r2, r4, #8, #8
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:490
+      OB->WRP0 = WRP0_Data;
+      
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+    }
+    if((status == FLASH_COMPLETE) && (WRP1_Data != 0xFF))
+  3c:	2aff      	cmp	r2, #255
+  3e:	d006      	beq.n	4e <FLASH_EnableWriteProtection+0x4e>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:492
+    {
+      OB->WRP1 = WRP1_Data;
+  40:	4b14      	ldr	r3, [pc, #80]	(94 <FLASH_EnableWriteProtection+0x94>)
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:495
+      
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  42:	200f      	movs	r0, #15
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:492
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+    }
+    if((status == FLASH_COMPLETE) && (WRP1_Data != 0xFF))
+    {
+      OB->WRP1 = WRP1_Data;
+  44:	815a      	strh	r2, [r3, #10]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:495
+      
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  46:	f7ff fffe 	bl	0 <FLASH_EnableWriteProtection>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:498
+    }
+
+    if((status == FLASH_COMPLETE) && (WRP2_Data != 0xFF))
+  4a:	2804      	cmp	r0, #4
+  4c:	d114      	bne.n	78 <FLASH_EnableWriteProtection+0x78>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:470
+  assert_param(IS_FLASH_WRPROT_PAGE(FLASH_Pages));
+  
+  FLASH_Pages = (u32)(~FLASH_Pages);
+  WRP0_Data = (vu16)(FLASH_Pages & WRP0_Mask);
+  WRP1_Data = (vu16)((FLASH_Pages & WRP1_Mask) >> 8);
+  WRP2_Data = (vu16)((FLASH_Pages & WRP2_Mask) >> 16);
+  4e:	f3c4 4207 	ubfx	r2, r4, #16, #8
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:498
+      
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+    }
+
+    if((status == FLASH_COMPLETE) && (WRP2_Data != 0xFF))
+  52:	2aff      	cmp	r2, #255
+  54:	d006      	beq.n	64 <FLASH_EnableWriteProtection+0x64>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:500
+    {
+      OB->WRP2 = WRP2_Data;
+  56:	4b0f      	ldr	r3, [pc, #60]	(94 <FLASH_EnableWriteProtection+0x94>)
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:503
+      
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  58:	200f      	movs	r0, #15
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:500
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+    }
+
+    if((status == FLASH_COMPLETE) && (WRP2_Data != 0xFF))
+    {
+      OB->WRP2 = WRP2_Data;
+  5a:	819a      	strh	r2, [r3, #12]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:503
+      
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  5c:	f7ff fffe 	bl	0 <FLASH_EnableWriteProtection>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:506
+    }
+    
+    if((status == FLASH_COMPLETE)&& (WRP3_Data != 0xFF))
+  60:	2804      	cmp	r0, #4
+  62:	d109      	bne.n	78 <FLASH_EnableWriteProtection+0x78>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:471
+  
+  FLASH_Pages = (u32)(~FLASH_Pages);
+  WRP0_Data = (vu16)(FLASH_Pages & WRP0_Mask);
+  WRP1_Data = (vu16)((FLASH_Pages & WRP1_Mask) >> 8);
+  WRP2_Data = (vu16)((FLASH_Pages & WRP2_Mask) >> 16);
+  WRP3_Data = (vu16)((FLASH_Pages & WRP3_Mask) >> 24);
+  64:	0e20      	lsrs	r0, r4, #24
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:506
+      
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+    }
+    
+    if((status == FLASH_COMPLETE)&& (WRP3_Data != 0xFF))
+  66:	28ff      	cmp	r0, #255
+  68:	d101      	bne.n	6e <FLASH_EnableWriteProtection+0x6e>
+  6a:	2004      	movs	r0, #4
+  6c:	e006      	b.n	7c <FLASH_EnableWriteProtection+0x7c>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:508
+    {
+      OB->WRP3 = WRP3_Data;
+  6e:	4b09      	ldr	r3, [pc, #36]	(94 <FLASH_EnableWriteProtection+0x94>)
+  70:	81d8      	strh	r0, [r3, #14]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:511
+     
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  72:	200f      	movs	r0, #15
+  74:	f7ff fffe 	bl	0 <FLASH_EnableWriteProtection>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:514
+    }
+          
+    if(status != FLASH_BUSY)
+  78:	2801      	cmp	r0, #1
+  7a:	d006      	beq.n	8a <FLASH_EnableWriteProtection+0x8a>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:517
+    {
+      /* if the program operation is completed, disable the OPTPG Bit */
+      FLASH->CR &= CR_OPTPG_Reset;
+  7c:	4903      	ldr	r1, [pc, #12]	(8c <FLASH_EnableWriteProtection+0x8c>)
+  7e:	f641 73ef 	movw	r3, #8175	; 0x1fef
+  82:	690a      	ldr	r2, [r1, #16]
+  84:	ea02 0303 	and.w	r3, r2, r3
+  88:	610b      	str	r3, [r1, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:522
+    }
+  } 
+  /* Return the write protection operation Status */
+  return status;       
+}
+  8a:	bd10      	pop	{r4, pc}
+  8c:	40022000 	.word	0x40022000
+  90:	45670123 	.word	0x45670123
+  94:	1ffff800 	.word	0x1ffff800
+Disassembly of section .text.FLASH_ProgramOptionByteData:
+
+00000000 <FLASH_ProgramOptionByteData>:
+FLASH_ProgramOptionByteData():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:410
+* Return         : FLASH Status: The returned value can be: FLASH_BUSY, 
+*                  FLASH_ERROR_PG, FLASH_ERROR_WRP, FLASH_COMPLETE or 
+*                  FLASH_TIMEOUT. 
+*******************************************************************************/
+FLASH_Status FLASH_ProgramOptionByteData(u32 Address, u8 Data)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4606      	mov	r6, r0
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:416
+  FLASH_Status status = FLASH_COMPLETE;
+
+  /* Check the parameters */
+  assert_param(IS_OB_DATA_ADDRESS(Address));
+
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+   4:	200f      	movs	r0, #15
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:410
+* Return         : FLASH Status: The returned value can be: FLASH_BUSY, 
+*                  FLASH_ERROR_PG, FLASH_ERROR_WRP, FLASH_COMPLETE or 
+*                  FLASH_TIMEOUT. 
+*******************************************************************************/
+FLASH_Status FLASH_ProgramOptionByteData(u32 Address, u8 Data)
+{
+   6:	460d      	mov	r5, r1
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:416
+  FLASH_Status status = FLASH_COMPLETE;
+
+  /* Check the parameters */
+  assert_param(IS_OB_DATA_ADDRESS(Address));
+
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+   8:	f7ff fffe 	bl	0 <FLASH_ProgramOptionByteData>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:418
+
+  if(status == FLASH_COMPLETE)
+   c:	2804      	cmp	r0, #4
+   e:	d115      	bne.n	3c <FLASH_ProgramOptionByteData+0x3c>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:421
+  {
+    /* Authorize the small information block programming */
+    FLASH->OPTKEYR = FLASH_KEY1;
+  10:	4c0b      	ldr	r4, [pc, #44]	(40 <FLASH_ProgramOptionByteData+0x40>)
+  12:	4b0c      	ldr	r3, [pc, #48]	(44 <FLASH_ProgramOptionByteData+0x44>)
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:429
+    /* Enables the Option Bytes Programming operation */
+    FLASH->CR |= CR_OPTPG_Set; 
+    *(vu16*)Address = Data;
+    
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(ProgramTimeout);
+  14:	300b      	adds	r0, #11
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:421
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+
+  if(status == FLASH_COMPLETE)
+  {
+    /* Authorize the small information block programming */
+    FLASH->OPTKEYR = FLASH_KEY1;
+  16:	60a3      	str	r3, [r4, #8]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:422
+    FLASH->OPTKEYR = FLASH_KEY2;
+  18:	f103 3388 	add.w	r3, r3, #2290649224	; 0x88888888
+  1c:	60a3      	str	r3, [r4, #8]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:425
+
+    /* Enables the Option Bytes Programming operation */
+    FLASH->CR |= CR_OPTPG_Set; 
+  1e:	6923      	ldr	r3, [r4, #16]
+  20:	f043 0310 	orr.w	r3, r3, #16	; 0x10
+  24:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:426
+    *(vu16*)Address = Data;
+  26:	8035      	strh	r5, [r6, #0]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:429
+    
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(ProgramTimeout);
+  28:	f7ff fffe 	bl	0 <FLASH_ProgramOptionByteData>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:431
+
+    if(status != FLASH_BUSY)
+  2c:	2801      	cmp	r0, #1
+  2e:	d005      	beq.n	3c <FLASH_ProgramOptionByteData+0x3c>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:434
+    {
+      /* if the program operation is completed, disable the OPTPG Bit */
+      FLASH->CR &= CR_OPTPG_Reset;
+  30:	6922      	ldr	r2, [r4, #16]
+  32:	f641 73ef 	movw	r3, #8175	; 0x1fef
+  36:	ea02 0303 	and.w	r3, r2, r3
+  3a:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:439
+    }
+  }    
+  /* Return the Option Byte Data Program Status */
+  return status;      
+}
+  3c:	bd70      	pop	{r4, r5, r6, pc}
+  3e:	46c0      	nop			(mov r8, r8)
+  40:	40022000 	.word	0x40022000
+  44:	45670123 	.word	0x45670123
+Disassembly of section .text.FLASH_ProgramHalfWord:
+
+00000000 <FLASH_ProgramHalfWord>:
+FLASH_ProgramHalfWord():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:370
+* Return         : FLASH Status: The returned value can be: FLASH_BUSY, 
+*                  FLASH_ERROR_PG, FLASH_ERROR_WRP, FLASH_COMPLETE or 
+*                  FLASH_TIMEOUT. 
+*******************************************************************************/
+FLASH_Status FLASH_ProgramHalfWord(u32 Address, u16 Data)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4606      	mov	r6, r0
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:377
+
+  /* Check the parameters */
+  assert_param(IS_FLASH_ADDRESS(Address));
+
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+   4:	200f      	movs	r0, #15
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:370
+* Return         : FLASH Status: The returned value can be: FLASH_BUSY, 
+*                  FLASH_ERROR_PG, FLASH_ERROR_WRP, FLASH_COMPLETE or 
+*                  FLASH_TIMEOUT. 
+*******************************************************************************/
+FLASH_Status FLASH_ProgramHalfWord(u32 Address, u16 Data)
+{
+   6:	460d      	mov	r5, r1
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:377
+
+  /* Check the parameters */
+  assert_param(IS_FLASH_ADDRESS(Address));
+
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+   8:	f7ff fffe 	bl	0 <FLASH_ProgramHalfWord>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:379
+  
+  if(status == FLASH_COMPLETE)
+   c:	2804      	cmp	r0, #4
+   e:	d110      	bne.n	32 <FLASH_ProgramHalfWord+0x32>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:382
+  {
+    /* if the previous operation is completed, proceed to program the new data */
+    FLASH->CR |= CR_PG_Set;
+  10:	4c08      	ldr	r4, [pc, #32]	(34 <FLASH_ProgramHalfWord+0x34>)
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:386
+  
+    *(vu16*)Address = Data;
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(ProgramTimeout);
+  12:	300b      	adds	r0, #11
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:382
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+  
+  if(status == FLASH_COMPLETE)
+  {
+    /* if the previous operation is completed, proceed to program the new data */
+    FLASH->CR |= CR_PG_Set;
+  14:	6923      	ldr	r3, [r4, #16]
+  16:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  1a:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:384
+  
+    *(vu16*)Address = Data;
+  1c:	8035      	strh	r5, [r6, #0]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:386
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(ProgramTimeout);
+  1e:	f7ff fffe 	bl	0 <FLASH_ProgramHalfWord>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:388
+
+    if(status != FLASH_BUSY)
+  22:	2801      	cmp	r0, #1
+  24:	d005      	beq.n	32 <FLASH_ProgramHalfWord+0x32>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:391
+    {
+      /* if the program operation is completed, disable the PG Bit */
+      FLASH->CR &= CR_PG_Reset;
+  26:	6922      	ldr	r2, [r4, #16]
+  28:	f641 73fe 	movw	r3, #8190	; 0x1ffe
+  2c:	ea02 0303 	and.w	r3, r2, r3
+  30:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:396
+    }
+  } 
+  /* Return the Program Status */
+  return status;
+}
+  32:	bd70      	pop	{r4, r5, r6, pc}
+  34:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_ProgramWord:
+
+00000000 <FLASH_ProgramWord>:
+FLASH_ProgramWord():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:311
+* Return         : FLASH Status: The returned value can be: FLASH_BUSY, 
+*                  FLASH_ERROR_PG, FLASH_ERROR_WRP, FLASH_COMPLETE or 
+*                  FLASH_TIMEOUT. 
+*******************************************************************************/
+FLASH_Status FLASH_ProgramWord(u32 Address, u32 Data)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4606      	mov	r6, r0
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:318
+
+  /* Check the parameters */
+  assert_param(IS_FLASH_ADDRESS(Address));
+
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+   4:	200f      	movs	r0, #15
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:311
+* Return         : FLASH Status: The returned value can be: FLASH_BUSY, 
+*                  FLASH_ERROR_PG, FLASH_ERROR_WRP, FLASH_COMPLETE or 
+*                  FLASH_TIMEOUT. 
+*******************************************************************************/
+FLASH_Status FLASH_ProgramWord(u32 Address, u32 Data)
+{
+   6:	460d      	mov	r5, r1
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:318
+
+  /* Check the parameters */
+  assert_param(IS_FLASH_ADDRESS(Address));
+
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastOperation(ProgramTimeout);
+   8:	f7ff fffe 	bl	0 <FLASH_ProgramWord>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:320
+  
+  if(status == FLASH_COMPLETE)
+   c:	2804      	cmp	r0, #4
+   e:	d118      	bne.n	42 <FLASH_ProgramWord+0x42>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:324
+  {
+    /* if the previous operation is completed, proceed to program the new first 
+    half word */
+    FLASH->CR |= CR_PG_Set;
+  10:	4c0c      	ldr	r4, [pc, #48]	(44 <FLASH_ProgramWord+0x44>)
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:329
+  
+    *(vu16*)Address = (u16)Data;
+
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(ProgramTimeout);
+  12:	300b      	adds	r0, #11
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:324
+  
+  if(status == FLASH_COMPLETE)
+  {
+    /* if the previous operation is completed, proceed to program the new first 
+    half word */
+    FLASH->CR |= CR_PG_Set;
+  14:	6923      	ldr	r3, [r4, #16]
+  16:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  1a:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:326
+  
+    *(vu16*)Address = (u16)Data;
+  1c:	b2ab      	uxth	r3, r5
+  1e:	8033      	strh	r3, [r6, #0]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:329
+
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(ProgramTimeout);
+  20:	f7ff fffe 	bl	0 <FLASH_ProgramWord>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:331
+ 
+    if(status == FLASH_COMPLETE)
+  24:	2804      	cmp	r0, #4
+  26:	d104      	bne.n	32 <FLASH_ProgramWord+0x32>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:335
+    {
+      /* if the previous operation is completed, proceed to program the new second 
+      half word */
+      *(vu16*)(Address + 2) = Data >> 16;
+  28:	0c2b      	lsrs	r3, r5, #16
+  2a:	8073      	strh	r3, [r6, #2]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:338
+    
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  2c:	300b      	adds	r0, #11
+  2e:	f7ff fffe 	bl	0 <FLASH_ProgramWord>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:348
+        FLASH->CR &= CR_PG_Reset;
+      }
+    }
+    else
+    {
+      if (status != FLASH_BUSY)
+  32:	2801      	cmp	r0, #1
+  34:	d005      	beq.n	42 <FLASH_ProgramWord+0x42>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:351
+      {
+        /* Disable the PG Bit */
+        FLASH->CR &= CR_PG_Reset;
+  36:	6922      	ldr	r2, [r4, #16]
+  38:	f641 73fe 	movw	r3, #8190	; 0x1ffe
+  3c:	ea02 0303 	and.w	r3, r2, r3
+  40:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:357
+      }
+     }
+  }
+  /* Return the Program Status */
+  return status;
+}
+  42:	bd70      	pop	{r4, r5, r6, pc}
+  44:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_EraseOptionBytes:
+
+00000000 <FLASH_EraseOptionBytes>:
+FLASH_EraseOptionBytes():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:248
+* Return         : FLASH Status: The returned value can be: FLASH_BUSY, 
+*                  FLASH_ERROR_PG, FLASH_ERROR_WRP, FLASH_COMPLETE or 
+*                  FLASH_TIMEOUT.
+*******************************************************************************/
+FLASH_Status FLASH_EraseOptionBytes(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:252
+  FLASH_Status status = FLASH_COMPLETE;
+  
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastOperation(EraseTimeout);
+   2:	f640 70ff 	movw	r0, #4095	; 0xfff
+   6:	f7ff fffe 	bl	0 <FLASH_EraseOptionBytes>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:254
+
+  if(status == FLASH_COMPLETE)
+   a:	2804      	cmp	r0, #4
+   c:	d12c      	bne.n	68 <FLASH_EraseOptionBytes+0x68>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:257
+  {
+    /* Authorize the small information block programming */
+    FLASH->OPTKEYR = FLASH_KEY1;
+   e:	4c17      	ldr	r4, [pc, #92]	(6c <FLASH_EraseOptionBytes+0x6c>)
+  10:	4b17      	ldr	r3, [pc, #92]	(70 <FLASH_EraseOptionBytes+0x70>)
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:265
+    /* if the previous operation is completed, proceed to erase the option bytes */
+    FLASH->CR |= CR_OPTER_Set;
+    FLASH->CR |= CR_STRT_Set;
+
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(EraseTimeout);
+  12:	f640 70ff 	movw	r0, #4095	; 0xfff
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:257
+  status = FLASH_WaitForLastOperation(EraseTimeout);
+
+  if(status == FLASH_COMPLETE)
+  {
+    /* Authorize the small information block programming */
+    FLASH->OPTKEYR = FLASH_KEY1;
+  16:	60a3      	str	r3, [r4, #8]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:258
+    FLASH->OPTKEYR = FLASH_KEY2;
+  18:	f103 3388 	add.w	r3, r3, #2290649224	; 0x88888888
+  1c:	60a3      	str	r3, [r4, #8]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:261
+    
+    /* if the previous operation is completed, proceed to erase the option bytes */
+    FLASH->CR |= CR_OPTER_Set;
+  1e:	6923      	ldr	r3, [r4, #16]
+  20:	f043 0320 	orr.w	r3, r3, #32	; 0x20
+  24:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:262
+    FLASH->CR |= CR_STRT_Set;
+  26:	6923      	ldr	r3, [r4, #16]
+  28:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+  2c:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:265
+
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(EraseTimeout);
+  2e:	f7ff fffe 	bl	0 <FLASH_EraseOptionBytes>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:267
+    
+    if(status == FLASH_COMPLETE)
+  32:	2804      	cmp	r0, #4
+  34:	d110      	bne.n	58 <FLASH_EraseOptionBytes+0x58>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:270
+    {
+      /* if the erase operation is completed, disable the OPTER Bit */
+      FLASH->CR &= CR_OPTER_Reset;
+  36:	6922      	ldr	r2, [r4, #16]
+  38:	f641 73df 	movw	r3, #8159	; 0x1fdf
+  3c:	ea02 0303 	and.w	r3, r2, r3
+  40:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:273
+       
+      /* Enable the Option Bytes Programming operation */
+      FLASH->CR |= CR_OPTPG_Set;
+  42:	6923      	ldr	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:276
+
+      /* Enable the readout access */
+      OB->RDP= RDP_Key; 
+  44:	f04f 02a5 	mov.w	r2, #165	; 0xa5
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:273
+    {
+      /* if the erase operation is completed, disable the OPTER Bit */
+      FLASH->CR &= CR_OPTER_Reset;
+       
+      /* Enable the Option Bytes Programming operation */
+      FLASH->CR |= CR_OPTPG_Set;
+  48:	f043 0310 	orr.w	r3, r3, #16	; 0x10
+  4c:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:276
+
+      /* Enable the readout access */
+      OB->RDP= RDP_Key; 
+  4e:	4b09      	ldr	r3, [pc, #36]	(74 <FLASH_EraseOptionBytes+0x74>)
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:279
+
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  50:	300b      	adds	r0, #11
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:276
+       
+      /* Enable the Option Bytes Programming operation */
+      FLASH->CR |= CR_OPTPG_Set;
+
+      /* Enable the readout access */
+      OB->RDP= RDP_Key; 
+  52:	801a      	strh	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:279
+
+      /* Wait for last operation to be completed */
+      status = FLASH_WaitForLastOperation(ProgramTimeout);
+  54:	f7ff fffe 	bl	0 <FLASH_EraseOptionBytes>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:289
+        FLASH->CR &= CR_OPTPG_Reset;
+      }
+    }
+    else
+    {
+      if (status != FLASH_BUSY)
+  58:	2801      	cmp	r0, #1
+  5a:	d005      	beq.n	68 <FLASH_EraseOptionBytes+0x68>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:292
+      {
+        /* Disable the OPTPG Bit */
+        FLASH->CR &= CR_OPTPG_Reset;
+  5c:	6922      	ldr	r2, [r4, #16]
+  5e:	f641 73ef 	movw	r3, #8175	; 0x1fef
+  62:	ea02 0303 	and.w	r3, r2, r3
+  66:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:298
+      }
+    }  
+  }
+  /* Return the erase status */
+  return status;
+}
+  68:	bd10      	pop	{r4, pc}
+  6a:	46c0      	nop			(mov r8, r8)
+  6c:	40022000 	.word	0x40022000
+  70:	45670123 	.word	0x45670123
+  74:	1ffff800 	.word	0x1ffff800
+Disassembly of section .text.FLASH_EraseAllPages:
+
+00000000 <FLASH_EraseAllPages>:
+FLASH_EraseAllPages():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:213
+* Return         : FLASH Status: The returned value can be: FLASH_BUSY, 
+*                  FLASH_ERROR_PG, FLASH_ERROR_WRP, FLASH_COMPLETE or 
+*                  FLASH_TIMEOUT.
+*******************************************************************************/
+FLASH_Status FLASH_EraseAllPages(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:217
+  FLASH_Status status = FLASH_COMPLETE;
+
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastOperation(EraseTimeout);
+   2:	f640 70ff 	movw	r0, #4095	; 0xfff
+   6:	f7ff fffe 	bl	0 <FLASH_EraseAllPages>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:219
+  
+  if(status == FLASH_COMPLETE)
+   a:	2804      	cmp	r0, #4
+   c:	d114      	bne.n	38 <FLASH_EraseAllPages+0x38>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:222
+  {
+    /* if the previous operation is completed, proceed to erase all pages */
+     FLASH->CR |= CR_MER_Set;
+   e:	4c0b      	ldr	r4, [pc, #44]	(3c <FLASH_EraseAllPages+0x3c>)
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:226
+     FLASH->CR |= CR_STRT_Set;
+    
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(EraseTimeout);
+  10:	f640 70ff 	movw	r0, #4095	; 0xfff
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:222
+  status = FLASH_WaitForLastOperation(EraseTimeout);
+  
+  if(status == FLASH_COMPLETE)
+  {
+    /* if the previous operation is completed, proceed to erase all pages */
+     FLASH->CR |= CR_MER_Set;
+  14:	6923      	ldr	r3, [r4, #16]
+  16:	f043 0304 	orr.w	r3, r3, #4	; 0x4
+  1a:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:223
+     FLASH->CR |= CR_STRT_Set;
+  1c:	6923      	ldr	r3, [r4, #16]
+  1e:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+  22:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:226
+    
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(EraseTimeout);
+  24:	f7ff fffe 	bl	0 <FLASH_EraseAllPages>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:228
+
+    if(status != FLASH_BUSY)
+  28:	2801      	cmp	r0, #1
+  2a:	d005      	beq.n	38 <FLASH_EraseAllPages+0x38>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:231
+    {
+      /* if the erase operation is completed, disable the MER Bit */
+      FLASH->CR &= CR_MER_Reset;
+  2c:	6922      	ldr	r2, [r4, #16]
+  2e:	f641 73fb 	movw	r3, #8187	; 0x1ffb
+  32:	ea02 0303 	and.w	r3, r2, r3
+  36:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:236
+    }
+  }	   
+  /* Return the Erase Status */
+  return status;
+}
+  38:	bd10      	pop	{r4, pc}
+  3a:	46c0      	nop			(mov r8, r8)
+  3c:	40022000 	.word	0x40022000
+Disassembly of section .text.FLASH_ErasePage:
+
+00000000 <FLASH_ErasePage>:
+FLASH_ErasePage():
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:174
+* Return         : FLASH Status: The returned value can be: FLASH_BUSY, 
+*                  FLASH_ERROR_PG, FLASH_ERROR_WRP, FLASH_COMPLETE or 
+*                  FLASH_TIMEOUT.
+*******************************************************************************/
+FLASH_Status FLASH_ErasePage(u32 Page_Address)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:181
+
+  /* Check the parameters */
+  assert_param(IS_FLASH_ADDRESS(Page_Address));
+
+  /* Wait for last operation to be completed */
+  status = FLASH_WaitForLastOperation(EraseTimeout);
+   4:	f640 70ff 	movw	r0, #4095	; 0xfff
+   8:	f7ff fffe 	bl	0 <FLASH_ErasePage>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:183
+  
+  if(status == FLASH_COMPLETE)
+   c:	2804      	cmp	r0, #4
+   e:	d115      	bne.n	3c <FLASH_ErasePage+0x3c>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:186
+  { 
+    /* if the previous operation is completed, proceed to erase the page */
+    FLASH->CR|= CR_PER_Set;
+  10:	4c0b      	ldr	r4, [pc, #44]	(40 <FLASH_ErasePage+0x40>)
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:191
+    FLASH->AR = Page_Address; 
+    FLASH->CR|= CR_STRT_Set;
+    
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(EraseTimeout);
+  12:	f640 70ff 	movw	r0, #4095	; 0xfff
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:186
+  status = FLASH_WaitForLastOperation(EraseTimeout);
+  
+  if(status == FLASH_COMPLETE)
+  { 
+    /* if the previous operation is completed, proceed to erase the page */
+    FLASH->CR|= CR_PER_Set;
+  16:	6923      	ldr	r3, [r4, #16]
+  18:	f043 0302 	orr.w	r3, r3, #2	; 0x2
+  1c:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:187
+    FLASH->AR = Page_Address; 
+  1e:	6165      	str	r5, [r4, #20]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:188
+    FLASH->CR|= CR_STRT_Set;
+  20:	6923      	ldr	r3, [r4, #16]
+  22:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+  26:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:191
+    
+    /* Wait for last operation to be completed */
+    status = FLASH_WaitForLastOperation(EraseTimeout);
+  28:	f7ff fffe 	bl	0 <FLASH_ErasePage>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:193
+
+    if(status != FLASH_BUSY)
+  2c:	2801      	cmp	r0, #1
+  2e:	d005      	beq.n	3c <FLASH_ErasePage+0x3c>
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:196
+    {
+      /* if the erase operation is completed, disable the PER Bit */
+      FLASH->CR &= CR_PER_Reset;
+  30:	6922      	ldr	r2, [r4, #16]
+  32:	f641 73fd 	movw	r3, #8189	; 0x1ffd
+  36:	ea02 0303 	and.w	r3, r2, r3
+  3a:	6123      	str	r3, [r4, #16]
+C:\tien\PROJEKTY\procesory\STM\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src/stm32f10x_flash.c:201
+    }
+  }
+  /* Return the Erase Status */
+  return status;
+}
+  3c:	bd70      	pop	{r4, r5, r6, pc}
+  3e:	46c0      	nop			(mov r8, r8)
+  40:	40022000 	.word	0x40022000

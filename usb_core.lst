@@ -1,0 +1,2194 @@
+
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_core.o:     file format elf32-littlearm
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_core.o
+
+Disassembly of section .text.Standard_GetConfiguration:
+
+00000000 <Standard_GetConfiguration>:
+Standard_GetConfiguration():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:57
+* Output         : None.
+* Return         : Return 1 , if the request is invalid when "Length" is 0.
+*                  Return "Buffer" if the "Length" is not 0.
+*******************************************************************************/
+u8 *Standard_GetConfiguration(u16 Length)
+{
+   0:	b510      	push	{r4, lr}
+   2:	4c07      	ldr	r4, [pc, #28]	(20 <Standard_GetConfiguration+0x20>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:58
+  if (Length == 0)
+   4:	b920      	cbnz	r0, 10 <Standard_GetConfiguration+0x10>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:60
+  {
+    pInformation->Ctrl_Info.Usb_wLength =
+   6:	6823      	ldr	r3, [r4, #0]
+   8:	f04f 0101 	mov.w	r1, #1	; 0x1
+   c:	8219      	strh	r1, [r3, #16]
+   e:	e006      	b.n	1e <Standard_GetConfiguration+0x1e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:64
+      sizeof(pInformation->Current_Configuration);
+    return 0;
+  }
+  pUser_Standard_Requests->User_GetConfiguration();
+  10:	4b04      	ldr	r3, [pc, #16]	(24 <Standard_GetConfiguration+0x24>)
+  12:	681b      	ldr	r3, [r3, #0]
+  14:	681b      	ldr	r3, [r3, #0]
+  16:	4798      	blx	r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:65
+  return (u8 *)&pInformation->Current_Configuration;
+  18:	6823      	ldr	r3, [r4, #0]
+  1a:	f103 000a 	add.w	r0, r3, #10	; 0xa
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:66
+}
+  1e:	bd10      	pop	{r4, pc}
+	...
+Disassembly of section .text.Standard_SetConfiguration:
+
+00000000 <Standard_SetConfiguration>:
+Standard_SetConfiguration():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:78
+* Output         : None.
+* Return         : Return USB_SUCCESS, if the request is performed.
+*                  Return USB_UNSUPPORT, if the request is invalid.
+*******************************************************************************/
+RESULT Standard_SetConfiguration(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:80
+
+  if ((pInformation->USBwValue0 <=
+   2:	4b0a      	ldr	r3, [pc, #40]	(2c <Standard_SetConfiguration+0x2c>)
+   4:	681a      	ldr	r2, [r3, #0]
+   6:	4b0a      	ldr	r3, [pc, #40]	(30 <Standard_SetConfiguration+0x30>)
+   8:	78d1      	ldrb	r1, [r2, #3]
+   a:	785b      	ldrb	r3, [r3, #1]
+   c:	428b      	cmp	r3, r1
+   e:	d30a      	bcc.n	26 <Standard_SetConfiguration+0x26>
+  10:	7893      	ldrb	r3, [r2, #2]
+  12:	b943      	cbnz	r3, 26 <Standard_SetConfiguration+0x26>
+  14:	8894      	ldrh	r4, [r2, #4]
+  16:	b934      	cbnz	r4, 26 <Standard_SetConfiguration+0x26>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:85
+      Device_Table.Total_Configuration) && (pInformation->USBwValue1 == 0)
+      && (pInformation->USBwIndex == 0)) /*call Back usb spec 2.0*/
+  {
+    pInformation->Current_Configuration = pInformation->USBwValue0;
+    pUser_Standard_Requests->User_SetConfiguration();
+  18:	4b06      	ldr	r3, [pc, #24]	(34 <Standard_SetConfiguration+0x34>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:84
+
+  if ((pInformation->USBwValue0 <=
+      Device_Table.Total_Configuration) && (pInformation->USBwValue1 == 0)
+      && (pInformation->USBwIndex == 0)) /*call Back usb spec 2.0*/
+  {
+    pInformation->Current_Configuration = pInformation->USBwValue0;
+  1a:	7291      	strb	r1, [r2, #10]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:85
+    pUser_Standard_Requests->User_SetConfiguration();
+  1c:	681b      	ldr	r3, [r3, #0]
+  1e:	685b      	ldr	r3, [r3, #4]
+  20:	4798      	blx	r3
+  22:	4620      	mov	r0, r4
+  24:	e000      	b.n	28 <Standard_SetConfiguration+0x28>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:86
+    return USB_SUCCESS;
+  26:	2002      	movs	r0, #2
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:92
+  }
+  else
+  {
+    return USB_UNSUPPORT;
+  }
+}
+  28:	bd10      	pop	{r4, pc}
+  2a:	46c0      	nop			(mov r8, r8)
+	...
+Disassembly of section .text.Standard_GetInterface:
+
+00000000 <Standard_GetInterface>:
+Standard_GetInterface():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:103
+* Output         : None.
+* Return         : Return 0, if the request is invalid when "Length" is 0.
+*                  Return "Buffer" if the "Length" is not 0.
+*******************************************************************************/
+u8 *Standard_GetInterface(u16 Length)
+{
+   0:	b510      	push	{r4, lr}
+   2:	4c07      	ldr	r4, [pc, #28]	(20 <Standard_GetInterface+0x20>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:104
+  if (Length == 0)
+   4:	b920      	cbnz	r0, 10 <Standard_GetInterface+0x10>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:106
+  {
+    pInformation->Ctrl_Info.Usb_wLength =
+   6:	6823      	ldr	r3, [r4, #0]
+   8:	f04f 0101 	mov.w	r1, #1	; 0x1
+   c:	8219      	strh	r1, [r3, #16]
+   e:	e006      	b.n	1e <Standard_GetInterface+0x1e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:110
+      sizeof(pInformation->Current_AlternateSetting);
+    return 0;
+  }
+  pUser_Standard_Requests->User_GetInterface();
+  10:	4b04      	ldr	r3, [pc, #16]	(24 <Standard_GetInterface+0x24>)
+  12:	681b      	ldr	r3, [r3, #0]
+  14:	689b      	ldr	r3, [r3, #8]
+  16:	4798      	blx	r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:111
+  return (u8 *)&pInformation->Current_AlternateSetting;
+  18:	6823      	ldr	r3, [r4, #0]
+  1a:	f103 000c 	add.w	r0, r3, #12	; 0xc
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:112
+}
+  1e:	bd10      	pop	{r4, pc}
+	...
+Disassembly of section .text.Standard_SetInterface:
+
+00000000 <Standard_SetInterface>:
+Standard_SetInterface():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:124
+* Output         : None.
+* Return         : - Return USB_SUCCESS, if the request is performed.
+*                  - Return USB_UNSUPPORT, if the request is invalid.
+*******************************************************************************/
+RESULT Standard_SetInterface(void)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:128
+  RESULT Re;
+  /*Test if the specified Interface and Alternate Setting are supported by
+    the application Firmware*/
+  Re = (*pProperty->Class_Get_Interface_Setting)(pInformation->USBwIndex0, pInformation->USBwValue0);
+   2:	4b0e      	ldr	r3, [pc, #56]	(3c <Standard_SetInterface+0x3c>)
+   4:	4d0e      	ldr	r5, [pc, #56]	(40 <Standard_SetInterface+0x40>)
+   6:	681b      	ldr	r3, [r3, #0]
+   8:	682a      	ldr	r2, [r5, #0]
+   a:	699b      	ldr	r3, [r3, #24]
+   c:	7950      	ldrb	r0, [r2, #5]
+   e:	78d1      	ldrb	r1, [r2, #3]
+  10:	4798      	blx	r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:130
+
+  if (pInformation->Current_Configuration != 0)
+  12:	682a      	ldr	r2, [r5, #0]
+  14:	7a93      	ldrb	r3, [r2, #10]
+  16:	b17b      	cbz	r3, 38 <Standard_SetInterface+0x38>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:132
+  {
+    if ((Re != USB_SUCCESS) || (pInformation->USBwIndex1 != 0)
+  18:	b970      	cbnz	r0, 38 <Standard_SetInterface+0x38>
+  1a:	7913      	ldrb	r3, [r2, #4]
+  1c:	b963      	cbnz	r3, 38 <Standard_SetInterface+0x38>
+  1e:	7894      	ldrb	r4, [r2, #2]
+  20:	b954      	cbnz	r4, 38 <Standard_SetInterface+0x38>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:139
+    {
+      return  USB_UNSUPPORT;
+    }
+    else if (Re == USB_SUCCESS)
+    {
+      pUser_Standard_Requests->User_SetInterface();
+  22:	4b08      	ldr	r3, [pc, #32]	(44 <Standard_SetInterface+0x44>)
+  24:	681b      	ldr	r3, [r3, #0]
+  26:	68db      	ldr	r3, [r3, #12]
+  28:	4798      	blx	r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:140
+      pInformation->Current_Interface = pInformation->USBwIndex0;
+  2a:	682b      	ldr	r3, [r5, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:141
+      pInformation->Current_AlternateSetting = pInformation->USBwValue0;
+  2c:	4620      	mov	r0, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:140
+      return  USB_UNSUPPORT;
+    }
+    else if (Re == USB_SUCCESS)
+    {
+      pUser_Standard_Requests->User_SetInterface();
+      pInformation->Current_Interface = pInformation->USBwIndex0;
+  2e:	795a      	ldrb	r2, [r3, #5]
+  30:	72da      	strb	r2, [r3, #11]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:141
+      pInformation->Current_AlternateSetting = pInformation->USBwValue0;
+  32:	78da      	ldrb	r2, [r3, #3]
+  34:	731a      	strb	r2, [r3, #12]
+  36:	e000      	b.n	3a <Standard_SetInterface+0x3a>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:142
+      return USB_SUCCESS;
+  38:	2002      	movs	r0, #2
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:148
+    }
+
+  }
+
+  return USB_UNSUPPORT;
+}
+  3a:	bd70      	pop	{r4, r5, r6, pc}
+	...
+Disassembly of section .text.Standard_GetStatus:
+
+00000000 <Standard_GetStatus>:
+Standard_GetStatus():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:159
+* Output         : None.
+* Return         : Return 0, if the request is at end of data block,
+*                  or is invalid when "Length" is 0.
+*******************************************************************************/
+u8 *Standard_GetStatus(u16 Length)
+{
+   0:	b510      	push	{r4, lr}
+   2:	4b27      	ldr	r3, [pc, #156]	(a0 <Standard_GetStatus+0xa0>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:160
+  if (Length == 0)
+   4:	b920      	cbnz	r0, 10 <Standard_GetStatus+0x10>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:162
+  {
+    pInformation->Ctrl_Info.Usb_wLength = 2;
+   6:	681b      	ldr	r3, [r3, #0]
+   8:	f04f 0102 	mov.w	r1, #2	; 0x2
+   c:	8219      	strh	r1, [r3, #16]
+   e:	e046      	b.n	9e <Standard_GetStatus+0x9e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:166
+    return 0;
+  }
+
+  StatusInfo.w = 0;
+  10:	4824      	ldr	r0, [pc, #144]	(a4 <Standard_GetStatus+0xa4>)
+  12:	f04f 0200 	mov.w	r2, #0	; 0x0
+  16:	8002      	strh	r2, [r0, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:169
+  /* Reset Status Information */
+
+  if (Type_Recipient == (STANDARD_REQUEST | DEVICE_RECIPIENT))
+  18:	681a      	ldr	r2, [r3, #0]
+  1a:	7813      	ldrb	r3, [r2, #0]
+  1c:	f013 037f 	ands.w	r3, r3, #127	; 0x7f
+  20:	d113      	bne.n	4a <Standard_GetStatus+0x4a>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:175
+  {
+    /*Get Device Status */
+    u8 Feature = pInformation->Current_Feature;
+
+    /* Remote Wakeup enabled */
+    if (ValBit(Feature, 5))
+  22:	7a52      	ldrb	r2, [r2, #9]
+  24:	f012 0f20 	tst.w	r2, #32	; 0x20
+  28:	d003      	beq.n	32 <Standard_GetStatus+0x32>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:177
+    {
+      SetBit(StatusInfo0, 1);
+  2a:	7803      	ldrb	r3, [r0, #0]
+  2c:	f043 0302 	orr.w	r3, r3, #2	; 0x2
+  30:	7003      	strb	r3, [r0, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:181
+    }
+
+    /* Bus-powered */
+    if (ValBit(Feature, 6))
+  32:	f012 0f40 	tst.w	r2, #64	; 0x40
+  36:	4a1b      	ldr	r2, [pc, #108]	(a4 <Standard_GetStatus+0xa4>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:183
+    {
+      ClrBit(StatusInfo0, 0);
+  38:	bf15      	itete	ne
+  3a:	7813      	ldrbne	r3, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:187
+    }
+    else /* Self-powered */
+    {
+      SetBit(StatusInfo0, 0);
+  3c:	7813      	ldrbeq	r3, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:183
+    }
+
+    /* Bus-powered */
+    if (ValBit(Feature, 6))
+    {
+      ClrBit(StatusInfo0, 0);
+  3e:	f023 0301 	bicne.w	r3, r3, #1	; 0x1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:187
+    }
+    else /* Self-powered */
+    {
+      SetBit(StatusInfo0, 0);
+  42:	f043 0301 	orreq.w	r3, r3, #1	; 0x1
+  46:	7013      	strb	r3, [r2, #0]
+  48:	e024      	b.n	94 <Standard_GetStatus+0x94>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:191
+    }
+  }
+  /*Interface Status*/
+  else if (Type_Recipient == (STANDARD_REQUEST | INTERFACE_RECIPIENT))
+  4a:	2b01      	cmp	r3, #1
+  4c:	d027      	beq.n	9e <Standard_GetStatus+0x9e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:196
+  {
+    return (u8 *)&StatusInfo;
+  }
+  /*Get EndPoint Status*/
+  else if (Type_Recipient == (STANDARD_REQUEST | ENDPOINT_RECIPIENT))
+  4e:	2b02      	cmp	r3, #2
+  50:	d001      	beq.n	56 <Standard_GetStatus+0x56>
+  52:	2000      	movs	r0, #0
+  54:	e023      	b.n	9e <Standard_GetStatus+0x9e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:199
+  {
+    u8 Related_Endpoint;
+    u8 wIndex0 = pInformation->USBwIndex0;
+  56:	7953      	ldrb	r3, [r2, #5]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:201
+
+    Related_Endpoint = (wIndex0 & 0x0f);
+  58:	f003 020f 	and.w	r2, r3, #15	; 0xf
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:202
+    if (ValBit(wIndex0, 7))
+  5c:	f013 0f80 	tst.w	r3, #128	; 0x80
+  60:	ea4f 0282 	mov.w	r2, r2, lsl #2
+  64:	d008      	beq.n	78 <Standard_GetStatus+0x78>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:205
+    {
+      /* IN endpoint */
+      if (_GetTxStallStatus(Related_Endpoint))
+  66:	f102 4380 	add.w	r3, r2, #1073741824	; 0x40000000
+  6a:	f503 43b8 	add.w	r3, r3, #23552	; 0x5c00
+  6e:	681b      	ldr	r3, [r3, #0]
+  70:	f003 0330 	and.w	r3, r3, #48	; 0x30
+  74:	2b10      	cmp	r3, #16
+  76:	e008      	b.n	8a <Standard_GetStatus+0x8a>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:213
+      }
+    }
+    else
+    {
+      /* OUT endpoint */
+      if (_GetRxStallStatus(Related_Endpoint))
+  78:	f102 4380 	add.w	r3, r2, #1073741824	; 0x40000000
+  7c:	f503 43b8 	add.w	r3, r3, #23552	; 0x5c00
+  80:	681b      	ldr	r3, [r3, #0]
+  82:	f403 5340 	and.w	r3, r3, #12288	; 0x3000
+  86:	f5b3 5f80 	cmp.w	r3, #4096	; 0x1000
+  8a:	d103      	bne.n	94 <Standard_GetStatus+0x94>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:215
+      {
+        SetBit(StatusInfo0, 0); /* OUT Endpoint stalled */
+  8c:	7803      	ldrb	r3, [r0, #0]
+  8e:	f043 0301 	orr.w	r3, r3, #1	; 0x1
+  92:	7003      	strb	r3, [r0, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:224
+  }
+  else
+  {
+    return NULL;
+  }
+  pUser_Standard_Requests->User_GetStatus();
+  94:	4b04      	ldr	r3, [pc, #16]	(a8 <Standard_GetStatus+0xa8>)
+  96:	681b      	ldr	r3, [r3, #0]
+  98:	691b      	ldr	r3, [r3, #16]
+  9a:	4798      	blx	r3
+  9c:	4801      	ldr	r0, [pc, #4]	(a4 <Standard_GetStatus+0xa4>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:226
+  return (u8 *)&StatusInfo;
+}
+  9e:	bd10      	pop	{r4, pc}
+	...
+Disassembly of section .text.Standard_SetEndPointFeature:
+
+00000000 <Standard_SetEndPointFeature>:
+Standard_SetEndPointFeature():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:326
+* Output         : None.
+* Return         : - Return USB_SUCCESS, if the request is performed.
+*                  - Return USB_UNSUPPORT, if the request is invalid.
+*******************************************************************************/
+RESULT Standard_SetEndPointFeature(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:332
+  u32    wIndex0;
+  u32    Related_Endpoint;
+  u32    rEP;
+  u32   Status;
+
+  wIndex0 = pInformation->USBwIndex0;
+   2:	4b23      	ldr	r3, [pc, #140]	(90 <Standard_SetEndPointFeature+0x90>)
+   4:	681a      	ldr	r2, [r3, #0]
+   6:	7950      	ldrb	r0, [r2, #5]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:333
+  rEP = wIndex0 & ~0x80;
+   8:	f020 0180 	bic.w	r1, r0, #128	; 0x80
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:336
+  Related_Endpoint = ENDP0 + rEP;
+
+  if (ValBit(pInformation->USBwIndex0, 7))
+   c:	f010 0f80 	tst.w	r0, #128	; 0x80
+  10:	ea4f 0381 	mov.w	r3, r1, lsl #2
+  14:	d007      	beq.n	26 <Standard_SetEndPointFeature+0x26>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:340
+  {
+    /* get Status of endpoint & stall the request if the related_ENdpoint
+    is Disabled*/
+    Status = _GetEPTxStatus(Related_Endpoint);
+  16:	f103 4380 	add.w	r3, r3, #1073741824	; 0x40000000
+  1a:	f503 43b8 	add.w	r3, r3, #23552	; 0x5c00
+  1e:	681b      	ldr	r3, [r3, #0]
+  20:	f003 0430 	and.w	r4, r3, #48	; 0x30
+  24:	e006      	b.n	34 <Standard_SetEndPointFeature+0x34>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:344
+  }
+  else
+  {
+    Status = _GetEPRxStatus(Related_Endpoint);
+  26:	f103 4380 	add.w	r3, r3, #1073741824	; 0x40000000
+  2a:	f503 43b8 	add.w	r3, r3, #23552	; 0x5c00
+  2e:	681b      	ldr	r3, [r3, #0]
+  30:	f403 5440 	and.w	r4, r3, #12288	; 0x3000
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:347
+  }
+
+  if (Related_Endpoint >= Device_Table.Total_Endpoint
+  34:	4b17      	ldr	r3, [pc, #92]	(94 <Standard_SetEndPointFeature+0x94>)
+  36:	781b      	ldrb	r3, [r3, #0]
+  38:	4299      	cmp	r1, r3
+  3a:	d227      	bcs.n	8c <Standard_SetEndPointFeature+0x8c>
+  3c:	8853      	ldrh	r3, [r2, #2]
+  3e:	bb2b      	cbnz	r3, 8c <Standard_SetEndPointFeature+0x8c>
+  40:	b324      	cbz	r4, 8c <Standard_SetEndPointFeature+0x8c>
+  42:	7a93      	ldrb	r3, [r2, #10]
+  44:	b313      	cbz	r3, 8c <Standard_SetEndPointFeature+0x8c>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:355
+  {
+    return USB_UNSUPPORT;
+  }
+  else
+  {
+    if (wIndex0 & 0x80)
+  46:	f010 0f80 	tst.w	r0, #128	; 0x80
+  4a:	ea4f 0381 	mov.w	r3, r1, lsl #2
+  4e:	d00b      	beq.n	68 <Standard_SetEndPointFeature+0x68>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:358
+    {
+      /* IN endpoint */
+      _SetEPTxStatus(Related_Endpoint, EP_TX_STALL);
+  50:	f103 4380 	add.w	r3, r3, #1073741824	; 0x40000000
+  54:	f503 43b8 	add.w	r3, r3, #23552	; 0x5c00
+  58:	6819      	ldr	r1, [r3, #0]
+  5a:	f648 72bf 	movw	r2, #36799	; 0x8fbf
+  5e:	ea01 0202 	and.w	r2, r1, r2
+  62:	f082 0210 	eor.w	r2, r2, #16	; 0x10
+  66:	e00a      	b.n	7e <Standard_SetEndPointFeature+0x7e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:364
+    }
+
+    else
+    {
+      /* OUT endpoint */
+      _SetEPRxStatus(Related_Endpoint, EP_RX_STALL);
+  68:	f103 4380 	add.w	r3, r3, #1073741824	; 0x40000000
+  6c:	f503 43b8 	add.w	r3, r3, #23552	; 0x5c00
+  70:	6819      	ldr	r1, [r3, #0]
+  72:	f64b 728f 	movw	r2, #49039	; 0xbf8f
+  76:	ea01 0202 	and.w	r2, r1, r2
+  7a:	f482 5280 	eor.w	r2, r2, #4096	; 0x1000
+  7e:	601a      	str	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:367
+    }
+  }
+  pUser_Standard_Requests->User_SetEndPointFeature();
+  80:	4b05      	ldr	r3, [pc, #20]	(98 <Standard_SetEndPointFeature+0x98>)
+  82:	681b      	ldr	r3, [r3, #0]
+  84:	699b      	ldr	r3, [r3, #24]
+  86:	4798      	blx	r3
+  88:	2000      	movs	r0, #0
+  8a:	e000      	b.n	8e <Standard_SetEndPointFeature+0x8e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:368
+  return USB_SUCCESS;
+  8c:	2002      	movs	r0, #2
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:369
+}
+  8e:	bd10      	pop	{r4, pc}
+	...
+Disassembly of section .text.Standard_SetDeviceFeature:
+
+00000000 <Standard_SetDeviceFeature>:
+Standard_SetDeviceFeature():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:380
+* Output         : None.
+* Return         : - Return USB_SUCCESS, if the request is performed.
+*                  - Return USB_UNSUPPORT, if the request is invalid.
+*******************************************************************************/
+RESULT Standard_SetDeviceFeature(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:381
+  SetBit(pInformation->Current_Feature, 5);
+   2:	4b06      	ldr	r3, [pc, #24]	(1c <Standard_SetDeviceFeature+0x1c>)
+   4:	681a      	ldr	r2, [r3, #0]
+   6:	7a53      	ldrb	r3, [r2, #9]
+   8:	f043 0320 	orr.w	r3, r3, #32	; 0x20
+   c:	7253      	strb	r3, [r2, #9]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:382
+  pUser_Standard_Requests->User_SetDeviceFeature();
+   e:	4b04      	ldr	r3, [pc, #16]	(20 <Standard_SetDeviceFeature+0x20>)
+  10:	681b      	ldr	r3, [r3, #0]
+  12:	69db      	ldr	r3, [r3, #28]
+  14:	4798      	blx	r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:384
+  return USB_SUCCESS;
+}
+  16:	2000      	movs	r0, #0
+  18:	bd10      	pop	{r4, pc}
+  1a:	46c0      	nop			(mov r8, r8)
+	...
+Disassembly of section .text.Standard_GetDescriptorData:
+
+00000000 <Standard_GetDescriptorData>:
+Standard_GetDescriptorData():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:409
+*******************************************************************************/
+u8 *Standard_GetDescriptorData(u16 Length, ONE_DESCRIPTOR *pDesc)
+{
+  u32  wOffset;
+
+  wOffset = pInformation->Ctrl_Info.Usb_wOffset;
+   0:	4b06      	ldr	r3, [pc, #24]	(1c <Standard_GetDescriptorData+0x1c>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:406
+* Return         : Address of a part of the descriptor pointed by the Usb_
+*                  wOffset The buffer pointed by this address contains at least
+*                  Length bytes.
+*******************************************************************************/
+u8 *Standard_GetDescriptorData(u16 Length, ONE_DESCRIPTOR *pDesc)
+{
+   2:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:409
+  u32  wOffset;
+
+  wOffset = pInformation->Ctrl_Info.Usb_wOffset;
+   4:	681a      	ldr	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:406
+* Return         : Address of a part of the descriptor pointed by the Usb_
+*                  wOffset The buffer pointed by this address contains at least
+*                  Length bytes.
+*******************************************************************************/
+u8 *Standard_GetDescriptorData(u16 Length, ONE_DESCRIPTOR *pDesc)
+{
+   6:	460c      	mov	r4, r1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:409
+  u32  wOffset;
+
+  wOffset = pInformation->Ctrl_Info.Usb_wOffset;
+   8:	8a51      	ldrh	r1, [r2, #18]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:410
+  if (Length == 0)
+   a:	b918      	cbnz	r0, 14 <Standard_GetDescriptorData+0x14>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:412
+  {
+    pInformation->Ctrl_Info.Usb_wLength = pDesc->Descriptor_Size - wOffset;
+   c:	88a3      	ldrh	r3, [r4, #4]
+   e:	1a5b      	subs	r3, r3, r1
+  10:	8213      	strh	r3, [r2, #16]
+  12:	e001      	b.n	18 <Standard_GetDescriptorData+0x18>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:416
+    return 0;
+  }
+
+  return pDesc->Descriptor + wOffset;
+  14:	6823      	ldr	r3, [r4, #0]
+  16:	1858      	adds	r0, r3, r1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:417
+}
+  18:	bd10      	pop	{r4, pc}
+  1a:	46c0      	nop			(mov r8, r8)
+  1c:	00000000 	.word	0x00000000
+Disassembly of section .text.SetDeviceAddress:
+
+00000000 <SetDeviceAddress>:
+SetDeviceAddress():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:990
+* Input          : - Val: device adress.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetDeviceAddress(u8 Val)
+{
+   0:	b530      	push	{r4, r5, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:992
+  u32 i;
+  u32 nEP = Device_Table.Total_Endpoint;
+   2:	4b0e      	ldr	r3, [pc, #56]	(3c <SetDeviceAddress+0x3c>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:990
+* Input          : - Val: device adress.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetDeviceAddress(u8 Val)
+{
+   4:	4605      	mov	r5, r0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:992
+  u32 i;
+  u32 nEP = Device_Table.Total_Endpoint;
+   6:	781c      	ldrb	r4, [r3, #0]
+   8:	f04f 0c00 	mov.w	ip, #0	; 0x0
+   c:	e00f      	b.n	2e <SetDeviceAddress+0x2e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:995
+
+  /* set address in every used endpoint */
+  for (i = 0; i < nEP; i++)
+   e:	fa5f f08c 	uxtb.w	r0, ip
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:997
+  {
+    _SetEPAddress((u8)i, (u8)i);
+  12:	0082      	lsls	r2, r0, #2
+  14:	f102 4280 	add.w	r2, r2, #1073741824	; 0x40000000
+  18:	f502 42b8 	add.w	r2, r2, #23552	; 0x5c00
+  1c:	6811      	ldr	r1, [r2, #0]
+  1e:	f648 738f 	movw	r3, #36751	; 0x8f8f
+  22:	ea01 0303 	and.w	r3, r1, r3
+  26:	4303      	orrs	r3, r0
+  28:	6013      	str	r3, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:995
+{
+  u32 i;
+  u32 nEP = Device_Table.Total_Endpoint;
+
+  /* set address in every used endpoint */
+  for (i = 0; i < nEP; i++)
+  2a:	f10c 0c01 	add.w	ip, ip, #1	; 0x1
+  2e:	45a4      	cmp	ip, r4
+  30:	d3ed      	bcc.n	e <SetDeviceAddress+0xe>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:999
+  {
+    _SetEPAddress((u8)i, (u8)i);
+  } /* for */
+  _SetDADDR(Val | DADDR_EF); /* set device address and enable function */
+  32:	4b03      	ldr	r3, [pc, #12]	(40 <SetDeviceAddress+0x40>)
+  34:	f045 0280 	orr.w	r2, r5, #128	; 0x80
+  38:	601a      	str	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:1000
+}
+  3a:	bd30      	pop	{r4, r5, pc}
+  3c:	00000000 	.word	0x00000000
+  40:	40005c4c 	.word	0x40005c4c
+Disassembly of section .text.NOP_Process:
+
+00000000 <NOP_Process>:
+NOP_Process():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:1011
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void NOP_Process(void)
+{
+}
+   0:	4770      	bx	lr
+   2:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.Post0_Process:
+
+00000000 <Post0_Process>:
+Post0_Process():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:970
+* Output         : None.
+* Return         : - 0 if the control State is in PAUSE
+*                  - 1 if not.
+*******************************************************************************/
+u8 Post0_Process(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:971
+  SetEPRxCount(ENDP0, Device_Property.MaxPacketSize);
+   2:	4b0c      	ldr	r3, [pc, #48]	(34 <Post0_Process+0x34>)
+   4:	2000      	movs	r0, #0
+   6:	f893 102c 	ldrb.w	r1, [r3, #44]
+   a:	f7ff fffe 	bl	0 <SetEPRxCount>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:973
+
+  if (pInformation->ControlState == STALLED)
+   e:	4b0a      	ldr	r3, [pc, #40]	(38 <Post0_Process+0x38>)
+  10:	681b      	ldr	r3, [r3, #0]
+  12:	7a18      	ldrb	r0, [r3, #8]
+  14:	2808      	cmp	r0, #8
+  16:	d107      	bne.n	28 <Post0_Process+0x28>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:975
+  {
+    vSetEPRxStatus(EP_RX_STALL);
+  18:	4b08      	ldr	r3, [pc, #32]	(3c <Post0_Process+0x3c>)
+  1a:	f44f 5280 	mov.w	r2, #4096	; 0x1000
+  1e:	801a      	strh	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:976
+    vSetEPTxStatus(EP_TX_STALL);
+  20:	4b07      	ldr	r3, [pc, #28]	(40 <Post0_Process+0x40>)
+  22:	f04f 0210 	mov.w	r2, #16	; 0x10
+  26:	801a      	strh	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:980
+  }
+
+  return (pInformation->ControlState == PAUSE);
+}
+  28:	2809      	cmp	r0, #9
+  2a:	bf14      	ite	ne
+  2c:	2000      	movne	r0, #0
+  2e:	2001      	moveq	r0, #1
+  30:	bd10      	pop	{r4, pc}
+  32:	46c0      	nop			(mov r8, r8)
+	...
+Disassembly of section .text.Out0_Process:
+
+00000000 <Out0_Process>:
+Out0_Process():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:929
+* Input          : None.
+* Output         : None.
+* Return         : Post0_Process.
+*******************************************************************************/
+u8 Out0_Process(void)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:930
+  u32 ControlState = pInformation->ControlState;
+   2:	4b2d      	ldr	r3, [pc, #180]	(b8 <Out0_Process+0xb8>)
+   4:	681e      	ldr	r6, [r3, #0]
+   6:	7a33      	ldrb	r3, [r6, #8]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:932
+
+  if ((ControlState == OUT_DATA) || (ControlState == LAST_OUT_DATA))
+   8:	2b03      	cmp	r3, #3
+   a:	d001      	beq.n	10 <Out0_Process+0x10>
+   c:	2b05      	cmp	r3, #5
+   e:	d146      	bne.n	9e <Out0_Process+0x9e>
+DataStageOut():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:433
+  ENDPOINT_INFO *pEPinfo = &pInformation->Ctrl_Info;
+  u32 save_rLength;
+
+  save_rLength = pEPinfo->Usb_rLength;
+
+  if (pEPinfo->CopyData && save_rLength)
+  10:	69b2      	ldr	r2, [r6, #24]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:431
+void DataStageOut(void)
+{
+  ENDPOINT_INFO *pEPinfo = &pInformation->Ctrl_Info;
+  u32 save_rLength;
+
+  save_rLength = pEPinfo->Usb_rLength;
+  12:	8a33      	ldrh	r3, [r6, #16]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:433
+
+  if (pEPinfo->CopyData && save_rLength)
+  14:	b1aa      	cbz	r2, 42 <Out0_Process+0x42>
+  16:	b1a3      	cbz	r3, 42 <Out0_Process+0x42>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:438
+  {
+    u8 *Buffer;
+    u32 Length;
+
+    Length = pEPinfo->PacketSize;
+  18:	8ab4      	ldrh	r4, [r6, #20]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:444
+    if (Length > save_rLength)
+    {
+      Length = save_rLength;
+    }
+
+    Buffer = (*pEPinfo->CopyData)(Length);
+  1a:	429c      	cmp	r4, r3
+  1c:	bf28      	it	cs
+  1e:	461c      	movcs	r4, r3
+  20:	4620      	mov	r0, r4
+  22:	4790      	blx	r2
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:445
+    pEPinfo->Usb_rLength -= Length;
+  24:	8a33      	ldrh	r3, [r6, #16]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:444
+    if (Length > save_rLength)
+    {
+      Length = save_rLength;
+    }
+
+    Buffer = (*pEPinfo->CopyData)(Length);
+  26:	4605      	mov	r5, r0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:445
+    pEPinfo->Usb_rLength -= Length;
+  28:	1b1b      	subs	r3, r3, r4
+  2a:	8233      	strh	r3, [r6, #16]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:446
+    pEPinfo->Usb_rOffset += Length;
+  2c:	8a73      	ldrh	r3, [r6, #18]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:448
+
+    PMAToUserBufferCopy(Buffer, GetEPRxAddr(ENDP0), Length);
+  2e:	2000      	movs	r0, #0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:446
+      Length = save_rLength;
+    }
+
+    Buffer = (*pEPinfo->CopyData)(Length);
+    pEPinfo->Usb_rLength -= Length;
+    pEPinfo->Usb_rOffset += Length;
+  30:	18e3      	adds	r3, r4, r3
+  32:	8273      	strh	r3, [r6, #18]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:448
+
+    PMAToUserBufferCopy(Buffer, GetEPRxAddr(ENDP0), Length);
+  34:	f7ff fffe 	bl	0 <GetEPRxAddr>
+  38:	4622      	mov	r2, r4
+  3a:	4601      	mov	r1, r0
+  3c:	4628      	mov	r0, r5
+  3e:	f7ff fffe 	bl	0 <PMAToUserBufferCopy>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:451
+  }
+
+  if (pEPinfo->Usb_rLength != 0)
+  42:	8a33      	ldrh	r3, [r6, #16]
+  44:	b15b      	cbz	r3, 5e <Out0_Process+0x5e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:453
+  {
+    vSetEPRxStatus(EP_RX_VALID);/* re-enable for next data reception */
+  46:	4b1d      	ldr	r3, [pc, #116]	(bc <Out0_Process+0xbc>)
+  48:	f44f 5240 	mov.w	r2, #12288	; 0x3000
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:454
+    SetEPTxCount(ENDP0, 0);
+  4c:	2000      	movs	r0, #0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:453
+    PMAToUserBufferCopy(Buffer, GetEPRxAddr(ENDP0), Length);
+  }
+
+  if (pEPinfo->Usb_rLength != 0)
+  {
+    vSetEPRxStatus(EP_RX_VALID);/* re-enable for next data reception */
+  4e:	801a      	strh	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:454
+    SetEPTxCount(ENDP0, 0);
+  50:	4601      	mov	r1, r0
+  52:	f7ff fffe 	bl	0 <SetEPTxCount>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:455
+    vSetEPTxStatus(EP_TX_VALID);/* Expect the host to abort the data OUT stage */
+  56:	4b1a      	ldr	r3, [pc, #104]	(c0 <Out0_Process+0xc0>)
+  58:	f04f 0230 	mov.w	r2, #48	; 0x30
+  5c:	801a      	strh	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:458
+  }
+  /* Set the next State*/
+  if (pEPinfo->Usb_rLength >= pEPinfo->PacketSize)
+  5e:	8a31      	ldrh	r1, [r6, #16]
+  60:	8ab3      	ldrh	r3, [r6, #20]
+  62:	428b      	cmp	r3, r1
+  64:	d803      	bhi.n	6e <Out0_Process+0x6e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:460
+  {
+    pInformation->ControlState = OUT_DATA;
+  66:	4b14      	ldr	r3, [pc, #80]	(b8 <Out0_Process+0xb8>)
+  68:	681a      	ldr	r2, [r3, #0]
+  6a:	2303      	movs	r3, #3
+  6c:	e003      	b.n	76 <Out0_Process+0x76>
+  6e:	4a12      	ldr	r2, [pc, #72]	(b8 <Out0_Process+0xb8>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:464
+  }
+  else
+  {
+    if (pEPinfo->Usb_rLength > 0)
+  70:	b119      	cbz	r1, 7a <Out0_Process+0x7a>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:466
+    {
+      pInformation->ControlState = LAST_OUT_DATA;
+  72:	6812      	ldr	r2, [r2, #0]
+  74:	2305      	movs	r3, #5
+  76:	7213      	strb	r3, [r2, #8]
+  78:	e00d      	b.n	96 <Out0_Process+0x96>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:470
+    }
+    else if (pEPinfo->Usb_rLength == 0)
+    {
+      pInformation->ControlState = WAIT_STATUS_IN;
+  7a:	6812      	ldr	r2, [r2, #0]
+  7c:	2306      	movs	r3, #6
+  7e:	7213      	strb	r3, [r2, #8]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:471
+      USB_StatusIn();
+  80:	4b10      	ldr	r3, [pc, #64]	(c4 <Out0_Process+0xc4>)
+  82:	681a      	ldr	r2, [r3, #0]
+  84:	4b10      	ldr	r3, [pc, #64]	(c8 <Out0_Process+0xc8>)
+  86:	b292      	uxth	r2, r2
+  88:	18d3      	adds	r3, r2, r3
+  8a:	005b      	lsls	r3, r3, #1
+  8c:	6019      	str	r1, [r3, #0]
+  8e:	4b0c      	ldr	r3, [pc, #48]	(c0 <Out0_Process+0xc0>)
+  90:	f04f 0230 	mov.w	r2, #48	; 0x30
+  94:	801a      	strh	r2, [r3, #0]
+Out0_Process():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:935
+  u32 ControlState = pInformation->ControlState;
+
+  if ((ControlState == OUT_DATA) || (ControlState == LAST_OUT_DATA))
+  {
+    DataStageOut();
+    ControlState = pInformation->ControlState; /* may be changed outside the function */
+  96:	4b08      	ldr	r3, [pc, #32]	(b8 <Out0_Process+0xb8>)
+  98:	681b      	ldr	r3, [r3, #0]
+  9a:	7a1a      	ldrb	r2, [r3, #8]
+  9c:	e006      	b.n	ac <Out0_Process+0xac>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:938
+  }
+
+  else if (ControlState == WAIT_STATUS_OUT)
+  9e:	2b07      	cmp	r3, #7
+  a0:	d103      	bne.n	aa <Out0_Process+0xaa>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:940
+  {
+    (*pProperty->Process_Status_OUT)();
+  a2:	4b0a      	ldr	r3, [pc, #40]	(cc <Out0_Process+0xcc>)
+  a4:	681b      	ldr	r3, [r3, #0]
+  a6:	68db      	ldr	r3, [r3, #12]
+  a8:	4798      	blx	r3
+  aa:	2208      	movs	r2, #8
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:956
+  else
+  {
+    ControlState = STALLED;
+  }
+
+  pInformation->ControlState = ControlState;
+  ac:	4b02      	ldr	r3, [pc, #8]	(b8 <Out0_Process+0xb8>)
+  ae:	681b      	ldr	r3, [r3, #0]
+  b0:	721a      	strb	r2, [r3, #8]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:958
+
+  return Post0_Process();
+  b2:	f7ff fffe 	bl	0 <Out0_Process>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:959
+}
+  b6:	bd70      	pop	{r4, r5, r6, pc}
+	...
+  c4:	40005c50 	.word	0x40005c50
+  c8:	20003002 	.word	0x20003002
+  cc:	00000000 	.word	0x00000000
+Disassembly of section .text.DataStageIn:
+
+00000000 <DataStageIn>:
+DataStageIn():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:485
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void DataStageIn(void)
+{
+  ENDPOINT_INFO *pEPinfo = &pInformation->Ctrl_Info;
+   0:	4b25      	ldr	r3, [pc, #148]	(98 <DataStageIn+0x98>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:484
+* Input          : None.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void DataStageIn(void)
+{
+   2:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:485
+  ENDPOINT_INFO *pEPinfo = &pInformation->Ctrl_Info;
+   6:	681e      	ldr	r6, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:486
+  u32 save_wLength = pEPinfo->Usb_wLength;
+   8:	8a31      	ldrh	r1, [r6, #16]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:487
+  u32 ControlState = pInformation->ControlState;
+   a:	7a30      	ldrb	r0, [r6, #8]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:492
+
+  u8 *DataBuffer;
+  u32 Length;
+
+  if ((save_wLength == 0) && (ControlState == LAST_IN_DATA))
+   c:	b9c1      	cbnz	r1, 40 <DataStageIn+0x40>
+   e:	2804      	cmp	r0, #4
+  10:	d116      	bne.n	40 <DataStageIn+0x40>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:494
+  {
+    if(Data_Mul_MaxPacketSize == TRUE)
+  12:	4d22      	ldr	r5, [pc, #136]	(9c <DataStageIn+0x9c>)
+  14:	4c22      	ldr	r4, [pc, #136]	(a0 <DataStageIn+0xa0>)
+  16:	782b      	ldrb	r3, [r5, #0]
+  18:	2b01      	cmp	r3, #1
+  1a:	d10c      	bne.n	36 <DataStageIn+0x36>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:497
+    {
+      /* No more data to send and empty packet */
+      Send0LengthData();
+  1c:	4b21      	ldr	r3, [pc, #132]	(a4 <DataStageIn+0xa4>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:499
+      ControlState = LAST_IN_DATA;
+      Data_Mul_MaxPacketSize = FALSE;
+  1e:	7029      	strb	r1, [r5, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:497
+  if ((save_wLength == 0) && (ControlState == LAST_IN_DATA))
+  {
+    if(Data_Mul_MaxPacketSize == TRUE)
+    {
+      /* No more data to send and empty packet */
+      Send0LengthData();
+  20:	681a      	ldr	r2, [r3, #0]
+  22:	4b21      	ldr	r3, [pc, #132]	(a8 <DataStageIn+0xa8>)
+  24:	b292      	uxth	r2, r2
+  26:	18d3      	adds	r3, r2, r3
+  28:	005b      	lsls	r3, r3, #1
+  2a:	f04f 0230 	mov.w	r2, #48	; 0x30
+  2e:	6019      	str	r1, [r3, #0]
+  30:	8022      	strh	r2, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:499
+      ControlState = LAST_IN_DATA;
+      Data_Mul_MaxPacketSize = FALSE;
+  32:	4607      	mov	r7, r0
+  34:	e02a      	b.n	8c <DataStageIn+0x8c>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:505
+    }
+    else 
+    {
+      /* No more data to send so STALL the TX Status*/
+      ControlState = WAIT_STATUS_OUT;
+      vSetEPTxStatus(EP_TX_STALL);
+  36:	f04f 0310 	mov.w	r3, #16	; 0x10
+  3a:	8023      	strh	r3, [r4, #0]
+  3c:	2707      	movs	r7, #7
+  3e:	e025      	b.n	8c <DataStageIn+0x8c>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:511
+    }
+    
+    goto Expect_Status_Out;
+  }
+
+  Length = pEPinfo->PacketSize;
+  40:	8ab4      	ldrh	r4, [r6, #20]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:519
+  if (Length > save_wLength)
+  {
+    Length = save_wLength;
+  }
+
+  DataBuffer = (*pEPinfo->CopyData)(Length);
+  42:	69b3      	ldr	r3, [r6, #24]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:512
+    
+    goto Expect_Status_Out;
+  }
+
+  Length = pEPinfo->PacketSize;
+  ControlState = (save_wLength <= Length) ? LAST_IN_DATA : IN_DATA;
+  44:	42a1      	cmp	r1, r4
+  46:	bf94      	ite	ls
+  48:	2704      	movls	r7, #4
+  4a:	2702      	movhi	r7, #2
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:519
+  if (Length > save_wLength)
+  {
+    Length = save_wLength;
+  }
+
+  DataBuffer = (*pEPinfo->CopyData)(Length);
+  4c:	428c      	cmp	r4, r1
+  4e:	bf28      	it	cs
+  50:	460c      	movcs	r4, r1
+  52:	4620      	mov	r0, r4
+  54:	4798      	blx	r3
+  56:	4605      	mov	r5, r0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:521
+
+  UserToPMABufferCopy(DataBuffer, GetEPTxAddr(ENDP0), Length);
+  58:	2000      	movs	r0, #0
+  5a:	f7ff fffe 	bl	0 <GetEPTxAddr>
+  5e:	4622      	mov	r2, r4
+  60:	4601      	mov	r1, r0
+  62:	4628      	mov	r0, r5
+  64:	f7ff fffe 	bl	0 <UserToPMABufferCopy>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:523
+
+  SetEPTxCount(ENDP0, Length);
+  68:	4621      	mov	r1, r4
+  6a:	2000      	movs	r0, #0
+  6c:	f7ff fffe 	bl	0 <SetEPTxCount>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:525
+
+  pEPinfo->Usb_wLength -= Length;
+  70:	8a33      	ldrh	r3, [r6, #16]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:527
+  pEPinfo->Usb_wOffset += Length;
+  vSetEPTxStatus(EP_TX_VALID);
+  72:	f04f 0230 	mov.w	r2, #48	; 0x30
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:525
+
+  UserToPMABufferCopy(DataBuffer, GetEPTxAddr(ENDP0), Length);
+
+  SetEPTxCount(ENDP0, Length);
+
+  pEPinfo->Usb_wLength -= Length;
+  76:	1b1b      	subs	r3, r3, r4
+  78:	8233      	strh	r3, [r6, #16]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:526
+  pEPinfo->Usb_wOffset += Length;
+  7a:	8a73      	ldrh	r3, [r6, #18]
+  7c:	18e4      	adds	r4, r4, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:527
+  vSetEPTxStatus(EP_TX_VALID);
+  7e:	4b08      	ldr	r3, [pc, #32]	(a0 <DataStageIn+0xa0>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:526
+  UserToPMABufferCopy(DataBuffer, GetEPTxAddr(ENDP0), Length);
+
+  SetEPTxCount(ENDP0, Length);
+
+  pEPinfo->Usb_wLength -= Length;
+  pEPinfo->Usb_wOffset += Length;
+  80:	8274      	strh	r4, [r6, #18]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:527
+  vSetEPTxStatus(EP_TX_VALID);
+  82:	801a      	strh	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:529
+
+  USB_StatusOut();/* Expect the host to abort the data IN stage */
+  84:	4b09      	ldr	r3, [pc, #36]	(ac <DataStageIn+0xac>)
+  86:	f44f 5240 	mov.w	r2, #12288	; 0x3000
+  8a:	801a      	strh	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:532
+
+Expect_Status_Out:
+  pInformation->ControlState = ControlState;
+  8c:	4b02      	ldr	r3, [pc, #8]	(98 <DataStageIn+0x98>)
+  8e:	681b      	ldr	r3, [r3, #0]
+  90:	721f      	strb	r7, [r3, #8]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:533
+}
+  92:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+  96:	46c0      	nop			(mov r8, r8)
+	...
+  a4:	40005c50 	.word	0x40005c50
+  a8:	20003002 	.word	0x20003002
+  ac:	00000000 	.word	0x00000000
+Disassembly of section .text.In0_Process:
+
+00000000 <In0_Process>:
+In0_Process():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:889
+* Input          : None.
+* Output         : None.
+* Return         : Post0_Process.
+*******************************************************************************/
+u8 In0_Process(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:890
+  u32 ControlState = pInformation->ControlState;
+   2:	4b14      	ldr	r3, [pc, #80]	(54 <In0_Process+0x54>)
+   4:	681a      	ldr	r2, [r3, #0]
+   6:	7a13      	ldrb	r3, [r2, #8]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:892
+
+  if ((ControlState == IN_DATA) || (ControlState == LAST_IN_DATA))
+   8:	2b02      	cmp	r3, #2
+   a:	d001      	beq.n	10 <In0_Process+0x10>
+   c:	2b04      	cmp	r3, #4
+   e:	d105      	bne.n	1c <In0_Process+0x1c>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:894
+  {
+    DataStageIn();
+  10:	f7ff fffe 	bl	0 <In0_Process>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:896
+    /* ControlState may be changed outside the function */
+    ControlState = pInformation->ControlState;
+  14:	4b0f      	ldr	r3, [pc, #60]	(54 <In0_Process+0x54>)
+  16:	681b      	ldr	r3, [r3, #0]
+  18:	7a1a      	ldrb	r2, [r3, #8]
+  1a:	e014      	b.n	46 <In0_Process+0x46>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:899
+  }
+
+  else if (ControlState == WAIT_STATUS_IN)
+  1c:	2b06      	cmp	r3, #6
+  1e:	d111      	bne.n	44 <In0_Process+0x44>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:901
+  {
+    if ((pInformation->USBbRequest == SET_ADDRESS) &&
+  20:	7853      	ldrb	r3, [r2, #1]
+  22:	2b05      	cmp	r3, #5
+  24:	d10a      	bne.n	3c <In0_Process+0x3c>
+  26:	7813      	ldrb	r3, [r2, #0]
+  28:	f013 0f7f 	tst.w	r3, #127	; 0x7f
+  2c:	d106      	bne.n	3c <In0_Process+0x3c>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:904
+        (Type_Recipient == (STANDARD_REQUEST | DEVICE_RECIPIENT)))
+    {
+      SetDeviceAddress(pInformation->USBwValue0);
+  2e:	78d0      	ldrb	r0, [r2, #3]
+  30:	f7ff fffe 	bl	0 <In0_Process>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:905
+      pUser_Standard_Requests->User_SetDeviceAddress();
+  34:	4b08      	ldr	r3, [pc, #32]	(58 <In0_Process+0x58>)
+  36:	681b      	ldr	r3, [r3, #0]
+  38:	6a1b      	ldr	r3, [r3, #32]
+  3a:	4798      	blx	r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:907
+    }
+    (*pProperty->Process_Status_IN)();
+  3c:	4b07      	ldr	r3, [pc, #28]	(5c <In0_Process+0x5c>)
+  3e:	681b      	ldr	r3, [r3, #0]
+  40:	689b      	ldr	r3, [r3, #8]
+  42:	4798      	blx	r3
+  44:	2208      	movs	r2, #8
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:916
+  else
+  {
+    ControlState = STALLED;
+  }
+
+  pInformation->ControlState = ControlState;
+  46:	4b03      	ldr	r3, [pc, #12]	(54 <In0_Process+0x54>)
+  48:	681b      	ldr	r3, [r3, #0]
+  4a:	721a      	strb	r2, [r3, #8]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:918
+
+  return Post0_Process();
+  4c:	f7ff fffe 	bl	0 <In0_Process>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:919
+}
+  50:	bd10      	pop	{r4, pc}
+  52:	46c0      	nop			(mov r8, r8)
+	...
+Disassembly of section .text.Standard_ClearFeature:
+
+00000000 <Standard_ClearFeature>:
+Standard_ClearFeature():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:237
+* Output         : None.
+* Return         : - Return USB_SUCCESS, if the request is performed.
+*                  - Return USB_UNSUPPORT, if the request is invalid.
+*******************************************************************************/
+RESULT Standard_ClearFeature(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:238
+  u32     Type_Rec = Type_Recipient;
+   2:	4b36      	ldr	r3, [pc, #216]	(dc <Standard_ClearFeature+0xdc>)
+   4:	6819      	ldr	r1, [r3, #0]
+   6:	780b      	ldrb	r3, [r1, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:242
+  u32     Status;
+
+
+  if (Type_Rec == (STANDARD_REQUEST | DEVICE_RECIPIENT))
+   8:	f013 007f 	ands.w	r0, r3, #127	; 0x7f
+   c:	d104      	bne.n	18 <Standard_ClearFeature+0x18>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:244
+  {/*Device Clear Feature*/
+    ClrBit(pInformation->Current_Feature, 5);
+   e:	7a4b      	ldrb	r3, [r1, #9]
+  10:	f023 0320 	bic.w	r3, r3, #32	; 0x20
+  14:	724b      	strb	r3, [r1, #9]
+  16:	e060      	b.n	da <Standard_ClearFeature+0xda>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:247
+    return USB_SUCCESS;
+  }
+  else if (Type_Rec == (STANDARD_REQUEST | ENDPOINT_RECIPIENT))
+  18:	2802      	cmp	r0, #2
+  1a:	d15d      	bne.n	d8 <Standard_ClearFeature+0xd8>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:254
+    DEVICE* pDev;
+    u32 Related_Endpoint;
+    u32 wIndex0;
+    u32 rEP;
+
+    if ((pInformation->USBwValue != ENDPOINT_STALL)
+  1c:	884b      	ldrh	r3, [r1, #2]
+  1e:	2b00      	cmp	r3, #0
+  20:	d15a      	bne.n	d8 <Standard_ClearFeature+0xd8>
+  22:	790b      	ldrb	r3, [r1, #4]
+  24:	2b00      	cmp	r3, #0
+  26:	d157      	bne.n	d8 <Standard_ClearFeature+0xd8>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:261
+    {
+      return USB_UNSUPPORT;
+    }
+
+    pDev = &Device_Table;
+    wIndex0 = pInformation->USBwIndex0;
+  28:	794c      	ldrb	r4, [r1, #5]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:262
+    rEP = wIndex0 & ~0x80;
+  2a:	f024 0080 	bic.w	r0, r4, #128	; 0x80
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:265
+    Related_Endpoint = ENDP0 + rEP;
+
+    if (ValBit(pInformation->USBwIndex0, 7))
+  2e:	f014 0f80 	tst.w	r4, #128	; 0x80
+  32:	ea4f 0280 	mov.w	r2, r0, lsl #2
+  36:	d007      	beq.n	48 <Standard_ClearFeature+0x48>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:269
+    {
+      /*Get Status of endpoint & stall the request if the related_ENdpoint
+      is Disabled*/
+      Status = _GetEPTxStatus(Related_Endpoint);
+  38:	f102 4380 	add.w	r3, r2, #1073741824	; 0x40000000
+  3c:	f503 43b8 	add.w	r3, r3, #23552	; 0x5c00
+  40:	681b      	ldr	r3, [r3, #0]
+  42:	f003 0230 	and.w	r2, r3, #48	; 0x30
+  46:	e006      	b.n	56 <Standard_ClearFeature+0x56>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:273
+    }
+    else
+    {
+      Status = _GetEPRxStatus(Related_Endpoint);
+  48:	f102 4380 	add.w	r3, r2, #1073741824	; 0x40000000
+  4c:	f503 43b8 	add.w	r3, r3, #23552	; 0x5c00
+  50:	681b      	ldr	r3, [r3, #0]
+  52:	f403 5240 	and.w	r2, r3, #12288	; 0x3000
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:276
+    }
+
+    if ((rEP >= pDev->Total_Endpoint) || (Status == 0)
+  56:	4b22      	ldr	r3, [pc, #136]	(e0 <Standard_ClearFeature+0xe0>)
+  58:	781b      	ldrb	r3, [r3, #0]
+  5a:	4298      	cmp	r0, r3
+  5c:	d23c      	bcs.n	d8 <Standard_ClearFeature+0xd8>
+  5e:	2a00      	cmp	r2, #0
+  60:	d03a      	beq.n	d8 <Standard_ClearFeature+0xd8>
+  62:	7a8b      	ldrb	r3, [r1, #10]
+  64:	2b00      	cmp	r3, #0
+  66:	d037      	beq.n	d8 <Standard_ClearFeature+0xd8>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:283
+    {
+      return USB_UNSUPPORT;
+    }
+
+
+    if (wIndex0 & 0x80)
+  68:	f014 0f80 	tst.w	r4, #128	; 0x80
+  6c:	ea4f 0280 	mov.w	r2, r0, lsl #2
+  70:	d011      	beq.n	96 <Standard_ClearFeature+0x96>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:286
+    {
+      /* IN endpoint */
+      if (_GetTxStallStatus(Related_Endpoint ))
+  72:	f102 4380 	add.w	r3, r2, #1073741824	; 0x40000000
+  76:	f503 43b8 	add.w	r3, r3, #23552	; 0x5c00
+  7a:	681b      	ldr	r3, [r3, #0]
+  7c:	f003 0330 	and.w	r3, r3, #48	; 0x30
+  80:	2b10      	cmp	r3, #16
+  82:	d123      	bne.n	cc <Standard_ClearFeature+0xcc>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:288
+      {
+        ClearDTOG_TX(Related_Endpoint);
+  84:	b2c4      	uxtb	r4, r0
+  86:	4620      	mov	r0, r4
+  88:	f7ff fffe 	bl	0 <ClearDTOG_TX>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:289
+        SetEPTxStatus(Related_Endpoint, EP_TX_VALID);
+  8c:	4620      	mov	r0, r4
+  8e:	2130      	movs	r1, #48
+  90:	f7ff fffe 	bl	0 <SetEPTxStatus>
+  94:	e01a      	b.n	cc <Standard_ClearFeature+0xcc>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:295
+      }
+    }
+    else
+    {
+      /* OUT endpoint */
+      if (_GetRxStallStatus(Related_Endpoint))
+  96:	f102 4480 	add.w	r4, r2, #1073741824	; 0x40000000
+  9a:	f504 44b8 	add.w	r4, r4, #23552	; 0x5c00
+  9e:	6823      	ldr	r3, [r4, #0]
+  a0:	f403 5340 	and.w	r3, r3, #12288	; 0x3000
+  a4:	f5b3 5f80 	cmp.w	r3, #4096	; 0x1000
+  a8:	d110      	bne.n	cc <Standard_ClearFeature+0xcc>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:297
+      {
+        if (Related_Endpoint == ENDP0)
+  aa:	b928      	cbnz	r0, b8 <Standard_ClearFeature+0xb8>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:300
+        {
+          /* After clear the STALL, enable the default endpoint receiver */
+          SetEPRxCount(Related_Endpoint, Device_Property.MaxPacketSize);
+  ac:	4b0d      	ldr	r3, [pc, #52]	(e4 <Standard_ClearFeature+0xe4>)
+  ae:	f893 102c 	ldrb.w	r1, [r3, #44]
+  b2:	f7ff fffe 	bl	0 <SetEPRxCount>
+  b6:	e001      	b.n	6 <ClearDTOG_RX+0x6>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:305
+          _SetEPRxStatus(Related_Endpoint, EP_RX_VALID);
+        }
+        else
+        {
+          ClearDTOG_RX(Related_Endpoint);
+  b8:	f7ff fffe 	bl	0 <ClearDTOG_RX>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:306
+          _SetEPRxStatus(Related_Endpoint, EP_RX_VALID);
+  bc:	6822      	ldr	r2, [r4, #0]
+  be:	f64b 738f 	movw	r3, #49039	; 0xbf8f
+  c2:	ea02 0303 	and.w	r3, r2, r3
+  c6:	f483 5340 	eor.w	r3, r3, #12288	; 0x3000
+  ca:	6023      	str	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:310
+        }
+      }
+    }
+    pUser_Standard_Requests->User_ClearFeature();
+  cc:	4b06      	ldr	r3, [pc, #24]	(e8 <Standard_ClearFeature+0xe8>)
+  ce:	681b      	ldr	r3, [r3, #0]
+  d0:	695b      	ldr	r3, [r3, #20]
+  d2:	4798      	blx	r3
+  d4:	2000      	movs	r0, #0
+  d6:	e000      	b.n	da <Standard_ClearFeature+0xda>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:311
+    return USB_SUCCESS;
+  d8:	2002      	movs	r0, #2
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:315
+  }
+
+  return USB_UNSUPPORT;
+}
+  da:	bd10      	pop	{r4, pc}
+	...
+Disassembly of section .text.Setup0_Process:
+
+00000000 <Setup0_Process>:
+Setup0_Process():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:853
+  {
+    u8* b;
+    u16* w;
+  } pBuf;
+
+  pBuf.b = PMAAddr + (u8 *)(_GetEPRxAddr(ENDP0) * 2); /* *2 for 32 bits addr */
+   0:	4b87      	ldr	r3, [pc, #540]	(220 <Setup0_Process+0x220>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:845
+* Input          : None.
+* Output         : None.
+* Return         : Post0_Process.
+*******************************************************************************/
+u8 Setup0_Process(void)
+{
+   2:	b5f7      	push	{r0, r1, r2, r4, r5, r6, r7, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:853
+  {
+    u8* b;
+    u16* w;
+  } pBuf;
+
+  pBuf.b = PMAAddr + (u8 *)(_GetEPRxAddr(ENDP0) * 2); /* *2 for 32 bits addr */
+   4:	681a      	ldr	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:855
+
+  if (pInformation->ControlState != PAUSE)
+   6:	4f87      	ldr	r7, [pc, #540]	(224 <Setup0_Process+0x224>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:853
+  {
+    u8* b;
+    u16* w;
+  } pBuf;
+
+  pBuf.b = PMAAddr + (u8 *)(_GetEPRxAddr(ENDP0) * 2); /* *2 for 32 bits addr */
+   8:	4b87      	ldr	r3, [pc, #540]	(228 <Setup0_Process+0x228>)
+   a:	b292      	uxth	r2, r2
+   c:	18d3      	adds	r3, r2, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:855
+
+  if (pInformation->ControlState != PAUSE)
+   e:	683d      	ldr	r5, [r7, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:853
+  {
+    u8* b;
+    u16* w;
+  } pBuf;
+
+  pBuf.b = PMAAddr + (u8 *)(_GetEPRxAddr(ENDP0) * 2); /* *2 for 32 bits addr */
+  10:	005b      	lsls	r3, r3, #1
+  12:	681c      	ldr	r4, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:855
+
+  if (pInformation->ControlState != PAUSE)
+  14:	7a2b      	ldrb	r3, [r5, #8]
+  16:	2b09      	cmp	r3, #9
+  18:	d017      	beq.n	4a <Setup0_Process+0x4a>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:853
+  {
+    u8* b;
+    u16* w;
+  } pBuf;
+
+  pBuf.b = PMAAddr + (u8 *)(_GetEPRxAddr(ENDP0) * 2); /* *2 for 32 bits addr */
+  1a:	b2a4      	uxth	r4, r4
+  1c:	f104 5400 	add.w	r4, r4, #536870912	; 0x20000000
+  20:	f504 5440 	add.w	r4, r4, #12288	; 0x3000
+  24:	0064      	lsls	r4, r4, #1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:857
+
+  if (pInformation->ControlState != PAUSE)
+  {
+    pInformation->USBbmRequestType = *pBuf.b++; /* bmRequestType */
+  26:	7823      	ldrb	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:862
+    pInformation->USBbRequest = *pBuf.b++; /* bRequest */
+    pBuf.w++;  /* word not accessed because of 32 bits addressing */
+    pInformation->USBwValue = ByteSwap(*pBuf.w++); /* wValue */
+    pBuf.w++;  /* word not accessed because of 32 bits addressing */
+    pInformation->USBwIndex  = ByteSwap(*pBuf.w++); /* wIndex */
+  28:	f104 060a 	add.w	r6, r4, #10	; 0xa
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:857
+
+  pBuf.b = PMAAddr + (u8 *)(_GetEPRxAddr(ENDP0) * 2); /* *2 for 32 bits addr */
+
+  if (pInformation->ControlState != PAUSE)
+  {
+    pInformation->USBbmRequestType = *pBuf.b++; /* bmRequestType */
+  2c:	702b      	strb	r3, [r5, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:858
+    pInformation->USBbRequest = *pBuf.b++; /* bRequest */
+  2e:	7863      	ldrb	r3, [r4, #1]
+  30:	706b      	strb	r3, [r5, #1]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:860
+    pBuf.w++;  /* word not accessed because of 32 bits addressing */
+    pInformation->USBwValue = ByteSwap(*pBuf.w++); /* wValue */
+  32:	88a0      	ldrh	r0, [r4, #4]
+  34:	f7ff fffe 	bl	0 <ByteSwap>
+  38:	8068      	strh	r0, [r5, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:862
+    pBuf.w++;  /* word not accessed because of 32 bits addressing */
+    pInformation->USBwIndex  = ByteSwap(*pBuf.w++); /* wIndex */
+  3a:	8920      	ldrh	r0, [r4, #8]
+  3c:	683d      	ldr	r5, [r7, #0]
+  3e:	f7ff fffe 	bl	0 <ByteSwap>
+  42:	80a8      	strh	r0, [r5, #4]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:864
+    pBuf.w++;  /* word not accessed because of 32 bits addressing */
+    pInformation->USBwLength = *pBuf.w; /* wLength */
+  44:	683b      	ldr	r3, [r7, #0]
+  46:	8876      	ldrh	r6, [r6, #2]
+  48:	80de      	strh	r6, [r3, #6]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:867
+  }
+
+  pInformation->ControlState = SETTING_UP;
+  4a:	4d76      	ldr	r5, [pc, #472]	(224 <Setup0_Process+0x224>)
+  4c:	2301      	movs	r3, #1
+  4e:	682a      	ldr	r2, [r5, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:868
+  if (pInformation->USBwLength == 0)
+  50:	88d1      	ldrh	r1, [r2, #6]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:867
+    pInformation->USBwIndex  = ByteSwap(*pBuf.w++); /* wIndex */
+    pBuf.w++;  /* word not accessed because of 32 bits addressing */
+    pInformation->USBwLength = *pBuf.w; /* wLength */
+  }
+
+  pInformation->ControlState = SETTING_UP;
+  52:	7213      	strb	r3, [r2, #8]
+  54:	7854      	ldrb	r4, [r2, #1]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:868
+  if (pInformation->USBwLength == 0)
+  56:	2900      	cmp	r1, #0
+  58:	d162      	bne.n	120 <Setup0_Process+0x120>
+NoData_Setup0():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:548
+{
+  RESULT Result = USB_UNSUPPORT;
+  u32 RequestNo = pInformation->USBbRequest;
+  u32 ControlState;
+
+  if (Type_Recipient == (STANDARD_REQUEST | DEVICE_RECIPIENT))
+  5a:	7813      	ldrb	r3, [r2, #0]
+  5c:	f013 037f 	ands.w	r3, r3, #127	; 0x7f
+  60:	d12e      	bne.n	c0 <Setup0_Process+0xc0>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:552
+  {
+    /* Device Request*/
+    /* SET_CONFIGURATION*/
+    if (RequestNo == SET_CONFIGURATION)
+  62:	2c09      	cmp	r4, #9
+  64:	d102      	bne.n	6c <Setup0_Process+0x6c>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:554
+    {
+      Result = Standard_SetConfiguration();
+  66:	f7ff fffe 	bl	0 <Setup0_Process>
+  6a:	e03b      	b.n	e4 <Setup0_Process+0xe4>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:558
+    }
+
+    /*SET ADDRESS*/
+    else if (RequestNo == SET_ADDRESS)
+  6c:	2c05      	cmp	r4, #5
+  6e:	d10d      	bne.n	8c <Setup0_Process+0x8c>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:560
+    {
+      if ((pInformation->USBwValue0 > 127) || (pInformation->USBwValue1 != 0)
+  70:	f992 3003 	ldrsb.w	r3, [r2, #3]
+  74:	2b00      	cmp	r3, #0
+  76:	db4e      	blt.n	116 <Setup0_Process+0x116>
+  78:	7893      	ldrb	r3, [r2, #2]
+  7a:	2b00      	cmp	r3, #0
+  7c:	d14b      	bne.n	116 <Setup0_Process+0x116>
+  7e:	8893      	ldrh	r3, [r2, #4]
+  80:	2b00      	cmp	r3, #0
+  82:	d148      	bne.n	116 <Setup0_Process+0x116>
+  84:	7a93      	ldrb	r3, [r2, #10]
+  86:	2b00      	cmp	r3, #0
+  88:	d037      	beq.n	fa <Setup0_Process+0xfa>
+  8a:	e044      	b.n	116 <Setup0_Process+0x116>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:574
+      {
+        Result = USB_SUCCESS;
+      }
+    }
+    /*SET FEATURE for Device*/
+    else if (RequestNo == SET_FEATURE)
+  8c:	2c03      	cmp	r4, #3
+  8e:	d10b      	bne.n	a8 <Setup0_Process+0xa8>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:576
+    {
+      if ((pInformation->USBwValue0 == DEVICE_REMOTE_WAKEUP)
+  90:	78d3      	ldrb	r3, [r2, #3]
+  92:	2b01      	cmp	r3, #1
+  94:	d127      	bne.n	e6 <Setup0_Process+0xe6>
+  96:	8893      	ldrh	r3, [r2, #4]
+  98:	bb2b      	cbnz	r3, e6 <Setup0_Process+0xe6>
+  9a:	7a53      	ldrb	r3, [r2, #9]
+  9c:	f013 0f20 	tst.w	r3, #32	; 0x20
+  a0:	d021      	beq.n	46 <Setup0_Process+0x46>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:580
+          && (pInformation->USBwIndex == 0)
+          && (ValBit(pInformation->Current_Feature, 5)))
+      {
+        Result = Standard_SetDeviceFeature();
+  a2:	f7ff fffe 	bl	0 <Setup0_Process>
+  a6:	e01d      	b.n	e4 <Setup0_Process+0xe4>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:588
+      {
+        Result = USB_UNSUPPORT;
+      }
+    }
+    /*Clear FEATURE for Device */
+    else if (RequestNo == CLEAR_FEATURE)
+  a8:	2c01      	cmp	r4, #1
+  aa:	d11c      	bne.n	e6 <Setup0_Process+0xe6>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:590
+    {
+      if (pInformation->USBwValue0 == DEVICE_REMOTE_WAKEUP
+  ac:	78d3      	ldrb	r3, [r2, #3]
+  ae:	2b01      	cmp	r3, #1
+  b0:	d119      	bne.n	e6 <Setup0_Process+0xe6>
+  b2:	8893      	ldrh	r3, [r2, #4]
+  b4:	b9bb      	cbnz	r3, e6 <Setup0_Process+0xe6>
+  b6:	7a53      	ldrb	r3, [r2, #9]
+  b8:	f013 0f20 	tst.w	r3, #32	; 0x20
+  bc:	d013      	beq.n	e6 <Setup0_Process+0xe6>
+  be:	e00a      	b.n	d6 <Setup0_Process+0xd6>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:605
+    }
+
+  }
+
+  /* Interface Request*/
+  else if (Type_Recipient == (STANDARD_REQUEST | INTERFACE_RECIPIENT))
+  c0:	2b01      	cmp	r3, #1
+  c2:	d104      	bne.n	ce <Setup0_Process+0xce>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:608
+  {
+    /*SET INTERFACE*/
+    if (RequestNo == SET_INTERFACE)
+  c4:	2c0b      	cmp	r4, #11
+  c6:	d10e      	bne.n	e6 <Setup0_Process+0xe6>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:610
+    {
+      Result = Standard_SetInterface();
+  c8:	f7ff fffe 	bl	0 <Setup0_Process>
+  cc:	e00a      	b.n	e4 <Setup0_Process+0xe4>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:615
+    }
+  }
+
+  /* EndPoint Request*/
+  else if (Type_Recipient == (STANDARD_REQUEST | ENDPOINT_RECIPIENT))
+  ce:	2b02      	cmp	r3, #2
+  d0:	d109      	bne.n	e6 <Setup0_Process+0xe6>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:618
+  {
+    /*CLEAR FEATURE for EndPoint*/
+    if (RequestNo == CLEAR_FEATURE)
+  d2:	2c01      	cmp	r4, #1
+  d4:	d102      	bne.n	dc <Setup0_Process+0xdc>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:620
+    {
+      Result = Standard_ClearFeature();
+  d6:	f7ff fffe 	bl	0 <Setup0_Process>
+  da:	e003      	b.n	e4 <Setup0_Process+0xe4>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:623
+    }
+    /* SET FEATURE for EndPoint*/
+    else if (RequestNo == SET_FEATURE)
+  dc:	2c03      	cmp	r4, #3
+  de:	d102      	bne.n	e6 <Setup0_Process+0xe6>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:625
+    {
+      Result = Standard_SetEndPointFeature();
+  e0:	f7ff fffe 	bl	0 <Setup0_Process>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:634
+  {
+    Result = USB_UNSUPPORT;
+  }
+
+
+  if (Result != USB_SUCCESS)
+  e4:	b148      	cbz	r0, fa <Setup0_Process+0xfa>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:636
+  {
+    Result = (*pProperty->Class_NoData_Setup)(RequestNo);
+  e6:	4b51      	ldr	r3, [pc, #324]	(22c <Setup0_Process+0x22c>)
+  e8:	4620      	mov	r0, r4
+  ea:	681b      	ldr	r3, [r3, #0]
+  ec:	695b      	ldr	r3, [r3, #20]
+  ee:	4798      	blx	r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:637
+    if (Result == USB_NOT_READY)
+  f0:	2803      	cmp	r0, #3
+  f2:	d101      	bne.n	f8 <Setup0_Process+0xf8>
+  f4:	2209      	movs	r2, #9
+  f6:	e00f      	b.n	118 <Setup0_Process+0x118>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:644
+      ControlState = PAUSE;
+      goto exit_NoData_Setup0;
+    }
+  }
+
+  if (Result != USB_SUCCESS)
+  f8:	b968      	cbnz	r0, 116 <Setup0_Process+0x116>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:652
+    goto exit_NoData_Setup0;
+  }
+
+  ControlState = WAIT_STATUS_IN;/* After no data stage SETUP */
+
+  USB_StatusIn();
+  fa:	4b49      	ldr	r3, [pc, #292]	(220 <Setup0_Process+0x220>)
+  fc:	f04f 0130 	mov.w	r1, #48	; 0x30
+ 100:	681a      	ldr	r2, [r3, #0]
+ 102:	4b4b      	ldr	r3, [pc, #300]	(230 <Setup0_Process+0x230>)
+ 104:	b292      	uxth	r2, r2
+ 106:	18d3      	adds	r3, r2, r3
+ 108:	005b      	lsls	r3, r3, #1
+ 10a:	2200      	movs	r2, #0
+ 10c:	601a      	str	r2, [r3, #0]
+ 10e:	4b49      	ldr	r3, [pc, #292]	(234 <Setup0_Process+0x234>)
+ 110:	3206      	adds	r2, #6
+ 112:	8019      	strh	r1, [r3, #0]
+ 114:	e000      	b.n	118 <Setup0_Process+0x118>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:654
+
+exit_NoData_Setup0:
+ 116:	2208      	movs	r2, #8
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:655
+  pInformation->ControlState = ControlState;
+ 118:	4b42      	ldr	r3, [pc, #264]	(224 <Setup0_Process+0x224>)
+ 11a:	681b      	ldr	r3, [r3, #0]
+ 11c:	721a      	strb	r2, [r3, #8]
+ 11e:	e0e6      	b.n	2ee <Setup0_Process+0x2ee>
+Data_Setup0():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:680
+
+
+  CopyRoutine = NULL;
+  wOffset = 0;
+
+  if (Request_No == GET_DESCRIPTOR)
+ 120:	2c06      	cmp	r4, #6
+ 122:	d118      	bne.n	156 <Setup0_Process+0x156>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:682
+  {
+    if (Type_Recipient == (STANDARD_REQUEST | DEVICE_RECIPIENT))
+ 124:	7813      	ldrb	r3, [r2, #0]
+ 126:	f013 0f7f 	tst.w	r3, #127	; 0x7f
+ 12a:	f040 8098 	bne.w	25e <Setup0_Process+0x25e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:684
+    {
+      u8 wValue1 = pInformation->USBwValue1;
+ 12e:	7893      	ldrb	r3, [r2, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:685
+      if (wValue1 == DEVICE_DESCRIPTOR)
+ 130:	2b01      	cmp	r3, #1
+ 132:	d103      	bne.n	13c <Setup0_Process+0x13c>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:687
+      {
+        CopyRoutine = pProperty->GetDeviceDescriptor;
+ 134:	4b3d      	ldr	r3, [pc, #244]	(22c <Setup0_Process+0x22c>)
+ 136:	681b      	ldr	r3, [r3, #0]
+ 138:	69da      	ldr	r2, [r3, #28]
+ 13a:	e085      	b.n	248 <Setup0_Process+0x248>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:689
+      }
+      else if (wValue1 == CONFIG_DESCRIPTOR)
+ 13c:	2b02      	cmp	r3, #2
+ 13e:	d103      	bne.n	148 <Setup0_Process+0x148>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:691
+      {
+        CopyRoutine = pProperty->GetConfigDescriptor;
+ 140:	4b3a      	ldr	r3, [pc, #232]	(22c <Setup0_Process+0x22c>)
+ 142:	681b      	ldr	r3, [r3, #0]
+ 144:	6a1a      	ldr	r2, [r3, #32]
+ 146:	e07f      	b.n	248 <Setup0_Process+0x248>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:693
+      }
+      else if (wValue1 == STRING_DESCRIPTOR)
+ 148:	2b03      	cmp	r3, #3
+ 14a:	f040 8088 	bne.w	25e <Setup0_Process+0x25e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:695
+      {
+        CopyRoutine = pProperty->GetStringDescriptor;
+ 14e:	4b37      	ldr	r3, [pc, #220]	(22c <Setup0_Process+0x22c>)
+ 150:	681b      	ldr	r3, [r3, #0]
+ 152:	6a5a      	ldr	r2, [r3, #36]
+ 154:	e078      	b.n	248 <Setup0_Process+0x248>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:701
+      }  /* End of GET_DESCRIPTOR */
+    }
+  }
+
+  /*GET STATUS*/
+  else if ((Request_No == GET_STATUS) && (pInformation->USBwValue == 0)
+ 156:	2c00      	cmp	r4, #0
+ 158:	d141      	bne.n	1de <Setup0_Process+0x1de>
+ 15a:	8853      	ldrh	r3, [r2, #2]
+ 15c:	2b00      	cmp	r3, #0
+ 15e:	d17e      	bne.n	25e <Setup0_Process+0x25e>
+ 160:	2902      	cmp	r1, #2
+ 162:	d17c      	bne.n	25e <Setup0_Process+0x25e>
+ 164:	7911      	ldrb	r1, [r2, #4]
+ 166:	2900      	cmp	r1, #0
+ 168:	d179      	bne.n	25e <Setup0_Process+0x25e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:706
+           && (pInformation->USBwLength == 0x0002)
+           && (pInformation->USBwIndex1 == 0))
+  {
+    /* GET STATUS for Device*/
+    if ((Type_Recipient == (STANDARD_REQUEST | DEVICE_RECIPIENT))
+ 16a:	7813      	ldrb	r3, [r2, #0]
+ 16c:	f013 037f 	ands.w	r3, r3, #127	; 0x7f
+ 170:	d103      	bne.n	17a <Setup0_Process+0x17a>
+ 172:	8893      	ldrh	r3, [r2, #4]
+ 174:	2b00      	cmp	r3, #0
+ 176:	d172      	bne.n	25e <Setup0_Process+0x25e>
+ 178:	e02f      	b.n	1da <Setup0_Process+0x1da>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:713
+    {
+      CopyRoutine = Standard_GetStatus;
+    }
+
+    /* GET STATUS for Interface*/
+    else if (Type_Recipient == (STANDARD_REQUEST | INTERFACE_RECIPIENT))
+ 17a:	2b01      	cmp	r3, #1
+ 17c:	d10b      	bne.n	196 <Setup0_Process+0x196>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:715
+    {
+      if (((*pProperty->Class_Get_Interface_Setting)(pInformation->USBwIndex0, 0) == USB_SUCCESS)
+ 17e:	4b2b      	ldr	r3, [pc, #172]	(22c <Setup0_Process+0x22c>)
+ 180:	7950      	ldrb	r0, [r2, #5]
+ 182:	681b      	ldr	r3, [r3, #0]
+ 184:	699b      	ldr	r3, [r3, #24]
+ 186:	4798      	blx	r3
+ 188:	2800      	cmp	r0, #0
+ 18a:	d168      	bne.n	25e <Setup0_Process+0x25e>
+ 18c:	682b      	ldr	r3, [r5, #0]
+ 18e:	7a9b      	ldrb	r3, [r3, #10]
+ 190:	2b00      	cmp	r3, #0
+ 192:	d064      	beq.n	25e <Setup0_Process+0x25e>
+ 194:	e021      	b.n	1da <Setup0_Process+0x1da>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:723
+        CopyRoutine = Standard_GetStatus;
+      }
+    }
+
+    /* GET STATUS for EndPoint*/
+    else if (Type_Recipient == (STANDARD_REQUEST | ENDPOINT_RECIPIENT))
+ 196:	2b02      	cmp	r3, #2
+ 198:	d161      	bne.n	25e <Setup0_Process+0x25e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:725
+    {
+      Related_Endpoint = (pInformation->USBwIndex0 & 0x0f);
+ 19a:	7952      	ldrb	r2, [r2, #5]
+ 19c:	f002 000f 	and.w	r0, r2, #15	; 0xf
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:728
+      Reserved = pInformation->USBwIndex0 & 0x70;
+
+      if (ValBit(pInformation->USBwIndex0, 7))
+ 1a0:	f012 0f80 	tst.w	r2, #128	; 0x80
+ 1a4:	ea4f 0380 	mov.w	r3, r0, lsl #2
+ 1a8:	d007      	beq.n	1ba <Setup0_Process+0x1ba>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:732
+      {
+        /*Get Status of endpoint & stall the request if the related_ENdpoint
+        is Disabled*/
+        Status = _GetEPTxStatus(Related_Endpoint);
+ 1aa:	f103 4380 	add.w	r3, r3, #1073741824	; 0x40000000
+ 1ae:	f503 43b8 	add.w	r3, r3, #23552	; 0x5c00
+ 1b2:	681b      	ldr	r3, [r3, #0]
+ 1b4:	f003 0130 	and.w	r1, r3, #48	; 0x30
+ 1b8:	e006      	b.n	1c8 <Setup0_Process+0x1c8>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:736
+      }
+      else
+      {
+        Status = _GetEPRxStatus(Related_Endpoint);
+ 1ba:	f103 4380 	add.w	r3, r3, #1073741824	; 0x40000000
+ 1be:	f503 43b8 	add.w	r3, r3, #23552	; 0x5c00
+ 1c2:	681b      	ldr	r3, [r3, #0]
+ 1c4:	f403 5140 	and.w	r1, r3, #12288	; 0x3000
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:739
+      }
+
+      if ((Related_Endpoint < Device_Table.Total_Endpoint) && (Reserved == 0)
+ 1c8:	4b1b      	ldr	r3, [pc, #108]	(238 <Setup0_Process+0x238>)
+ 1ca:	781b      	ldrb	r3, [r3, #0]
+ 1cc:	4298      	cmp	r0, r3
+ 1ce:	d246      	bcs.n	25e <Setup0_Process+0x25e>
+ 1d0:	f012 0f70 	tst.w	r2, #112	; 0x70
+ 1d4:	d143      	bne.n	25e <Setup0_Process+0x25e>
+ 1d6:	2900      	cmp	r1, #0
+ 1d8:	d041      	beq.n	25e <Setup0_Process+0x25e>
+ 1da:	4a18      	ldr	r2, [pc, #96]	(23c <Setup0_Process+0x23c>)
+ 1dc:	e035      	b.n	24a <Setup0_Process+0x24a>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:749
+    }
+
+  }
+
+  /*GET CONFIGURATION*/
+  else if (Request_No == GET_CONFIGURATION)
+ 1de:	2c08      	cmp	r4, #8
+ 1e0:	d105      	bne.n	1ee <Setup0_Process+0x1ee>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:751
+  {
+    if (Type_Recipient == (STANDARD_REQUEST | DEVICE_RECIPIENT))
+ 1e2:	7813      	ldrb	r3, [r2, #0]
+ 1e4:	f013 0f7f 	tst.w	r3, #127	; 0x7f
+ 1e8:	d139      	bne.n	25e <Setup0_Process+0x25e>
+ 1ea:	4a15      	ldr	r2, [pc, #84]	(240 <Setup0_Process+0x240>)
+ 1ec:	e02d      	b.n	24a <Setup0_Process+0x24a>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:757
+    {
+      CopyRoutine = Standard_GetConfiguration;
+    }
+  }
+  /*GET INTERFACE*/
+  else if (Request_No == GET_INTERFACE)
+ 1ee:	2c0a      	cmp	r4, #10
+ 1f0:	d135      	bne.n	25e <Setup0_Process+0x25e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:759
+  {
+    if ((Type_Recipient == (STANDARD_REQUEST | INTERFACE_RECIPIENT))
+ 1f2:	7813      	ldrb	r3, [r2, #0]
+ 1f4:	f003 037f 	and.w	r3, r3, #127	; 0x7f
+ 1f8:	2b01      	cmp	r3, #1
+ 1fa:	d130      	bne.n	25e <Setup0_Process+0x25e>
+ 1fc:	7a93      	ldrb	r3, [r2, #10]
+ 1fe:	2b00      	cmp	r3, #0
+ 200:	d02d      	beq.n	25e <Setup0_Process+0x25e>
+ 202:	8853      	ldrh	r3, [r2, #2]
+ 204:	bb5b      	cbnz	r3, 25e <Setup0_Process+0x25e>
+ 206:	7913      	ldrb	r3, [r2, #4]
+ 208:	bb4b      	cbnz	r3, 25e <Setup0_Process+0x25e>
+ 20a:	2901      	cmp	r1, #1
+ 20c:	d127      	bne.n	25e <Setup0_Process+0x25e>
+ 20e:	4b07      	ldr	r3, [pc, #28]	(22c <Setup0_Process+0x22c>)
+ 210:	7950      	ldrb	r0, [r2, #5]
+ 212:	681b      	ldr	r3, [r3, #0]
+ 214:	3901      	subs	r1, #1
+ 216:	699b      	ldr	r3, [r3, #24]
+ 218:	4798      	blx	r3
+ 21a:	bb00      	cbnz	r0, 25e <Setup0_Process+0x25e>
+ 21c:	4a09      	ldr	r2, [pc, #36]	(244 <Setup0_Process+0x244>)
+ 21e:	e014      	b.n	24a <Setup0_Process+0x24a>
+ 220:	40005c50 	.word	0x40005c50
+ 224:	00000000 	.word	0x00000000
+ 228:	20003004 	.word	0x20003004
+ 22c:	00000000 	.word	0x00000000
+ 230:	20003002 	.word	0x20003002
+	...
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:769
+      CopyRoutine = Standard_GetInterface;
+    }
+
+  }
+  
+  if (CopyRoutine)
+ 248:	b14a      	cbz	r2, 25e <Setup0_Process+0x25e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:771
+  {
+    pInformation->Ctrl_Info.Usb_wOffset = wOffset;
+ 24a:	4b2a      	ldr	r3, [pc, #168]	(2f4 <Setup0_Process+0x2f4>)
+ 24c:	f04f 0100 	mov.w	r1, #0	; 0x0
+ 250:	681b      	ldr	r3, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:775
+    pInformation->Ctrl_Info.CopyData = CopyRoutine;
+    /* sb in the original the cast to word was directly */
+    /* now the cast is made step by step */
+    (*CopyRoutine)(0);
+ 252:	2000      	movs	r0, #0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:771
+
+  }
+  
+  if (CopyRoutine)
+  {
+    pInformation->Ctrl_Info.Usb_wOffset = wOffset;
+ 254:	8259      	strh	r1, [r3, #18]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:772
+    pInformation->Ctrl_Info.CopyData = CopyRoutine;
+ 256:	619a      	str	r2, [r3, #24]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:775
+    /* sb in the original the cast to word was directly */
+    /* now the cast is made step by step */
+    (*CopyRoutine)(0);
+ 258:	4790      	blx	r2
+ 25a:	2000      	movs	r0, #0
+ 25c:	e00c      	b.n	278 <Setup0_Process+0x278>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:780
+    Result = USB_SUCCESS;
+  }
+  else
+  {
+    Result = (*pProperty->Class_Data_Setup)(pInformation->USBbRequest);
+ 25e:	4b26      	ldr	r3, [pc, #152]	(2f8 <Setup0_Process+0x2f8>)
+ 260:	4c24      	ldr	r4, [pc, #144]	(2f4 <Setup0_Process+0x2f4>)
+ 262:	681a      	ldr	r2, [r3, #0]
+ 264:	6823      	ldr	r3, [r4, #0]
+ 266:	6912      	ldr	r2, [r2, #16]
+ 268:	7858      	ldrb	r0, [r3, #1]
+ 26a:	4790      	blx	r2
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:781
+    if (Result == USB_NOT_READY)
+ 26c:	2803      	cmp	r0, #3
+ 26e:	d103      	bne.n	278 <Setup0_Process+0x278>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:783
+    {
+      pInformation->ControlState = PAUSE;
+ 270:	6822      	ldr	r2, [r4, #0]
+ 272:	2309      	movs	r3, #9
+ 274:	7213      	strb	r3, [r2, #8]
+ 276:	e03a      	b.n	2ee <Setup0_Process+0x2ee>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:788
+      return;
+    }
+  }
+
+  if (pInformation->Ctrl_Info.Usb_wLength == 0xFFFF)
+ 278:	4b1e      	ldr	r3, [pc, #120]	(2f4 <Setup0_Process+0x2f4>)
+ 27a:	681c      	ldr	r4, [r3, #0]
+ 27c:	f64f 73ff 	movw	r3, #65535	; 0xffff
+ 280:	8a21      	ldrh	r1, [r4, #16]
+ 282:	4299      	cmp	r1, r3
+ 284:	d101      	bne.n	28a <Setup0_Process+0x28a>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:791
+  {
+    /* Data is not ready, wait it */
+    pInformation->ControlState = PAUSE;
+ 286:	2309      	movs	r3, #9
+ 288:	e003      	b.n	292 <Setup0_Process+0x292>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:794
+    return;
+  }
+  if ((Result == USB_UNSUPPORT) || (pInformation->Ctrl_Info.Usb_wLength == 0))
+ 28a:	2802      	cmp	r0, #2
+ 28c:	d000      	beq.n	290 <Setup0_Process+0x290>
+ 28e:	b911      	cbnz	r1, 296 <Setup0_Process+0x296>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:797
+  {
+    /* Unsupported request */
+    pInformation->ControlState = STALLED;
+ 290:	2308      	movs	r3, #8
+ 292:	7223      	strb	r3, [r4, #8]
+ 294:	e02b      	b.n	2ee <Setup0_Process+0x2ee>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:802
+    return;
+  }
+
+
+  if (ValBit(pInformation->USBbmRequestType, 7))
+ 296:	f994 3000 	ldrsb.w	r3, [r4]
+ 29a:	2b00      	cmp	r3, #0
+ 29c:	da21      	bge.n	2e2 <Setup0_Process+0x2e2>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:805
+  {
+    /* Device ==> Host */
+    vu32 wLength = pInformation->USBwLength;
+ 29e:	88e2      	ldrh	r2, [r4, #6]
+ 2a0:	9201      	str	r2, [sp, #4]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:808
+     
+    /* Restrict the data length to be the one host asks */
+    if (pInformation->Ctrl_Info.Usb_wLength > wLength)
+ 2a2:	9b01      	ldr	r3, [sp, #4]
+ 2a4:	4299      	cmp	r1, r3
+ 2a6:	d902      	bls.n	2ae <Setup0_Process+0x2ae>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:810
+    {
+      pInformation->Ctrl_Info.Usb_wLength = wLength;
+ 2a8:	9b01      	ldr	r3, [sp, #4]
+ 2aa:	8223      	strh	r3, [r4, #16]
+ 2ac:	e011      	b.n	2d2 <Setup0_Process+0x2d2>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:813
+    }
+    
+    else if (pInformation->Ctrl_Info.Usb_wLength < pInformation->USBwLength)
+ 2ae:	4291      	cmp	r1, r2
+ 2b0:	d20f      	bcs.n	2d2 <Setup0_Process+0x2d2>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:815
+    {
+      if (pInformation->Ctrl_Info.Usb_wLength < pProperty->MaxPacketSize)
+ 2b2:	4b11      	ldr	r3, [pc, #68]	(2f8 <Setup0_Process+0x2f8>)
+ 2b4:	681b      	ldr	r3, [r3, #0]
+ 2b6:	f893 202c 	ldrb.w	r2, [r3, #44]
+ 2ba:	4291      	cmp	r1, r2
+ 2bc:	d201      	bcs.n	2c2 <Setup0_Process+0x2c2>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:817
+      {
+        Data_Mul_MaxPacketSize = FALSE;
+ 2be:	2200      	movs	r2, #0
+ 2c0:	e005      	b.n	2ce <Setup0_Process+0x2ce>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:819
+      }
+      else if ((pInformation->Ctrl_Info.Usb_wLength % pProperty->MaxPacketSize) == 0)
+ 2c2:	fb91 f3f2 	sdiv	r3, r1, r2
+ 2c6:	fb02 1313 	mls	r3, r2, r3, r1
+ 2ca:	b913      	cbnz	r3, 2d2 <Setup0_Process+0x2d2>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:821
+      {
+        Data_Mul_MaxPacketSize = TRUE;
+ 2cc:	2201      	movs	r2, #1
+ 2ce:	4b0b      	ldr	r3, [pc, #44]	(2fc <Setup0_Process+0x2fc>)
+ 2d0:	701a      	strb	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:825
+      }
+    }   
+
+    pInformation->Ctrl_Info.PacketSize = pProperty->MaxPacketSize;
+ 2d2:	4b09      	ldr	r3, [pc, #36]	(2f8 <Setup0_Process+0x2f8>)
+ 2d4:	681b      	ldr	r3, [r3, #0]
+ 2d6:	f893 302c 	ldrb.w	r3, [r3, #44]
+ 2da:	82a3      	strh	r3, [r4, #20]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:826
+    DataStageIn();
+ 2dc:	f7ff fffe 	bl	0 <Setup0_Process>
+ 2e0:	e005      	b.n	2ee <Setup0_Process+0x2ee>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:830
+  }
+  else
+  {
+    pInformation->ControlState = OUT_DATA;
+ 2e2:	2303      	movs	r3, #3
+ 2e4:	7223      	strb	r3, [r4, #8]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:831
+    vSetEPRxStatus(EP_RX_VALID); /* enable for next data reception */
+ 2e6:	4b06      	ldr	r3, [pc, #24]	(300 <Setup0_Process+0x300>)
+ 2e8:	f44f 5240 	mov.w	r2, #12288	; 0x3000
+ 2ec:	801a      	strh	r2, [r3, #0]
+Setup0_Process():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:878
+  else
+  {
+    /* Setup with data stage */
+    Data_Setup0();
+  }
+  return Post0_Process();
+ 2ee:	f7ff fffe 	bl	0 <Setup0_Process>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_core.c:879
+}
+ 2f2:	bdfe      	pop	{r1, r2, r3, r4, r5, r6, r7, pc}
+	...

@@ -1,0 +1,388 @@
+
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_int.o:     file format elf32-littlearm
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_int.o
+
+Disassembly of section .text.CTR_HP:
+
+00000000 <CTR_HP>:
+CTR_HP():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:159
+* Input          : None.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void CTR_HP(void)
+{
+   0:	b510      	push	{r4, lr}
+   2:	e02a      	b.n	5a <CTR_HP+0x5a>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:164
+  u32 wEPVal = 0;
+
+  while (((wIstr = _GetISTR()) & ISTR_CTR) != 0)
+  {
+    _SetISTR((u16)CLR_CTR); /* clear CTR flag */
+   4:	f647 73ff 	movw	r3, #32767	; 0x7fff
+   8:	600b      	str	r3, [r1, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:166
+    /* extract highest priority endpoint number */
+    EPindex = (u8)(wIstr & ISTR_EP_ID);
+   a:	8813      	ldrh	r3, [r2, #0]
+   c:	4818      	ldr	r0, [pc, #96]	(70 <CTR_HP+0x70>)
+   e:	f003 030f 	and.w	r3, r3, #15	; 0xf
+  12:	7003      	strb	r3, [r0, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:168
+    /* process related endpoint register */
+    wEPVal = _GetENDPOINT(EPindex);
+  14:	009b      	lsls	r3, r3, #2
+  16:	f103 4180 	add.w	r1, r3, #1073741824	; 0x40000000
+  1a:	f501 41b8 	add.w	r1, r1, #23552	; 0x5c00
+  1e:	680b      	ldr	r3, [r1, #0]
+  20:	b29b      	uxth	r3, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:169
+    if ((wEPVal & EP_CTR_RX) != 0)
+  22:	f413 4f00 	tst.w	r3, #32768	; 0x8000
+  26:	d009      	beq.n	3c <CTR_HP+0x3c>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:172
+    {
+      /* clear int flag */
+      _ClearEP_CTR_RX(EPindex);
+  28:	680a      	ldr	r2, [r1, #0]
+  2a:	f640 738f 	movw	r3, #3983	; 0xf8f
+  2e:	ea02 0303 	and.w	r3, r2, r3
+  32:	600b      	str	r3, [r1, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:175
+
+      /* call OUT service function */
+      (*pEpInt_OUT[EPindex-1])();
+  34:	7803      	ldrb	r3, [r0, #0]
+  36:	4a0f      	ldr	r2, [pc, #60]	(74 <CTR_HP+0x74>)
+  38:	3b01      	subs	r3, #1
+  3a:	e00b      	b.n	54 <CTR_HP+0x54>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:178
+
+    } /* if((wEPVal & EP_CTR_RX) */
+    else if ((wEPVal & EP_CTR_TX) != 0)
+  3c:	f013 0f80 	tst.w	r3, #128	; 0x80
+  40:	d00b      	beq.n	5a <CTR_HP+0x5a>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:181
+    {
+      /* clear int flag */
+      _ClearEP_CTR_TX(EPindex);
+  42:	680a      	ldr	r2, [r1, #0]
+  44:	f648 730f 	movw	r3, #36623	; 0x8f0f
+  48:	ea02 0303 	and.w	r3, r2, r3
+  4c:	600b      	str	r3, [r1, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:184
+
+      /* call IN service function */
+      (*pEpInt_IN[EPindex-1])();
+  4e:	7803      	ldrb	r3, [r0, #0]
+  50:	4a09      	ldr	r2, [pc, #36]	(78 <CTR_HP+0x78>)
+  52:	3b01      	subs	r3, #1
+  54:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+  58:	4798      	blx	r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:162
+*******************************************************************************/
+void CTR_HP(void)
+{
+  u32 wEPVal = 0;
+
+  while (((wIstr = _GetISTR()) & ISTR_CTR) != 0)
+  5a:	4908      	ldr	r1, [pc, #32]	(7c <CTR_HP+0x7c>)
+  5c:	4a08      	ldr	r2, [pc, #32]	(80 <CTR_HP+0x80>)
+  5e:	680b      	ldr	r3, [r1, #0]
+  60:	b29b      	uxth	r3, r3
+  62:	8013      	strh	r3, [r2, #0]
+  64:	8813      	ldrh	r3, [r2, #0]
+  66:	b21b      	sxth	r3, r3
+  68:	2b00      	cmp	r3, #0
+  6a:	dbcb      	blt.n	4 <CTR_HP+0x4>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:190
+
+
+    } /* if((wEPVal & EP_CTR_TX) != 0) */
+
+  }/* while(...) */
+}
+  6c:	bd10      	pop	{r4, pc}
+  6e:	46c0      	nop			(mov r8, r8)
+	...
+  7c:	40005c44 	.word	0x40005c44
+  80:	00000000 	.word	0x00000000
+Disassembly of section .text.CTR_LP:
+
+00000000 <CTR_LP>:
+CTR_LP():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:42
+* Input          : None.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void CTR_LP(void)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	e09f      	b.n	144 <CTR_LP+0x144>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:47
+  u32 wEPVal = 0;
+  /* stay in loop while pending ints */
+  while (((wIstr = _GetISTR()) & ISTR_CTR) != 0)
+  {
+    _SetISTR((u16)CLR_CTR); /* clear CTR flag */
+   4:	f647 73ff 	movw	r3, #32767	; 0x7fff
+   8:	6013      	str	r3, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:49
+    /* extract highest priority endpoint number */
+    EPindex = (u8)(wIstr & ISTR_EP_ID);
+   a:	880b      	ldrh	r3, [r1, #0]
+   c:	4853      	ldr	r0, [pc, #332]	(15c <CTR_LP+0x15c>)
+   e:	f003 030f 	and.w	r3, r3, #15	; 0xf
+  12:	7003      	strb	r3, [r0, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:50
+    if (EPindex == 0)
+  14:	2b00      	cmp	r3, #0
+  16:	d169      	bne.n	ec <CTR_LP+0xec>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:58
+      /* calling related service routine */
+      /* (Setup0_Process, In0_Process, Out0_Process) */
+
+      /* save RX & TX status */
+      /* and set both to NAK */
+      SaveRState = _GetEPRxStatus(ENDP0);
+  18:	4c51      	ldr	r4, [pc, #324]	(160 <CTR_LP+0x160>)
+  1a:	4d52      	ldr	r5, [pc, #328]	(164 <CTR_LP+0x164>)
+  1c:	6823      	ldr	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:59
+      SaveTState = _GetEPTxStatus(ENDP0);
+  1e:	4a52      	ldr	r2, [pc, #328]	(168 <CTR_LP+0x168>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:58
+      /* calling related service routine */
+      /* (Setup0_Process, In0_Process, Out0_Process) */
+
+      /* save RX & TX status */
+      /* and set both to NAK */
+      SaveRState = _GetEPRxStatus(ENDP0);
+  20:	f403 5340 	and.w	r3, r3, #12288	; 0x3000
+  24:	802b      	strh	r3, [r5, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:59
+      SaveTState = _GetEPTxStatus(ENDP0);
+  26:	6823      	ldr	r3, [r4, #0]
+  28:	f003 0330 	and.w	r3, r3, #48	; 0x30
+  2c:	8013      	strh	r3, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:60
+      _SetEPRxStatus(ENDP0, EP_RX_NAK);
+  2e:	6822      	ldr	r2, [r4, #0]
+  30:	f64b 738f 	movw	r3, #49039	; 0xbf8f
+  34:	ea02 0303 	and.w	r3, r2, r3
+  38:	f483 5300 	eor.w	r3, r3, #8192	; 0x2000
+  3c:	6023      	str	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:61
+      _SetEPTxStatus(ENDP0, EP_TX_NAK);
+  3e:	6822      	ldr	r2, [r4, #0]
+  40:	f648 73bf 	movw	r3, #36799	; 0x8fbf
+  44:	ea02 0303 	and.w	r3, r2, r3
+  48:	f083 0320 	eor.w	r3, r3, #32	; 0x20
+  4c:	6023      	str	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:66
+
+
+      /* DIR bit = origin of the interrupt */
+
+      if ((wIstr & ISTR_DIR) == 0)
+  4e:	880b      	ldrh	r3, [r1, #0]
+  50:	f013 0f10 	tst.w	r3, #16	; 0x10
+  54:	d004      	beq.n	60 <CTR_LP+0x60>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:89
+        /* DIR = 1 */
+
+        /* DIR = 1 & CTR_RX       => SETUP or OUT int */
+        /* DIR = 1 & (CTR_TX | CTR_RX) => 2 int pending */
+
+        wEPVal = _GetENDPOINT(ENDP0);
+  56:	6823      	ldr	r3, [r4, #0]
+  58:	b29b      	uxth	r3, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:90
+        if ((wEPVal & EP_CTR_TX) != 0)
+  5a:	f013 0f80 	tst.w	r3, #128	; 0x80
+  5e:	d008      	beq.n	72 <CTR_LP+0x72>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:92
+        {
+          _ClearEP_CTR_TX(ENDP0);
+  60:	6823      	ldr	r3, [r4, #0]
+  62:	f648 720f 	movw	r2, #36623	; 0x8f0f
+  66:	ea03 0202 	and.w	r2, r3, r2
+  6a:	6022      	str	r2, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:93
+          In0_Process();
+  6c:	f7ff fffe 	bl	0 <In0_Process>
+  70:	e016      	b.n	a0 <CTR_LP+0xa0>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:99
+          /* before terminate set Tx & Rx status */
+          _SetEPRxStatus(ENDP0, SaveRState);
+          _SetEPTxStatus(ENDP0, SaveTState);
+          return;
+        }
+        else if ((wEPVal &EP_SETUP) != 0)
+  72:	f413 6f00 	tst.w	r3, #2048	; 0x800
+  76:	d008      	beq.n	8a <CTR_LP+0x8a>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:101
+        {
+          _ClearEP_CTR_RX(ENDP0); /* SETUP bit kept frozen while CTR_RX = 1 */
+  78:	6823      	ldr	r3, [r4, #0]
+  7a:	f640 728f 	movw	r2, #3983	; 0xf8f
+  7e:	ea03 0202 	and.w	r2, r3, r2
+  82:	6022      	str	r2, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:102
+          Setup0_Process();
+  84:	f7ff fffe 	bl	0 <Setup0_Process>
+  88:	e00a      	b.n	a0 <CTR_LP+0xa0>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:109
+          _SetEPRxStatus(ENDP0, SaveRState);
+          _SetEPTxStatus(ENDP0, SaveTState);
+          return;
+        }
+
+        else if ((wEPVal & EP_CTR_RX) != 0)
+  8a:	f413 4f00 	tst.w	r3, #32768	; 0x8000
+  8e:	d059      	beq.n	144 <CTR_LP+0x144>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:111
+        {
+          _ClearEP_CTR_RX(ENDP0);
+  90:	6823      	ldr	r3, [r4, #0]
+  92:	f640 728f 	movw	r2, #3983	; 0xf8f
+  96:	ea03 0202 	and.w	r2, r3, r2
+  9a:	6022      	str	r2, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:112
+          Out0_Process();
+  9c:	f7ff fffe 	bl	0 <Out0_Process>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:114
+          /* before terminate set Tx & Rx status */
+          _SetEPRxStatus(ENDP0, SaveRState);
+  a0:	6823      	ldr	r3, [r4, #0]
+  a2:	f64b 718f 	movw	r1, #49039	; 0xbf8f
+  a6:	ea03 0101 	and.w	r1, r3, r1
+  aa:	882b      	ldrh	r3, [r5, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:115
+          _SetEPTxStatus(ENDP0, SaveTState);
+  ac:	f648 72bf 	movw	r2, #36799	; 0x8fbf
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:114
+        else if ((wEPVal & EP_CTR_RX) != 0)
+        {
+          _ClearEP_CTR_RX(ENDP0);
+          Out0_Process();
+          /* before terminate set Tx & Rx status */
+          _SetEPRxStatus(ENDP0, SaveRState);
+  b0:	f413 5f80 	tst.w	r3, #4096	; 0x1000
+  b4:	bf18      	it	ne
+  b6:	f481 5180 	eorne.w	r1, r1, #4096	; 0x1000
+  ba:	f413 5f00 	tst.w	r3, #8192	; 0x2000
+  be:	4b28      	ldr	r3, [pc, #160]	(160 <CTR_LP+0x160>)
+  c0:	bf18      	it	ne
+  c2:	f481 5100 	eorne.w	r1, r1, #8192	; 0x2000
+  c6:	6019      	str	r1, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:115
+          _SetEPTxStatus(ENDP0, SaveTState);
+  c8:	681b      	ldr	r3, [r3, #0]
+  ca:	ea03 0202 	and.w	r2, r3, r2
+  ce:	4b26      	ldr	r3, [pc, #152]	(168 <CTR_LP+0x168>)
+  d0:	881b      	ldrh	r3, [r3, #0]
+  d2:	f013 0f10 	tst.w	r3, #16	; 0x10
+  d6:	bf18      	it	ne
+  d8:	f082 0210 	eorne.w	r2, r2, #16	; 0x10
+  dc:	f013 0f20 	tst.w	r3, #32	; 0x20
+  e0:	4b1f      	ldr	r3, [pc, #124]	(160 <CTR_LP+0x160>)
+  e2:	bf18      	it	ne
+  e4:	f082 0220 	eorne.w	r2, r2, #32	; 0x20
+  e8:	601a      	str	r2, [r3, #0]
+  ea:	e035      	b.n	158 <CTR_LP+0x158>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:125
+    else
+    {
+      /* Decode and service non control endpoints interrupt  */
+
+      /* process related endpoint register */
+      wEPVal = _GetENDPOINT(EPindex);
+  ec:	009b      	lsls	r3, r3, #2
+  ee:	f103 4180 	add.w	r1, r3, #1073741824	; 0x40000000
+  f2:	f501 41b8 	add.w	r1, r1, #23552	; 0x5c00
+  f6:	680b      	ldr	r3, [r1, #0]
+  f8:	b29c      	uxth	r4, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:126
+      if ((wEPVal & EP_CTR_RX) != 0)
+  fa:	f414 4f00 	tst.w	r4, #32768	; 0x8000
+  fe:	d00b      	beq.n	118 <CTR_LP+0x118>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:129
+      {
+        /* clear int flag */
+        _ClearEP_CTR_RX(EPindex);
+ 100:	680a      	ldr	r2, [r1, #0]
+ 102:	f640 738f 	movw	r3, #3983	; 0xf8f
+ 106:	ea02 0303 	and.w	r3, r2, r3
+ 10a:	600b      	str	r3, [r1, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:132
+
+        /* call OUT service function */
+        (*pEpInt_OUT[EPindex-1])();
+ 10c:	7803      	ldrb	r3, [r0, #0]
+ 10e:	4a17      	ldr	r2, [pc, #92]	(16c <CTR_LP+0x16c>)
+ 110:	3b01      	subs	r3, #1
+ 112:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 116:	4798      	blx	r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:136
+
+      } /* if((wEPVal & EP_CTR_RX) */
+
+      if ((wEPVal & EP_CTR_TX) != 0)
+ 118:	f014 0f80 	tst.w	r4, #128	; 0x80
+ 11c:	d012      	beq.n	144 <CTR_LP+0x144>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:139
+      {
+        /* clear int flag */
+        _ClearEP_CTR_TX(EPindex);
+ 11e:	480f      	ldr	r0, [pc, #60]	(15c <CTR_LP+0x15c>)
+ 120:	f648 730f 	movw	r3, #36623	; 0x8f0f
+ 124:	7802      	ldrb	r2, [r0, #0]
+ 126:	0092      	lsls	r2, r2, #2
+ 128:	f102 4280 	add.w	r2, r2, #1073741824	; 0x40000000
+ 12c:	f502 42b8 	add.w	r2, r2, #23552	; 0x5c00
+ 130:	6811      	ldr	r1, [r2, #0]
+ 132:	ea01 0303 	and.w	r3, r1, r3
+ 136:	6013      	str	r3, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:142
+
+        /* call IN service function */
+        (*pEpInt_IN[EPindex-1])();
+ 138:	7803      	ldrb	r3, [r0, #0]
+ 13a:	4a0d      	ldr	r2, [pc, #52]	(170 <CTR_LP+0x170>)
+ 13c:	3b01      	subs	r3, #1
+ 13e:	f852 3023 	ldr.w	r3, [r2, r3, lsl #2]
+ 142:	4798      	blx	r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:45
+*******************************************************************************/
+void CTR_LP(void)
+{
+  u32 wEPVal = 0;
+  /* stay in loop while pending ints */
+  while (((wIstr = _GetISTR()) & ISTR_CTR) != 0)
+ 144:	4a0b      	ldr	r2, [pc, #44]	(174 <CTR_LP+0x174>)
+ 146:	490c      	ldr	r1, [pc, #48]	(178 <CTR_LP+0x178>)
+ 148:	6813      	ldr	r3, [r2, #0]
+ 14a:	b29b      	uxth	r3, r3
+ 14c:	800b      	strh	r3, [r1, #0]
+ 14e:	880b      	ldrh	r3, [r1, #0]
+ 150:	b21b      	sxth	r3, r3
+ 152:	2b00      	cmp	r3, #0
+ 154:	f6ff af56 	blt.w	4 <CTR_LP+0x4>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_int.c:148
+      } /* if((wEPVal & EP_CTR_TX) != 0) */
+
+    }/* if(EPindex == 0) else */
+
+  }/* while(...) */
+}
+ 158:	bd70      	pop	{r4, r5, r6, pc}
+ 15a:	46c0      	nop			(mov r8, r8)
+ 15c:	00000000 	.word	0x00000000
+ 160:	40005c00 	.word	0x40005c00
+	...
+ 174:	40005c44 	.word	0x40005c44
+ 178:	00000000 	.word	0x00000000

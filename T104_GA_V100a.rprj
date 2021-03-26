@@ -1,0 +1,4 @@
+
+<Project Header="Project 'T104_GA_V100a'" Path=".\T104_GA_V100a.rprj" Project="Yes" OutputFile="" sate="96" ActiveApp="T104_GA_V100a" >
+	<ApplicationBuild Header="T104_GA_V100a" Extern=".\T104_GA_V100a.rapp" Path=".\T104_GA_V100a.rapp" OutputFile=".\T104_GA_V100a.elf" sate="96" />
+</Project>

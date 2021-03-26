@@ -1,0 +1,1911 @@
+
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\hardware.o:     file format elf32-littlearm
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\hardware.o
+
+Disassembly of section .text.Registers_Init:
+
+00000000 <Registers_Init>:
+Registers_Init():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:80
+* Return         : None
+*******************************************************************************/
+void Registers_Init ( void )
+{
+	/*Clearing the system timers*/
+    Interval = 0;
+   0:	4b04      	ldr	r3, [pc, #16]	(14 <Registers_Init+0x14>)
+   2:	2200      	movs	r2, #0
+   4:	601a      	str	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:81
+	System_Timers.Counters.Timer_1ms = 0;
+   6:	4b04      	ldr	r3, [pc, #16]	(18 <Registers_Init+0x18>)
+   8:	601a      	str	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:82
+	System_Timers.Counters.Timer_10ms = 0;
+   a:	605a      	str	r2, [r3, #4]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:83
+	System_Timers.Counters.Timer_100ms = 0;
+   c:	609a      	str	r2, [r3, #8]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:84
+	System_Timers.Counters.Timer_1s = 0;
+   e:	60da      	str	r2, [r3, #12]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:85
+	System_Timers.Counters.Timer_1min = 0;
+  10:	611a      	str	r2, [r3, #16]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:88
+
+
+}
+  12:	4770      	bx	lr
+	...
+Disassembly of section .text.Software_Delay:
+
+00000000 <Software_Delay>:
+Software_Delay():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:600
+* Return         : None
+*******************************************************************************/
+void Software_Delay ( uint32_t Delay_var )
+{
+	static volatile uint32_t Software_Decreg;
+	Software_Decreg = Delay_var;
+   0:	4b04      	ldr	r3, [pc, #16]	(14 <Software_Delay+0x14>)
+   2:	6018      	str	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:601
+	while(--Software_Decreg!=0);
+   4:	4b03      	ldr	r3, [pc, #12]	(14 <Software_Delay+0x14>)
+   6:	681a      	ldr	r2, [r3, #0]
+   8:	3a01      	subs	r2, #1
+   a:	601a      	str	r2, [r3, #0]
+   c:	681b      	ldr	r3, [r3, #0]
+   e:	2b00      	cmp	r3, #0
+  10:	d1f8      	bne.n	4 <Software_Delay+0x4>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:602
+}
+  12:	4770      	bx	lr
+  14:	00000000 	.word	0x00000000
+Disassembly of section .text.Enter_LowPowerMode:
+
+00000000 <Enter_LowPowerMode>:
+Enter_LowPowerMode():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:630
+* Return         : None.
+*******************************************************************************/
+void Enter_LowPowerMode(void)
+{
+  /* Set the device state to suspend */
+  bDeviceState = SUSPENDED;
+   0:	4b01      	ldr	r3, [pc, #4]	(8 <Enter_LowPowerMode+0x8>)
+   2:	2203      	movs	r2, #3
+   4:	601a      	str	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:631
+}
+   6:	4770      	bx	lr
+   8:	00000000 	.word	0x00000000
+Disassembly of section .text.Leave_LowPowerMode:
+
+00000000 <Leave_LowPowerMode>:
+Leave_LowPowerMode():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:645
+void Leave_LowPowerMode(void)
+{
+  DEVICE_INFO *pInfo = &Device_Info;
+  
+  /* Set the device state to the correct state */
+  if (pInfo->Current_Configuration != 0)
+   0:	4b04      	ldr	r3, [pc, #16]	(14 <Leave_LowPowerMode+0x14>)
+   2:	4a05      	ldr	r2, [pc, #20]	(18 <Leave_LowPowerMode+0x18>)
+   4:	7a9b      	ldrb	r3, [r3, #10]
+   6:	b10b      	cbz	r3, c <Leave_LowPowerMode+0xc>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:648
+  {
+    /* Device configured */
+    bDeviceState = CONFIGURED;
+   8:	2305      	movs	r3, #5
+   a:	e000      	b.n	e <Leave_LowPowerMode+0xe>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:652
+  }
+  else 
+  {
+    bDeviceState = ATTACHED;
+   c:	2301      	movs	r3, #1
+   e:	6013      	str	r3, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:654
+  }
+}
+  10:	4770      	bx	lr
+  12:	46c0      	nop			(mov r8, r8)
+	...
+Disassembly of section .text.Get_SerialNum:
+
+00000000 <Get_SerialNum>:
+Get_SerialNum():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:667
+*******************************************************************************/
+void Get_SerialNum(void)
+{
+  u32 Device_Serial0, Device_Serial1, Device_Serial2;
+  
+  Device_Serial0 = *(u32*)(0x1FFFF7E8);
+   0:	4b12      	ldr	r3, [pc, #72]	(4c <Get_SerialNum+0x4c>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:664
+* Input          : None.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void Get_SerialNum(void)
+{
+   2:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:667
+  u32 Device_Serial0, Device_Serial1, Device_Serial2;
+  
+  Device_Serial0 = *(u32*)(0x1FFFF7E8);
+   4:	6819      	ldr	r1, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:668
+  Device_Serial1 = *(u32*)(0x1FFFF7EC);
+   6:	3304      	adds	r3, #4
+   8:	6818      	ldr	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:669
+  Device_Serial2 = *(u32*)(0x1FFFF7F0);
+   a:	3304      	adds	r3, #4
+   c:	681c      	ldr	r4, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:671
+  
+  if(Device_Serial0 != 0)
+   e:	b1d9      	cbz	r1, 48 <Get_SerialNum+0x48>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:673
+  {
+     CustomHID_StringSerial[2] = (u8)(Device_Serial0 & 0x000000FF);  
+  10:	4a0f      	ldr	r2, [pc, #60]	(50 <Get_SerialNum+0x50>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:674
+     CustomHID_StringSerial[4] = (u8)((Device_Serial0 & 0x0000FF00) >> 8);
+  12:	f3c1 2307 	ubfx	r3, r1, #8, #8
+  16:	7113      	strb	r3, [r2, #4]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:675
+     CustomHID_StringSerial[6] = (u8)((Device_Serial0 & 0x00FF0000) >> 16);
+  18:	f3c1 4307 	ubfx	r3, r1, #16, #8
+  1c:	7193      	strb	r3, [r2, #6]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:676
+     CustomHID_StringSerial[8] = (u8)((Device_Serial0 & 0xFF000000) >> 24);  
+  1e:	0e0b      	lsrs	r3, r1, #24
+  20:	7213      	strb	r3, [r2, #8]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:679
+     
+     CustomHID_StringSerial[10] = (u8)(Device_Serial1 & 0x000000FF);  
+     CustomHID_StringSerial[12] = (u8)((Device_Serial1 & 0x0000FF00) >> 8);
+  22:	f3c0 2307 	ubfx	r3, r0, #8, #8
+  26:	7313      	strb	r3, [r2, #12]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:680
+     CustomHID_StringSerial[14] = (u8)((Device_Serial1 & 0x00FF0000) >> 16);
+  28:	f3c0 4307 	ubfx	r3, r0, #16, #8
+  2c:	7393      	strb	r3, [r2, #14]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:681
+     CustomHID_StringSerial[16] = (u8)((Device_Serial1 & 0xFF000000) >> 24); 
+  2e:	0e03      	lsrs	r3, r0, #24
+  30:	7413      	strb	r3, [r2, #16]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:684
+     
+     CustomHID_StringSerial[18] = (u8)(Device_Serial2 & 0x000000FF);  
+     CustomHID_StringSerial[20] = (u8)((Device_Serial2 & 0x0000FF00) >> 8);
+  32:	f3c4 2307 	ubfx	r3, r4, #8, #8
+  36:	7513      	strb	r3, [r2, #20]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:685
+     CustomHID_StringSerial[22] = (u8)((Device_Serial2 & 0x00FF0000) >> 16);
+  38:	f3c4 4307 	ubfx	r3, r4, #16, #8
+  3c:	7593      	strb	r3, [r2, #22]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:686
+     CustomHID_StringSerial[24] = (u8)((Device_Serial2 & 0xFF000000) >> 24); 
+  3e:	0e23      	lsrs	r3, r4, #24
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:673
+  Device_Serial1 = *(u32*)(0x1FFFF7EC);
+  Device_Serial2 = *(u32*)(0x1FFFF7F0);
+  
+  if(Device_Serial0 != 0)
+  {
+     CustomHID_StringSerial[2] = (u8)(Device_Serial0 & 0x000000FF);  
+  40:	7091      	strb	r1, [r2, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:678
+     CustomHID_StringSerial[4] = (u8)((Device_Serial0 & 0x0000FF00) >> 8);
+     CustomHID_StringSerial[6] = (u8)((Device_Serial0 & 0x00FF0000) >> 16);
+     CustomHID_StringSerial[8] = (u8)((Device_Serial0 & 0xFF000000) >> 24);  
+     
+     CustomHID_StringSerial[10] = (u8)(Device_Serial1 & 0x000000FF);  
+  42:	7290      	strb	r0, [r2, #10]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:683
+     CustomHID_StringSerial[12] = (u8)((Device_Serial1 & 0x0000FF00) >> 8);
+     CustomHID_StringSerial[14] = (u8)((Device_Serial1 & 0x00FF0000) >> 16);
+     CustomHID_StringSerial[16] = (u8)((Device_Serial1 & 0xFF000000) >> 24); 
+     
+     CustomHID_StringSerial[18] = (u8)(Device_Serial2 & 0x000000FF);  
+  44:	7494      	strb	r4, [r2, #18]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:686
+     CustomHID_StringSerial[20] = (u8)((Device_Serial2 & 0x0000FF00) >> 8);
+     CustomHID_StringSerial[22] = (u8)((Device_Serial2 & 0x00FF0000) >> 16);
+     CustomHID_StringSerial[24] = (u8)((Device_Serial2 & 0xFF000000) >> 24); 
+  46:	7613      	strb	r3, [r2, #24]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:688
+  }   
+}
+  48:	bd10      	pop	{r4, pc}
+  4a:	46c0      	nop			(mov r8, r8)
+  4c:	1ffff7e8 	.word	0x1ffff7e8
+  50:	00000000 	.word	0x00000000
+Disassembly of section .text.Set_USBClock:
+
+00000000 <Set_USBClock>:
+Set_USBClock():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:614
+* Return         : None.
+*******************************************************************************/
+void Set_USBClock(void)
+{
+  /* Select USBCLK source */
+  RCC_USBCLKConfig(RCC_USBCLKSource_PLLCLK_1Div5);
+   0:	2000      	movs	r0, #0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:612
+* Input          : None.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void Set_USBClock(void)
+{
+   2:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:614
+  /* Select USBCLK source */
+  RCC_USBCLKConfig(RCC_USBCLKSource_PLLCLK_1Div5);
+   4:	f7ff fffe 	bl	0 <RCC_USBCLKConfig>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:617
+
+  /* Enable USB clock */
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_USB, ENABLE);
+   8:	f44f 0000 	mov.w	r0, #8388608	; 0x800000
+   c:	2101      	movs	r1, #1
+   e:	f7ff fffe 	bl	0 <RCC_APB1PeriphClockCmd>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:618
+}
+  12:	bd10      	pop	{r4, pc}
+Disassembly of section .text.FLASH_Init:
+
+00000000 <FLASH_Init>:
+FLASH_Init():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:581
+* Input          : None
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void FLASH_Init( void )
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:583
+  /* Unlock the Flash Program Erase controller */
+  FLASH_Unlock();
+   2:	f7ff fffe 	bl	0 <FLASH_Unlock>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:586
+
+  /* Clear All pending flags */
+  FLASH_ClearFlag(FLASH_FLAG_BSY | FLASH_FLAG_EOP | FLASH_FLAG_PGERR | FLASH_FLAG_WRPRTERR);	
+   6:	2035      	movs	r0, #53
+   8:	f7ff fffe 	bl	0 <FLASH_ClearFlag>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:588
+
+}
+   c:	bd10      	pop	{r4, pc}
+   e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.WWDT_Handler:
+
+00000000 <WWDT_Handler>:
+WWDT_Handler():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:568
+* Input          : None
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void WWDT_Handler( void )
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:570
+   // WWDG_SetCounter(0x7e);
+    IWDG_ReloadCounter();
+   2:	f7ff fffe 	bl	0 <IWDG_ReloadCounter>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:571
+}
+   6:	bd10      	pop	{r4, pc}
+Disassembly of section .text.WWDT_Init:
+
+00000000 <WWDT_Init>:
+WWDT_Init():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:547
+* Input          : None
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void WWDT_Init( void )
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:552
+  //  WWDG_SetPrescaler(WWDG_Prescaler_8);
+   // WWDG_SetWindowValue(127);
+   // WWDG_Enable(127);
+
+    IWDG_WriteAccessCmd ( IWDG_WriteAccess_Enable );
+   2:	f245 5055 	movw	r0, #21845	; 0x5555
+   6:	f7ff fffe 	bl	0 <IWDG_WriteAccessCmd>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:553
+    IWDG_SetPrescaler ( IWDG_Prescaler_128 );
+   a:	2005      	movs	r0, #5
+   c:	f7ff fffe 	bl	0 <IWDG_SetPrescaler>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:554
+    IWDG_SetReload ( 0x400 );
+  10:	f44f 6080 	mov.w	r0, #1024	; 0x400
+  14:	f7ff fffe 	bl	0 <IWDG_SetReload>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:555
+    IWDG_ReloadCounter();
+  18:	f7ff fffe 	bl	0 <IWDG_ReloadCounter>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:556
+    IWDG_Enable();
+  1c:	f7ff fffe 	bl	0 <IWDG_Enable>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:558
+
+}
+  20:	bd10      	pop	{r4, pc}
+  22:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.Adc_Configuration:
+
+00000000 <Adc_Configuration>:
+Adc_Configuration():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:496
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Adc_Configuration ( void )
+{
+  ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;
+   0:	491b      	ldr	r1, [pc, #108]	(70 <Adc_Configuration+0x70>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:495
+* Input          : None
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Adc_Configuration ( void )
+{
+   2:	b570      	push	{r4, r5, r6, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:496
+  ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;
+   4:	2200      	movs	r2, #0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:497
+  ADC_InitStructure.ADC_ScanConvMode = ENABLE;
+   6:	2401      	movs	r4, #1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:499
+  ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;
+  ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
+   8:	f44f 2360 	mov.w	r3, #917504	; 0xe0000
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:501
+  ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
+  ADC_InitStructure.ADC_NbrOfChannel = 2;
+   c:	2502      	movs	r5, #2
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:496
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Adc_Configuration ( void )
+{
+  ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;
+   e:	600a      	str	r2, [r1, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:499
+  ADC_InitStructure.ADC_ScanConvMode = ENABLE;
+  ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;
+  ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
+  10:	608b      	str	r3, [r1, #8]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:500
+  ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
+  12:	60ca      	str	r2, [r1, #12]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:497
+* Return         : None
+*******************************************************************************/
+void Adc_Configuration ( void )
+{
+  ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;
+  ADC_InitStructure.ADC_ScanConvMode = ENABLE;
+  14:	710c      	strb	r4, [r1, #4]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:498
+  ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;
+  16:	714c      	strb	r4, [r1, #5]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:501
+  ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
+  ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
+  ADC_InitStructure.ADC_NbrOfChannel = 2;
+  18:	740d      	strb	r5, [r1, #16]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:502
+  ADC_Init(ADC1, &ADC_InitStructure);
+  1a:	4816      	ldr	r0, [pc, #88]	(74 <Adc_Configuration+0x74>)
+  1c:	f7ff fffe 	bl	0 <ADC_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:503
+  ADC_TempSensorVrefintCmd(ENABLE);
+  20:	4620      	mov	r0, r4
+  22:	f7ff fffe 	bl	0 <ADC_TempSensorVrefintCmd>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:504
+  ADC_RegularChannelConfig(ADC1, ADC_Channel_7, 1, ADC_SampleTime_239Cycles5);
+  26:	2107      	movs	r1, #7
+  28:	460b      	mov	r3, r1
+  2a:	4812      	ldr	r0, [pc, #72]	(74 <Adc_Configuration+0x74>)
+  2c:	4622      	mov	r2, r4
+  2e:	f7ff fffe 	bl	0 <ADC_RegularChannelConfig>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:505
+  ADC_RegularChannelConfig(ADC1, ADC_Channel_16, 2, ADC_SampleTime_239Cycles5);
+  32:	462a      	mov	r2, r5
+  34:	2307      	movs	r3, #7
+  36:	480f      	ldr	r0, [pc, #60]	(74 <Adc_Configuration+0x74>)
+  38:	2110      	movs	r1, #16
+  3a:	f7ff fffe 	bl	0 <ADC_RegularChannelConfig>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:506
+  ADC_Cmd(ADC1, ENABLE);
+  3e:	480d      	ldr	r0, [pc, #52]	(74 <Adc_Configuration+0x74>)
+  40:	4621      	mov	r1, r4
+  42:	f7ff fffe 	bl	0 <ADC_Cmd>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:508
+
+  ADC_DMACmd(ADC1, ENABLE);
+  46:	480b      	ldr	r0, [pc, #44]	(74 <Adc_Configuration+0x74>)
+  48:	4621      	mov	r1, r4
+  4a:	f7ff fffe 	bl	0 <ADC_DMACmd>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:509
+  ADC_ResetCalibration(ADC1);
+  4e:	4809      	ldr	r0, [pc, #36]	(28 <ADC_ResetCalibration+0x28>)
+  50:	f7ff fffe 	bl	0 <ADC_ResetCalibration>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:510
+  while(ADC_GetResetCalibrationStatus(ADC1));
+  54:	4807      	ldr	r0, [pc, #28]	(20 <ADC_GetResetCalibrationStatus+0x20>)
+  56:	f7ff fffe 	bl	0 <ADC_GetResetCalibrationStatus>
+  5a:	2800      	cmp	r0, #0
+  5c:	d1fa      	bne.n	54 <Adc_Configuration+0x54>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:512
+ 
+  ADC_StartCalibration(ADC1);
+  5e:	4805      	ldr	r0, [pc, #20]	(74 <Adc_Configuration+0x74>)
+  60:	f7ff fffe 	bl	0 <ADC_StartCalibration>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:513
+  while(ADC_GetCalibrationStatus(ADC1));
+  64:	4803      	ldr	r0, [pc, #12]	(10 <ADC_GetCalibrationStatus+0x10>)
+  66:	f7ff fffe 	bl	0 <ADC_GetCalibrationStatus>
+  6a:	2800      	cmp	r0, #0
+  6c:	d1fa      	bne.n	64 <Adc_Configuration+0x64>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:515
+
+}
+  6e:	bd70      	pop	{r4, r5, r6, pc}
+  70:	00000000 	.word	0x00000000
+  74:	40012400 	.word	0x40012400
+Disassembly of section .text.DMA_Configuration:
+
+00000000 <DMA_Configuration>:
+DMA_Configuration():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:470
+* Input          : None
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void DMA_Configuration(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:471
+  DMA_DeInit(DMA1_Channel1);
+   2:	4c12      	ldr	r4, [pc, #72]	(4c <DMA_Configuration+0x4c>)
+   4:	4620      	mov	r0, r4
+   6:	f7ff fffe 	bl	0 <DMA_DeInit>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:472
+  DMA_InitStructure.DMA_PeripheralBaseAddr = (u32)ADC1_DR_Address;
+   a:	4911      	ldr	r1, [pc, #68]	(50 <DMA_Configuration+0x50>)
+   c:	4b11      	ldr	r3, [pc, #68]	(54 <DMA_Configuration+0x54>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:474
+  DMA_InitStructure.DMA_MemoryBaseAddr = (u32)ADC_ConvertedValueTab;
+  DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
+   e:	2200      	movs	r2, #0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:472
+* Return         : None
+*******************************************************************************/
+void DMA_Configuration(void)
+{
+  DMA_DeInit(DMA1_Channel1);
+  DMA_InitStructure.DMA_PeripheralBaseAddr = (u32)ADC1_DR_Address;
+  10:	600b      	str	r3, [r1, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:473
+  DMA_InitStructure.DMA_MemoryBaseAddr = (u32)ADC_ConvertedValueTab;
+  12:	4b11      	ldr	r3, [pc, #68]	(58 <DMA_Configuration+0x58>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:474
+  DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
+  14:	608a      	str	r2, [r1, #8]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:473
+*******************************************************************************/
+void DMA_Configuration(void)
+{
+  DMA_DeInit(DMA1_Channel1);
+  DMA_InitStructure.DMA_PeripheralBaseAddr = (u32)ADC1_DR_Address;
+  DMA_InitStructure.DMA_MemoryBaseAddr = (u32)ADC_ConvertedValueTab;
+  16:	604b      	str	r3, [r1, #4]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:475
+  DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
+  DMA_InitStructure.DMA_BufferSize = 2;
+  18:	2302      	movs	r3, #2
+  1a:	60cb      	str	r3, [r1, #12]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:477
+  DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+  DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+  1c:	337e      	adds	r3, #126
+  1e:	614b      	str	r3, [r1, #20]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:478
+  DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;
+  20:	3380      	adds	r3, #128
+  22:	618b      	str	r3, [r1, #24]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:479
+  DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_HalfWord;
+  24:	f503 7340 	add.w	r3, r3, #768	; 0x300
+  28:	61cb      	str	r3, [r1, #28]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:480
+  DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;
+  2a:	f5a3 7378 	sub.w	r3, r3, #992	; 0x3e0
+  2e:	620b      	str	r3, [r1, #32]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:481
+  DMA_InitStructure.DMA_Priority = DMA_Priority_High;
+  30:	f503 53ff 	add.w	r3, r3, #8160	; 0x1fe0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:476
+  DMA_DeInit(DMA1_Channel1);
+  DMA_InitStructure.DMA_PeripheralBaseAddr = (u32)ADC1_DR_Address;
+  DMA_InitStructure.DMA_MemoryBaseAddr = (u32)ADC_ConvertedValueTab;
+  DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
+  DMA_InitStructure.DMA_BufferSize = 2;
+  DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+  34:	610a      	str	r2, [r1, #16]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:481
+  DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+  DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;
+  DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_HalfWord;
+  DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;
+  DMA_InitStructure.DMA_Priority = DMA_Priority_High;
+  36:	624b      	str	r3, [r1, #36]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:482
+  DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
+  38:	628a      	str	r2, [r1, #40]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:483
+  DMA_Init(DMA1_Channel1, &DMA_InitStructure);
+  3a:	4620      	mov	r0, r4
+  3c:	f7ff fffe 	bl	0 <DMA_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:484
+  DMA_Cmd(DMA1_Channel1, ENABLE);
+  40:	4620      	mov	r0, r4
+  42:	2101      	movs	r1, #1
+  44:	f7ff fffe 	bl	0 <DMA_Cmd>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:485
+}
+  48:	bd10      	pop	{r4, pc}
+  4a:	46c0      	nop			(mov r8, r8)
+  4c:	40020008 	.word	0x40020008
+  50:	00000000 	.word	0x00000000
+  54:	4001244c 	.word	0x4001244c
+  58:	00000000 	.word	0x00000000
+Disassembly of section .text.SPI_Configuration:
+
+00000000 <SPI_Configuration>:
+SPI_Configuration():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:448
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void SPI_Configuration ( void )
+{
+  SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
+   0:	490e      	ldr	r1, [pc, #56]	(3c <SPI_Configuration+0x3c>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:449
+  SPI_InitStructure.SPI_Mode = SPI_Mode_Master;
+   2:	f44f 7282 	mov.w	r2, #260	; 0x104
+   6:	804a      	strh	r2, [r1, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:450
+  SPI_InitStructure.SPI_DataSize = SPI_DataSize_16b;
+   8:	f44f 6200 	mov.w	r2, #2048	; 0x800
+   c:	808a      	strh	r2, [r1, #4]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:451
+  SPI_InitStructure.SPI_CPOL = SPI_CPOL_High;
+   e:	f04f 0202 	mov.w	r2, #2	; 0x2
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:447
+* Input          : None
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void SPI_Configuration ( void )
+{
+  12:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:451
+  SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
+  SPI_InitStructure.SPI_Mode = SPI_Mode_Master;
+  SPI_InitStructure.SPI_DataSize = SPI_DataSize_16b;
+  SPI_InitStructure.SPI_CPOL = SPI_CPOL_High;
+  14:	80ca      	strh	r2, [r1, #6]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:457
+  SPI_InitStructure.SPI_CPHA = SPI_CPHA_1Edge;
+  SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;
+  SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_256;
+  SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;
+
+  SPI_Init(SPI1, &SPI_InitStructure);
+  16:	4c0a      	ldr	r4, [pc, #40]	(40 <SPI_Configuration+0x40>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:453
+  SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
+  SPI_InitStructure.SPI_Mode = SPI_Mode_Master;
+  SPI_InitStructure.SPI_DataSize = SPI_DataSize_16b;
+  SPI_InitStructure.SPI_CPOL = SPI_CPOL_High;
+  SPI_InitStructure.SPI_CPHA = SPI_CPHA_1Edge;
+  SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;
+  18:	f44f 7200 	mov.w	r2, #512	; 0x200
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:448
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void SPI_Configuration ( void )
+{
+  SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
+  1c:	2300      	movs	r3, #0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:453
+  SPI_InitStructure.SPI_Mode = SPI_Mode_Master;
+  SPI_InitStructure.SPI_DataSize = SPI_DataSize_16b;
+  SPI_InitStructure.SPI_CPOL = SPI_CPOL_High;
+  SPI_InitStructure.SPI_CPHA = SPI_CPHA_1Edge;
+  SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;
+  1e:	814a      	strh	r2, [r1, #10]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:454
+  SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_256;
+  20:	f04f 0238 	mov.w	r2, #56	; 0x38
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:448
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void SPI_Configuration ( void )
+{
+  SPI_InitStructure.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
+  24:	800b      	strh	r3, [r1, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:452
+  SPI_InitStructure.SPI_Mode = SPI_Mode_Master;
+  SPI_InitStructure.SPI_DataSize = SPI_DataSize_16b;
+  SPI_InitStructure.SPI_CPOL = SPI_CPOL_High;
+  SPI_InitStructure.SPI_CPHA = SPI_CPHA_1Edge;
+  26:	810b      	strh	r3, [r1, #8]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:454
+  SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;
+  SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_256;
+  28:	818a      	strh	r2, [r1, #12]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:455
+  SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;
+  2a:	81cb      	strh	r3, [r1, #14]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:457
+
+  SPI_Init(SPI1, &SPI_InitStructure);
+  2c:	4620      	mov	r0, r4
+  2e:	f7ff fffe 	bl	0 <SPI_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:458
+  SPI_Cmd(SPI1, ENABLE);
+  32:	4620      	mov	r0, r4
+  34:	2101      	movs	r1, #1
+  36:	f7ff fffe 	bl	0 <SPI_Cmd>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:460
+
+}
+  3a:	bd10      	pop	{r4, pc}
+  3c:	00000000 	.word	0x00000000
+  40:	40013000 	.word	0x40013000
+Disassembly of section .text.Tim_Coufiguration:
+
+00000000 <Tim_Coufiguration>:
+Tim_Coufiguration():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:396
+* Input          : None
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Tim_Coufiguration ( void )
+{ 
+   0:	e92d 4370 	stmdb	sp!, {r4, r5, r6, r8, r9, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:398
+  /* Time base configuration */
+  TIM_TimeBaseStructure.TIM_Period = 999;
+   4:	4c33      	ldr	r4, [pc, #204]	(d4 <Tim_Coufiguration+0xd4>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:403
+  TIM_TimeBaseStructure.TIM_Prescaler = 3;
+  TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+  TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+
+  TIM_TimeBaseInit(TIM1, &TIM_TimeBaseStructure);
+   6:	f8df 80d8 	ldr.w	r8, [pc, #216]	; e0 <Tim_Coufiguration+0xe0>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:398
+* Return         : None
+*******************************************************************************/
+void Tim_Coufiguration ( void )
+{ 
+  /* Time base configuration */
+  TIM_TimeBaseStructure.TIM_Period = 999;
+   a:	f240 33e7 	movw	r3, #999	; 0x3e7
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:404
+  TIM_TimeBaseStructure.TIM_Prescaler = 3;
+  TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+  TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+
+  TIM_TimeBaseInit(TIM1, &TIM_TimeBaseStructure);
+  TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+   e:	4d32      	ldr	r5, [pc, #200]	(d8 <Tim_Coufiguration+0xd8>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:400
+void Tim_Coufiguration ( void )
+{ 
+  /* Time base configuration */
+  TIM_TimeBaseStructure.TIM_Period = 999;
+  TIM_TimeBaseStructure.TIM_Prescaler = 3;
+  TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+  10:	2600      	movs	r6, #0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:398
+* Return         : None
+*******************************************************************************/
+void Tim_Coufiguration ( void )
+{ 
+  /* Time base configuration */
+  TIM_TimeBaseStructure.TIM_Period = 999;
+  12:	80a3      	strh	r3, [r4, #4]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:399
+  TIM_TimeBaseStructure.TIM_Prescaler = 3;
+  14:	f04f 0303 	mov.w	r3, #3	; 0x3
+  18:	8023      	strh	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:400
+  TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+  1a:	80e6      	strh	r6, [r4, #6]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:401
+  TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+  1c:	8066      	strh	r6, [r4, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:403
+
+  TIM_TimeBaseInit(TIM1, &TIM_TimeBaseStructure);
+  1e:	4640      	mov	r0, r8
+  20:	4621      	mov	r1, r4
+  22:	f7ff fffe 	bl	0 <TIM_TimeBaseInit>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:404
+  TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+  26:	4628      	mov	r0, r5
+  28:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:407
+
+  /* PWM1 Mode configuration: Channel2 */
+  TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+  2a:	4c2c      	ldr	r4, [pc, #176]	(dc <Tim_Coufiguration+0xdc>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:404
+  TIM_TimeBaseStructure.TIM_Prescaler = 3;
+  TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+  TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+
+  TIM_TimeBaseInit(TIM1, &TIM_TimeBaseStructure);
+  TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+  2c:	f7ff fffe 	bl	0 <TIM_TimeBaseInit>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:407
+
+  /* PWM1 Mode configuration: Channel2 */
+  TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+  30:	f04f 0360 	mov.w	r3, #96	; 0x60
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:408
+  TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+  34:	f04f 0901 	mov.w	r9, #1	; 0x1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:407
+
+  TIM_TimeBaseInit(TIM1, &TIM_TimeBaseStructure);
+  TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+
+  /* PWM1 Mode configuration: Channel2 */
+  TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+  38:	8023      	strh	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:410
+  TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+  TIM_OCInitStructure.TIM_Pulse = PWM_OFF;
+  TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_Low;
+  3a:	f04f 0302 	mov.w	r3, #2	; 0x2
+  3e:	8123      	strh	r3, [r4, #8]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:412
+
+  TIM_OC1Init(TIM1, &TIM_OCInitStructure);
+  40:	4640      	mov	r0, r8
+  42:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:408
+  TIM_TimeBaseInit(TIM1, &TIM_TimeBaseStructure);
+  TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+
+  /* PWM1 Mode configuration: Channel2 */
+  TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+  TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+  44:	f8a4 9002 	strh.w	r9, [r4, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:409
+  TIM_OCInitStructure.TIM_Pulse = PWM_OFF;
+  48:	80e6      	strh	r6, [r4, #6]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:412
+  TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_Low;
+
+  TIM_OC1Init(TIM1, &TIM_OCInitStructure);
+  4a:	f7ff fffe 	bl	0 <TIM_OC1Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:413
+  TIM_OC1PreloadConfig(TIM1, TIM_OCPreload_Enable);
+  4e:	4640      	mov	r0, r8
+  50:	2108      	movs	r1, #8
+  52:	f7ff fffe 	bl	0 <TIM_OC1PreloadConfig>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:415
+  
+  TIM_OC2Init(TIM1, &TIM_OCInitStructure);
+  56:	4640      	mov	r0, r8
+  58:	4621      	mov	r1, r4
+  5a:	f7ff fffe 	bl	0 <TIM_OC2Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:416
+  TIM_OC2PreloadConfig(TIM1, TIM_OCPreload_Enable);
+  5e:	4640      	mov	r0, r8
+  60:	2108      	movs	r1, #8
+  62:	f7ff fffe 	bl	0 <TIM_OC2PreloadConfig>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:418
+
+  TIM_OC1Init(TIM3, &TIM_OCInitStructure);
+  66:	4628      	mov	r0, r5
+  68:	4621      	mov	r1, r4
+  6a:	f7ff fffe 	bl	0 <TIM_OC1Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:419
+  TIM_OC1PreloadConfig(TIM3, TIM_OCPreload_Enable);
+  6e:	4628      	mov	r0, r5
+  70:	2108      	movs	r1, #8
+  72:	f7ff fffe 	bl	0 <TIM_OC1PreloadConfig>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:421
+
+  TIM_OC2Init(TIM3, &TIM_OCInitStructure);
+  76:	4628      	mov	r0, r5
+  78:	4621      	mov	r1, r4
+  7a:	f7ff fffe 	bl	0 <TIM_OC2Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:422
+  TIM_OC2PreloadConfig(TIM3, TIM_OCPreload_Enable);
+  7e:	4628      	mov	r0, r5
+  80:	2108      	movs	r1, #8
+  82:	f7ff fffe 	bl	0 <TIM_OC2PreloadConfig>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:424
+
+  TIM_OC3Init(TIM3, &TIM_OCInitStructure);
+  86:	4628      	mov	r0, r5
+  88:	4621      	mov	r1, r4
+  8a:	f7ff fffe 	bl	0 <TIM_OC3Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:425
+  TIM_OC3PreloadConfig(TIM3, TIM_OCPreload_Enable);
+  8e:	4628      	mov	r0, r5
+  90:	2108      	movs	r1, #8
+  92:	f7ff fffe 	bl	0 <TIM_OC3PreloadConfig>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:427
+
+  TIM_OC4Init(TIM3, &TIM_OCInitStructure);
+  96:	4628      	mov	r0, r5
+  98:	4621      	mov	r1, r4
+  9a:	f7ff fffe 	bl	0 <TIM_OC4Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:428
+  TIM_OC4PreloadConfig(TIM3, TIM_OCPreload_Enable);
+  9e:	4628      	mov	r0, r5
+  a0:	2108      	movs	r1, #8
+  a2:	f7ff fffe 	bl	0 <TIM_OC4PreloadConfig>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:430
+
+  TIM_ARRPreloadConfig(TIM1, ENABLE);
+  a6:	4640      	mov	r0, r8
+  a8:	4649      	mov	r1, r9
+  aa:	f7ff fffe 	bl	0 <TIM_ARRPreloadConfig>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:431
+  TIM_CtrlPWMOutputs(TIM1, ENABLE);
+  ae:	4640      	mov	r0, r8
+  b0:	4649      	mov	r1, r9
+  b2:	f7ff fffe 	bl	0 <TIM_CtrlPWMOutputs>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:432
+  TIM_Cmd(TIM1, ENABLE);
+  b6:	4640      	mov	r0, r8
+  b8:	4649      	mov	r1, r9
+  ba:	f7ff fffe 	bl	0 <TIM_Cmd>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:434
+
+  TIM_ARRPreloadConfig(TIM3, ENABLE);
+  be:	4628      	mov	r0, r5
+  c0:	4649      	mov	r1, r9
+  c2:	f7ff fffe 	bl	0 <TIM_ARRPreloadConfig>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:435
+  TIM_Cmd(TIM3, ENABLE);
+  c6:	4628      	mov	r0, r5
+  c8:	4649      	mov	r1, r9
+  ca:	f7ff fffe 	bl	0 <TIM_Cmd>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:437
+
+}
+  ce:	e8bd 8370 	ldmia.w	sp!, {r4, r5, r6, r8, r9, pc}
+  d2:	46c0      	nop			(mov r8, r8)
+  d4:	00000000 	.word	0x00000000
+  d8:	40000400 	.word	0x40000400
+  dc:	00000000 	.word	0x00000000
+  e0:	40012c00 	.word	0x40012c00
+Disassembly of section .text.NVIC_Enable:
+
+00000000 <NVIC_Enable>:
+NVIC_Enable():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:374
+  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+  NVIC_Init(&NVIC_InitStructure);
+*/
+
+  NVIC_InitStructure.NVIC_IRQChannel = USB_LP_CAN_RX0_IRQChannel;
+   0:	4805      	ldr	r0, [pc, #20]	(18 <NVIC_Enable+0x18>)
+   2:	2314      	movs	r3, #20
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:365
+* Input          : None
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void NVIC_Enable ( void )
+{
+   4:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:375
+  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+  NVIC_Init(&NVIC_InitStructure);
+*/
+
+  NVIC_InitStructure.NVIC_IRQChannel = USB_LP_CAN_RX0_IRQChannel;
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+   6:	2201      	movs	r2, #1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:374
+  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+  NVIC_Init(&NVIC_InitStructure);
+*/
+
+  NVIC_InitStructure.NVIC_IRQChannel = USB_LP_CAN_RX0_IRQChannel;
+   8:	7003      	strb	r3, [r0, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:376
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+   a:	2300      	movs	r3, #0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:375
+  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+  NVIC_Init(&NVIC_InitStructure);
+*/
+
+  NVIC_InitStructure.NVIC_IRQChannel = USB_LP_CAN_RX0_IRQChannel;
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+   c:	7042      	strb	r2, [r0, #1]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:376
+  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+   e:	7083      	strb	r3, [r0, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:377
+  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+  10:	70c2      	strb	r2, [r0, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:378
+  NVIC_Init(&NVIC_InitStructure);
+  12:	f7ff fffe 	bl	0 <NVIC_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:386
+  //NVIC_InitStructure.NVIC_IRQChannel = RTC_IRQChannel;
+  //NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+  //NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+  //NVIC_Init(&NVIC_InitStructure);
+
+}
+  16:	bd10      	pop	{r4, pc}
+  18:	00000000 	.word	0x00000000
+Disassembly of section .text.NVIC_Configuration:
+
+00000000 <NVIC_Configuration>:
+NVIC_Configuration():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:345
+* Input          : None
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void NVIC_Configuration(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:348
+//#ifdef  VECT_TAB_RAM  
+//  /* Set the Vector Table base location at 0x20000000 */ 
+  NVIC_SetVectorTable(NVIC_VectTab_RAM, 0x0); 
+   2:	2100      	movs	r1, #0
+   4:	f04f 5000 	mov.w	r0, #536870912	; 0x20000000
+   8:	f7ff fffe 	bl	0 <NVIC_SetVectorTable>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:351
+//#else  /* VECT_TAB_FLASH  */
+  /* Set the Vector Table base location at 0x08000000 */ 
+  NVIC_SetVectorTable(0x08000000, 0x0);   
+   c:	f04f 6000 	mov.w	r0, #134217728	; 0x8000000
+  10:	2100      	movs	r1, #0
+  12:	f7ff fffe 	bl	0 <NVIC_SetVectorTable>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:354
+//#endif
+
+  NVIC_Enable();
+  16:	f7ff fffe 	bl	0 <NVIC_Configuration>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:355
+}
+  1a:	bd10      	pop	{r4, pc}
+Disassembly of section .text.GPIO_Configuration:
+
+00000000 <GPIO_Configuration>:
+GPIO_Configuration():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:224
+* Input          : None
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void GPIO_Configuration(void)
+{
+   0:	e92d 4ff8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, sl, fp, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:226
+//ADC
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7;
+   4:	4c68      	ldr	r4, [pc, #416]	(1a8 <GPIO_Configuration+0x1a8>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:228
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+   6:	f8df 91b4 	ldr.w	r9, [pc, #436]	; 1bc <GPIO_Configuration+0x1bc>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:226
+* Return         : None
+*******************************************************************************/
+void GPIO_Configuration(void)
+{
+//ADC
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7;
+   a:	f04f 0380 	mov.w	r3, #128	; 0x80
+   e:	8023      	strh	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:228
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+  10:	4648      	mov	r0, r9
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:227
+*******************************************************************************/
+void GPIO_Configuration(void)
+{
+//ADC
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
+  12:	2300      	movs	r3, #0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:228
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+  14:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:227
+*******************************************************************************/
+void GPIO_Configuration(void)
+{
+//ADC
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
+  16:	70e3      	strb	r3, [r4, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:228
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+  18:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:231
+
+//PWM
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9;
+  1c:	f44f 7340 	mov.w	r3, #768	; 0x300
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:233
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  20:	f04f 0802 	mov.w	r8, #2	; 0x2
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:239
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+  24:	4f61      	ldr	r7, [pc, #388]	(1ac <GPIO_Configuration+0x1ac>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:231
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+//PWM
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9;
+  26:	8023      	strh	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:234
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+  28:	4648      	mov	r0, r9
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:232
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+//PWM
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  2a:	f04f 0318 	mov.w	r3, #24	; 0x18
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:234
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+  2e:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:232
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+//PWM
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  30:	70e3      	strb	r3, [r4, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:233
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  32:	f884 8002 	strb.w	r8, [r4, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:234
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+  36:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:236
+
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
+  3a:	f44f 7370 	mov.w	r3, #960	; 0x3c0
+  3e:	8023      	strh	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:239
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+  40:	4638      	mov	r0, r7
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:237
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  42:	f04f 0318 	mov.w	r3, #24	; 0x18
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:239
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+  46:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:237
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  48:	70e3      	strb	r3, [r4, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:238
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  4a:	f884 8002 	strb.w	r8, [r4, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:239
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+  4e:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:240
+  GPIO_PinRemapConfig(GPIO_FullRemap_TIM3, ENABLE);
+  52:	2101      	movs	r1, #1
+  54:	4856      	ldr	r0, [pc, #344]	(1b0 <GPIO_Configuration+0x1b0>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:243
+
+//SPI
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
+  56:	2610      	movs	r6, #16
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:240
+
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+  GPIO_PinRemapConfig(GPIO_FullRemap_TIM3, ENABLE);
+  58:	f7ff fffe 	bl	0 <GPIO_PinRemapConfig>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:245
+
+//SPI
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  5c:	f04f 0b03 	mov.w	fp, #3	; 0x3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:246
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+  60:	4648      	mov	r0, r9
+  62:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:257
+
+//LCD
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
+  64:	f8df a158 	ldr.w	sl, [pc, #344]	; 1c0 <GPIO_Configuration+0x1c0>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:243
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+  GPIO_PinRemapConfig(GPIO_FullRemap_TIM3, ENABLE);
+
+//SPI
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
+  68:	8026      	strh	r6, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:244
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  6a:	70e6      	strb	r6, [r4, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:245
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  6c:	f884 b002 	strb.w	fp, [r4, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:246
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+  70:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:248
+
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6 ;//| GPIO_Pin_7;
+  74:	f04f 0360 	mov.w	r3, #96	; 0x60
+  78:	8023      	strh	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:251
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+  7a:	4648      	mov	r0, r9
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:249
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6 ;//| GPIO_Pin_7;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  7c:	f04f 0318 	mov.w	r3, #24	; 0x18
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:251
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+  80:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:249
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6 ;//| GPIO_Pin_7;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  82:	70e3      	strb	r3, [r4, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:250
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  84:	f884 b002 	strb.w	fp, [r4, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:251
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+  88:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:254
+
+//LCD
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
+  8c:	f64f 3300 	movw	r3, #64256	; 0xfb00
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:257
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
+  90:	4650      	mov	r0, sl
+  92:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:254
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+//LCD
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
+  94:	8023      	strh	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:255
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  96:	70e6      	strb	r6, [r4, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:256
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  98:	f884 8002 	strb.w	r8, [r4, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:257
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
+  9c:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:260
+
+//RELAY DIRECTION
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
+  a0:	f44f 6380 	mov.w	r3, #1024	; 0x400
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:263
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+  a4:	4648      	mov	r0, r9
+  a6:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:260
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
+
+//RELAY DIRECTION
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10;
+  a8:	8023      	strh	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:261
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  aa:	70e6      	strb	r6, [r4, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:262
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  ac:	f884 8002 	strb.w	r8, [r4, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:263
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+  b0:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:266
+
+//PICTOGRAMS
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_15;
+  b4:	f248 0300 	movw	r3, #32768	; 0x8000
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:269
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+  b8:	4648      	mov	r0, r9
+  ba:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:266
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+//PICTOGRAMS
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_15;
+  bc:	8023      	strh	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:267
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  be:	70e6      	strb	r6, [r4, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:268
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  c0:	f884 8002 	strb.w	r8, [r4, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:269
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+  c4:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:271
+
+  GPIO_PinRemapConfig(GPIO_Remap_SWJ_Disable, ENABLE);
+  c8:	2101      	movs	r1, #1
+  ca:	483a      	ldr	r0, [pc, #232]	(1b4 <GPIO_Configuration+0x1b4>)
+  cc:	f7ff fffe 	bl	0 <GPIO_PinRemapConfig>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:273
+
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_10;
+  d0:	f240 430c 	movw	r3, #1036	; 0x40c
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:276
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
+  d4:	4650      	mov	r0, sl
+  d6:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:280
+
+//INPUTS
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  d8:	2504      	movs	r5, #4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:273
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+  GPIO_PinRemapConfig(GPIO_Remap_SWJ_Disable, ENABLE);
+
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_10;
+  da:	8023      	strh	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:274
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  dc:	70e6      	strb	r6, [r4, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:275
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  de:	f884 8002 	strb.w	r8, [r4, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:276
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
+  e2:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:279
+
+//INPUTS
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5;
+  e6:	f04f 033f 	mov.w	r3, #63	; 0x3f
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:281
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+  ea:	4638      	mov	r0, r7
+  ec:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:279
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
+
+//INPUTS
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5;
+  ee:	8023      	strh	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:280
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  f0:	70e5      	strb	r5, [r4, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:281
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+  f2:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:285
+
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
+  f6:	4650      	mov	r0, sl
+  f8:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:283
+//INPUTS
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1;
+  fa:	f8a4 b000 	strh.w	fp, [r4]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:284
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  fe:	70e5      	strb	r5, [r4, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:285
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
+ 100:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:288
+
+//KEYBOARD
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_14;
+ 104:	f44f 43c0 	mov.w	r3, #24576	; 0x6000
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:290
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+ 108:	4648      	mov	r0, r9
+ 10a:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:288
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
+
+//KEYBOARD
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_14;
+ 10c:	8023      	strh	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:289
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+ 10e:	70e5      	strb	r5, [r4, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:290
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+ 110:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:294
+
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
+ 114:	4650      	mov	r0, sl
+ 116:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:292
+//KEYBOARD
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_14;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
+ 118:	8026      	strh	r6, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:293
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+ 11a:	70e5      	strb	r5, [r4, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:294
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
+ 11c:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:296
+
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12;
+ 120:	f44f 53e0 	mov.w	r3, #7168	; 0x1c00
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:298
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+ 124:	4638      	mov	r0, r7
+ 126:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:296
+
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
+
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12;
+ 128:	8023      	strh	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:297
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+ 12a:	70e5      	strb	r5, [r4, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:298
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+ 12c:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:304
+
+//BUZZER
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOD, &GPIO_InitStructure);
+ 130:	4621      	mov	r1, r4
+ 132:	4821      	ldr	r0, [pc, #132]	(1b8 <GPIO_Configuration+0x1b8>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:301
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+
+//BUZZER
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
+ 134:	8025      	strh	r5, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:302
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+ 136:	70e6      	strb	r6, [r4, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:303
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+ 138:	f884 8002 	strb.w	r8, [r4, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:304
+  GPIO_Init(GPIOD, &GPIO_InitStructure);
+ 13c:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:310
+
+//RELAYS
+  GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_2;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+ 140:	4648      	mov	r0, r9
+ 142:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:307
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOD, &GPIO_InitStructure);
+
+//RELAYS
+  GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_2;
+ 144:	8025      	strh	r5, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:308
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+ 146:	70e6      	strb	r6, [r4, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:309
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+ 148:	f884 8002 	strb.w	r8, [r4, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:310
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+ 14c:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:312
+ 
+  GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_5 | GPIO_Pin_11;
+ 150:	f44f 6302 	mov.w	r3, #2080	; 0x820
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:315
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
+ 154:	4650      	mov	r0, sl
+ 156:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:312
+  GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_2;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+ 
+  GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_5 | GPIO_Pin_11;
+ 158:	8023      	strh	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:313
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+ 15a:	70e6      	strb	r6, [r4, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:314
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+ 15c:	f884 8002 	strb.w	r8, [r4, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:315
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
+ 160:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:317
+  
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;
+ 164:	f44f 5300 	mov.w	r3, #8192	; 0x2000
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:320
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+ 168:	4638      	mov	r0, r7
+ 16a:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:317
+  GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_5 | GPIO_Pin_11;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
+  
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;
+ 16c:	8023      	strh	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:318
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+ 16e:	70e6      	strb	r6, [r4, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:319
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+ 170:	f884 8002 	strb.w	r8, [r4, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:320
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+ 174:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:323
+
+//FAN
+  GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_3;
+ 178:	f04f 0308 	mov.w	r3, #8	; 0x8
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:326
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+ 17c:	4648      	mov	r0, r9
+ 17e:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:323
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+
+//FAN
+  GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_3;
+ 180:	8023      	strh	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:324
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+ 182:	70e6      	strb	r6, [r4, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:325
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+ 184:	f884 8002 	strb.w	r8, [r4, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:326
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+ 188:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:329
+ 
+//RTC Clock
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_14 | GPIO_Pin_15;
+ 18c:	f24c 0300 	movw	r3, #49152	; 0xc000
+ 190:	8023      	strh	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:332
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+ 192:	4638      	mov	r0, r7
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:330
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+ 
+//RTC Clock
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_14 | GPIO_Pin_15;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+ 194:	f04f 0318 	mov.w	r3, #24	; 0x18
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:332
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+ 198:	4621      	mov	r1, r4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:330
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+ 
+//RTC Clock
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_14 | GPIO_Pin_15;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+ 19a:	70e3      	strb	r3, [r4, #3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:331
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+ 19c:	f884 8002 	strb.w	r8, [r4, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:332
+  GPIO_Init(GPIOC, &GPIO_InitStructure);
+ 1a0:	f7ff fffe 	bl	0 <GPIO_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:335
+
+
+}
+ 1a4:	e8bd 8ff8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 1a8:	00000000 	.word	0x00000000
+ 1ac:	40011000 	.word	0x40011000
+ 1b0:	001a0c00 	.word	0x001a0c00
+ 1b4:	00300400 	.word	0x00300400
+ 1b8:	40011400 	.word	0x40011400
+ 1bc:	40010800 	.word	0x40010800
+ 1c0:	40010c00 	.word	0x40010c00
+Disassembly of section .text.RCC_Configuration:
+
+00000000 <RCC_Configuration>:
+RCC_Configuration():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:143
+* Input          : None
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void RCC_Configuration(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:145
+  /* RCC system reset(for debug purpose) */
+  RCC_DeInit();
+   2:	f7ff fffe 	bl	0 <RCC_DeInit>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:148
+
+  /* Enable HSE */
+  RCC_HSEConfig(RCC_HSE_ON);
+   6:	f44f 3080 	mov.w	r0, #65536	; 0x10000
+   a:	f7ff fffe 	bl	0 <RCC_HSEConfig>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:151
+
+  /* Wait till HSE is ready */
+  HSEStartUpStatus = RCC_WaitForHSEStartUp();
+   e:	f7ff fffe 	bl	0 <RCC_WaitForHSEStartUp>
+  12:	4b1f      	ldr	r3, [pc, #124]	(90 <RCC_Configuration+0x90>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:153
+
+  if(HSEStartUpStatus == SUCCESS)
+  14:	2801      	cmp	r0, #1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:151
+
+  /* Enable HSE */
+  RCC_HSEConfig(RCC_HSE_ON);
+
+  /* Wait till HSE is ready */
+  HSEStartUpStatus = RCC_WaitForHSEStartUp();
+  16:	4604      	mov	r4, r0
+  18:	7018      	strb	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:153
+
+  if(HSEStartUpStatus == SUCCESS)
+  1a:	d128      	bne.n	6e <RCC_Configuration+0x6e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:156
+  {
+    /* Enable Prefetch Buffer */
+    FLASH_PrefetchBufferCmd(FLASH_PrefetchBuffer_Enable);
+  1c:	2010      	movs	r0, #16
+  1e:	f7ff fffe 	bl	0 <FLASH_PrefetchBufferCmd>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:159
+
+    /* Flash 2 wait state */
+    FLASH_SetLatency(FLASH_Latency_2);
+  22:	2002      	movs	r0, #2
+  24:	f7ff fffe 	bl	0 <FLASH_SetLatency>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:162
+  
+    /* HCLK = SYSCLK */
+    RCC_HCLKConfig(RCC_SYSCLK_Div1); 
+  28:	2000      	movs	r0, #0
+  2a:	f7ff fffe 	bl	0 <RCC_HCLKConfig>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:165
+  
+    /* PCLK2 = HCLK */
+    RCC_PCLK2Config(RCC_HCLK_Div1); 
+  2e:	2000      	movs	r0, #0
+  30:	f7ff fffe 	bl	0 <RCC_PCLK2Config>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:168
+
+    /* PCLK1 = HCLK/2 */
+    RCC_PCLK1Config(RCC_HCLK_Div2);
+  34:	f44f 6080 	mov.w	r0, #1024	; 0x400
+  38:	f7ff fffe 	bl	0 <RCC_PCLK1Config>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:171
+
+    /* ADCCLK = PCLK2/4 */
+    RCC_ADCCLKConfig(RCC_PCLK2_Div4); 
+  3c:	f44f 4080 	mov.w	r0, #16384	; 0x4000
+  40:	f7ff fffe 	bl	0 <RCC_ADCCLKConfig>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:174
+  
+    /* PLLCLK = 8MHz * 9 = 72 MHz */
+    RCC_PLLConfig(RCC_PLLSource_HSE_Div1, RCC_PLLMul_9);
+  44:	f44f 3080 	mov.w	r0, #65536	; 0x10000
+  48:	f44f 11e0 	mov.w	r1, #1835008	; 0x1c0000
+  4c:	f7ff fffe 	bl	0 <RCC_PLLConfig>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:177
+
+    /* Enable PLL */ 
+    RCC_PLLCmd(ENABLE);
+  50:	4620      	mov	r0, r4
+  52:	f7ff fffe 	bl	0 <RCC_PLLCmd>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:180
+
+    /* Wait till PLL is ready */
+    while(RCC_GetFlagStatus(RCC_FLAG_PLLRDY) == RESET)
+  56:	2039      	movs	r0, #57
+  58:	f7ff fffe 	bl	0 <RCC_GetFlagStatus>
+  5c:	2800      	cmp	r0, #0
+  5e:	d0fa      	beq.n	56 <RCC_Configuration+0x56>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:185
+    {
+    }
+
+    /* Select PLL as system clock source */
+    RCC_SYSCLKConfig(RCC_SYSCLKSource_PLLCLK);
+  60:	2002      	movs	r0, #2
+  62:	f7ff fffe 	bl	0 <RCC_SYSCLKConfig>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:188
+
+    /* Wait till PLL is used as system clock source */
+    while(RCC_GetSYSCLKSource() != 0x08)
+  66:	f7ff fffe 	bl	0 <RCC_GetSYSCLKSource>
+  6a:	2808      	cmp	r0, #8
+  6c:	d1fb      	bne.n	66 <RCC_Configuration+0x66>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:194
+    {
+    }
+  }
+
+/* Enable peripheral clocks --------------------------------------------------*/
+  RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
+  6e:	2001      	movs	r0, #1
+  70:	4601      	mov	r1, r0
+  72:	f7ff fffe 	bl	0 <RCC_AHBPeriphClockCmd>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:196
+
+  RCC_APB2PeriphClockCmd(
+  76:	2101      	movs	r1, #1
+  78:	f641 203d 	movw	r0, #6717	; 0x1a3d
+  7c:	f7ff fffe 	bl	0 <RCC_APB2PeriphClockCmd>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:206
+                         RCC_APB2Periph_TIM1   |
+                         RCC_APB2Periph_SPI1   |
+                         RCC_APB2Periph_AFIO   |
+                         RCC_APB2Periph_ADC1, ENABLE);
+
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR | 
+  80:	4804      	ldr	r0, [pc, #16]	(94 <RCC_Configuration+0x94>)
+  82:	2101      	movs	r1, #1
+  84:	f7ff fffe 	bl	0 <RCC_APB1PeriphClockCmd>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:212
+                         RCC_APB1Periph_BKP |
+                         RCC_APB1Periph_WWDG   |
+                         RCC_APB1Periph_TIM3, ENABLE );
+
+   /* Allow access to BKP Domain */
+    PWR_BackupAccessCmd(ENABLE);
+  88:	2001      	movs	r0, #1
+  8a:	f7ff fffe 	bl	0 <PWR_BackupAccessCmd>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:214
+
+}
+  8e:	bd10      	pop	{r4, pc}
+  90:	00000000 	.word	0x00000000
+  94:	18000802 	.word	0x18000802
+Disassembly of section .text.Hardware_Init:
+
+00000000 <Hardware_Init>:
+Hardware_Init():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:97
+* Input          : None
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Hardware_Init( void )
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:99
+    /* System clocks configuration ---------------------------------------------*/
+    RCC_Configuration();
+   2:	f7ff fffe 	bl	0 <Hardware_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:102
+
+    /* NVIC configuration ------------------------------------------------------*/
+    NVIC_Configuration();
+   6:	f7ff fffe 	bl	0 <Hardware_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:105
+
+    /* Init FLASH --------------------------------------------------------------*/
+    FLASH_Init();
+   a:	f7ff fffe 	bl	0 <Hardware_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:108
+
+    /* GPIO configuration ------------------------------------------------------*/
+    GPIO_Configuration();
+   e:	f7ff fffe 	bl	0 <Hardware_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:111
+
+    /* Timers initializatoin */
+    Tim_Coufiguration();
+  12:	f7ff fffe 	bl	0 <Hardware_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:114
+
+    /* SPI confirutation */
+    SPI_Configuration();
+  16:	f7ff fffe 	bl	0 <Hardware_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:117
+
+    /*DMA Configuration*/
+    DMA_Configuration();
+  1a:	f7ff fffe 	bl	0 <Hardware_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:120
+
+    /*ADC Configuration*/
+    Adc_Configuration();
+  1e:	f7ff fffe 	bl	0 <Hardware_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:123
+
+    /* SysTick clock selection */
+    SysTick_CLKSourceConfig ( SysTick_CLKSource_HCLK_Div8 );
+  22:	f06f 0004 	mvn.w	r0, #4	; 0x4
+  26:	f7ff fffe 	bl	0 <SysTick_CLKSourceConfig>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:126
+
+    /* SysTick end of count event each 10ms with input clock equal to 9MHz (HCLK/8, default) */
+    SysTick_SetReload(9000);
+  2a:	f242 3028 	movw	r0, #9000	; 0x2328
+  2e:	f7ff fffe 	bl	0 <SysTick_SetReload>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:129
+
+    /* Enable SysTick interrupt */
+    SysTick_ITConfig(ENABLE);
+  32:	2001      	movs	r0, #1
+  34:	f7ff fffe 	bl	0 <SysTick_ITConfig>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:132
+
+    /* Enable the SysTick Counter */
+    SysTick_CounterCmd(SysTick_Counter_Enable);
+  38:	2001      	movs	r0, #1
+  3a:	f7ff fffe 	bl	0 <SysTick_CounterCmd>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/hardware.c:133
+}
+  3e:	bd10      	pop	{r4, pc}

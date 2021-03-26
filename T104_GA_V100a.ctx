@@ -1,0 +1,95 @@
+
+<Debug>
+	<T104_GA_V100a/>
+	<RFlasher7>
+		<CodeView Focus="130096" TopRow="0" NbPerLine="8" />
+																																																																																																																																																																																																																																																																																																																																				
+	</RFlasher7>
+	<BookMarks>
+		<BookMark File="" Line="0" />
+		<BookMark File="" Line="0" />
+		<BookMark File="" Line="0" />
+		<BookMark File="" Line="0" />
+		<BookMark File="" Line="0" />
+		<BookMark File="" Line="0" />
+		<BookMark File="" Line="0" />
+		<BookMark File="" Line="0" />
+		<BookMark File="" Line="0" />
+		<BookMark File="" Line="0" />
+						
+	</BookMarks>
+	<Grep>
+		<GrepIncludeSub>yes</GrepIncludeSub>
+		<GrepMatchCase>no</GrepMatchCase>
+		<GrepMatchWhole>no</GrepMatchWhole>
+		<GrepRegExp>no</GrepRegExp>
+		<GrepReplaceMode>no</GrepReplaceMode>
+		<GrepFileTypes>
+			<GrepFileTypesValue>*.c;*.h</GrepFileTypesValue>
+			<GrepFileType>*.c;*.h</GrepFileType>
+										
+		</GrepFileTypes>
+		<GrepFindWhat>
+			<GrepFindWhatValue/>
+										
+		</GrepFindWhat>
+		<GrepFindWhere>
+			<GrepFindWhereValue>Application Files</GrepFindWhereValue>
+			<GrepPathStr>Application Files</GrepPathStr>
+			<GrepPathStr>Application Path</GrepPathStr>
+			<GrepPathStr>Project Files</GrepPathStr>
+										
+		</GrepFindWhere>
+		<GrepReplaceWhat>
+			<GrepReplaceWhatValue/>
+										
+		</GrepReplaceWhat>
+						
+	</Grep>
+	<FindStrings>
+		<Find>Arms_Stop_Pos.Min_Pos1</Find>
+		<Find>Position_Check(</Find>
+		<Find>Enc_Move_Fwd</Find>
+		<Find>STANDBY_PWM</Find>
+		<Find>Back_Signals_Control</Find>
+		<Find>Back_Signals_Control()</Find>
+		<Find>50</Find>
+		<Find>as</Find>
+		<Find>AS5040</Find>
+		<Find>spi</Find>
+		<Find>halsang</Find>
+		<Find>Stop_Ind_Fwd_Fun</Find>
+		<Find>move+forward</Find>
+		<Find>param_2</Find>
+		<Find>zbyszek</Find>
+		<Find>Magnetic_Sensor_Pos_Read</Find>
+		<Find>GPIO_Configuration</Find>
+		<Find>reading</Find>
+		<Find>rtc_handler</Find>
+		<Find>position</Find>
+						
+	</FindStrings>
+	<ReplaceStrings/>
+	<Flags>
+		<Report>
+			<Def Header="FlagReport" NbCol="8" >
+				<Col Type="PT_BOOL" Header="Check" sizeCache="18" AutoSize="0" Edit="1" Sortable="1" Icon="C:\Raisonance\Ride\Config\Resources\check.bmp" />
+				<Col Type="PT_STRING" Header="Kind" sizeCache="DDDDDDDDDDD" AutoSize="1" Edit="0" Sortable="1" />
+				<Col Type="PT_STRING" Header="KindID" sizeCache="DD" AutoSize="1" Edit="0" Sortable="1" Visible="0" />
+				<Col Type="PT_STRING" Header="Space" sizeCache="DDDDDD" AutoSize="1" Edit="0" Sortable="1" />
+				<Col Type="PT_STRING" Header="SpaceID" sizeCache="DD" AutoSize="0" Edit="0" Sortable="0" Visible="0" />
+				<Col Type="PT_STRING" Header="Condition" sizeCache="DDDDDDDDDDDDDDDDDDDDDDDD" AutoSize="1" Edit="0" Sortable="0" />
+				<Col Type="PT_STRING" Header="Line" sizeCache="DDDDDD" AutoSize="1" Edit="0" Sortable="1" Visible="1" />
+				<Col Type="PT_STRING" Header="Path" sizeCache="DDDDDDDDDDDDDDDDDDDD" AutoSize="1" Edit="0" Sortable="1" Visible="1" />
+							
+			</Def>
+			<Rows>
+				<Row Check="True" Kind="Breakpoint" KindID="0" Space="code" SpaceID="0" Condition="" Line="L:205" Path="C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources\hardware.c" />
+							
+			</Rows>
+					
+		</Report>
+			
+	</Flags>
+	<Views/>
+</Debug>

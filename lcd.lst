@@ -1,0 +1,799 @@
+
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\lcd.o:     file format elf32-littlearm
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\lcd.o
+
+Disassembly of section .text.Lcd_Delay:
+
+00000000 <Lcd_Delay>:
+Lcd_Delay():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:104
+* Input          : delay value - in arbitrary units
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Lcd_Delay ( volatile uint16_t n )
+{
+   0:	b084      	sub	sp, #16
+   2:	f8ad 0006 	strh.w	r0, [sp, #6]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:106
+	volatile uint16_t decreg;
+	decreg = n;
+   6:	f8bd 3006 	ldrh.w	r3, [sp, #6]
+   a:	b29b      	uxth	r3, r3
+   c:	f8ad 300e 	strh.w	r3, [sp, #14]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:107
+	while(--decreg!=0);  
+  10:	f8bd 300e 	ldrh.w	r3, [sp, #14]
+  14:	3b01      	subs	r3, #1
+  16:	b29b      	uxth	r3, r3
+  18:	f8ad 300e 	strh.w	r3, [sp, #14]
+  1c:	f8bd 300e 	ldrh.w	r3, [sp, #14]
+  20:	2b00      	cmp	r3, #0
+  22:	d1f5      	bne.n	10 <Lcd_Delay+0x10>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:109
+
+}
+  24:	b004      	add	sp, #16
+  26:	4770      	bx	lr
+Disassembly of section .text.Lcd_Set_Address:
+
+00000000 <Lcd_Set_Address>:
+Lcd_Set_Address():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:238
+    if ( Y_Pos >= LCD_V_SIZE )
+    {
+        Y_Pos = 0;
+    }
+
+    Object_Pos.Object_X_Pos = X_Pos;
+   0:	4b04      	ldr	r3, [pc, #16]	(14 <Lcd_Set_Address+0x14>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:228
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Lcd_Set_Address ( uint8_t X_Pos, uint8_t Y_Pos )
+{
+    if ( X_Pos >= LCD_H_SIZE )
+   2:	2813      	cmp	r0, #19
+   4:	bf88      	it	hi
+   6:	2000      	movhi	r0, #0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:233
+    {
+        X_Pos = 0;
+    }
+
+    if ( Y_Pos >= LCD_V_SIZE )
+   8:	2903      	cmp	r1, #3
+   a:	bf88      	it	hi
+   c:	2100      	movhi	r1, #0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:238
+    {
+        Y_Pos = 0;
+    }
+
+    Object_Pos.Object_X_Pos = X_Pos;
+   e:	7018      	strb	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:239
+    Object_Pos.Object_Y_Pos = Y_Pos;
+  10:	7059      	strb	r1, [r3, #1]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:240
+}
+  12:	4770      	bx	lr
+  14:	00000000 	.word	0x00000000
+Disassembly of section .text.Lcd_Write_Buffer:
+
+00000000 <Lcd_Write_Buffer>:
+Lcd_Write_Buffer():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:251
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Lcd_Write_Buffer ( _Lcd_Buffer * Buffer, const uint8_t * string )
+{
+    j = 0;
+   0:	4b0e      	ldr	r3, [pc, #56]	(3c <Lcd_Write_Buffer+0x3c>)
+   2:	2200      	movs	r2, #0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:250
+* Input          : Pointer to buffer, Pointer to string to be loaded
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Lcd_Write_Buffer ( _Lcd_Buffer * Buffer, const uint8_t * string )
+{
+   4:	b570      	push	{r4, r5, r6, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:251
+    j = 0;
+   6:	4694      	mov	ip, r2
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:250
+* Input          : Pointer to buffer, Pointer to string to be loaded
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Lcd_Write_Buffer ( _Lcd_Buffer * Buffer, const uint8_t * string )
+{
+   8:	4606      	mov	r6, r0
+   a:	460d      	mov	r5, r1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:251
+    j = 0;
+   c:	701a      	strb	r2, [r3, #0]
+   e:	e00d      	b.n	2c <Lcd_Write_Buffer+0x2c>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:255
+
+    while (*string != 0) 
+	{
+        Buffer->BufferTab[Object_Pos.Object_Y_Pos][Object_Pos.Object_X_Pos+j] = *(string++);
+  10:	480a      	ldr	r0, [pc, #40]	(3c <Lcd_Write_Buffer+0x3c>)
+  12:	4a0b      	ldr	r2, [pc, #44]	(40 <Lcd_Write_Buffer+0x40>)
+  14:	7803      	ldrb	r3, [r0, #0]
+  16:	7851      	ldrb	r1, [r2, #1]
+  18:	7812      	ldrb	r2, [r2, #0]
+  1a:	189b      	adds	r3, r3, r2
+  1c:	2214      	movs	r2, #20
+  1e:	fb02 3101 	mla	r1, r2, r1, r3
+  22:	5474      	strb	r4, [r6, r1]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:256
+        j++;
+  24:	7803      	ldrb	r3, [r0, #0]
+  26:	3301      	adds	r3, #1
+  28:	b2db      	uxtb	r3, r3
+  2a:	7003      	strb	r3, [r0, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:253
+*******************************************************************************/
+void Lcd_Write_Buffer ( _Lcd_Buffer * Buffer, const uint8_t * string )
+{
+    j = 0;
+
+    while (*string != 0) 
+  2c:	f815 400c 	ldrb.w	r4, [r5, ip]
+  30:	f10c 0c01 	add.w	ip, ip, #1	; 0x1
+  34:	2c00      	cmp	r4, #0
+  36:	d1eb      	bne.n	10 <Lcd_Write_Buffer+0x10>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:259
+	{
+        Buffer->BufferTab[Object_Pos.Object_Y_Pos][Object_Pos.Object_X_Pos+j] = *(string++);
+        j++;
+    }
+
+}
+  38:	bd70      	pop	{r4, r5, r6, pc}
+  3a:	46c0      	nop			(mov r8, r8)
+	...
+Disassembly of section .text.Lcd_Clear_Buffer:
+
+00000000 <Lcd_Clear_Buffer>:
+Lcd_Clear_Buffer():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:298
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Lcd_Clear_Buffer ( _Lcd_Buffer * Buffer )
+{
+    for ( j = 0; j < LCD_SIZE; j++ )
+   0:	4b07      	ldr	r3, [pc, #28]	(20 <Lcd_Clear_Buffer+0x20>)
+   2:	2200      	movs	r2, #0
+   4:	701a      	strb	r2, [r3, #0]
+   6:	e006      	b.n	16 <Lcd_Clear_Buffer+0x16>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:300
+    {
+        Buffer->Buffer[j] = ' ';
+   8:	780b      	ldrb	r3, [r1, #0]
+   a:	2220      	movs	r2, #32
+   c:	54c2      	strb	r2, [r0, r3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:298
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Lcd_Clear_Buffer ( _Lcd_Buffer * Buffer )
+{
+    for ( j = 0; j < LCD_SIZE; j++ )
+   e:	780b      	ldrb	r3, [r1, #0]
+  10:	3301      	adds	r3, #1
+  12:	b2db      	uxtb	r3, r3
+  14:	700b      	strb	r3, [r1, #0]
+  16:	4902      	ldr	r1, [pc, #8]	(20 <Lcd_Clear_Buffer+0x20>)
+  18:	780b      	ldrb	r3, [r1, #0]
+  1a:	2b4f      	cmp	r3, #79
+  1c:	d9f4      	bls.n	8 <Lcd_Clear_Buffer+0x8>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:302
+    {
+        Buffer->Buffer[j] = ' ';
+    }
+}
+  1e:	4770      	bx	lr
+  20:	00000000 	.word	0x00000000
+Disassembly of section .text.Lcd_Cmd:
+
+00000000 <Lcd_Cmd>:
+Lcd_Cmd():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:165
+* Input          : 8 bit command value
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Lcd_Cmd ( uint8_t Command )
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:166
+    GPIO_ResetBits(LCD_PORT_RS, LCD_PIN_RS);
+   2:	f44f 7180 	mov.w	r1, #256	; 0x100
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:165
+* Input          : 8 bit command value
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Lcd_Cmd ( uint8_t Command )
+{
+   6:	4604      	mov	r4, r0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:166
+    GPIO_ResetBits(LCD_PORT_RS, LCD_PIN_RS);
+   8:	483c      	ldr	r0, [pc, #240]	(fc <Lcd_Cmd+0xfc>)
+   a:	f7ff fffe 	bl	0 <GPIO_ResetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:168
+
+    GPIO_ResetBits(GPIOB, LCD_PIN_D0 | LCD_PIN_D1 | LCD_PIN_D2 | LCD_PIN_D3 );
+   e:	483b      	ldr	r0, [pc, #236]	(fc <Lcd_Cmd+0xfc>)
+  10:	f44f 4170 	mov.w	r1, #61440	; 0xf000
+  14:	f7ff fffe 	bl	0 <GPIO_ResetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:170
+
+	i = ((Command >> 4) & 0x0F);		//send higher nibble
+  18:	0922      	lsrs	r2, r4, #4
+  1a:	4b39      	ldr	r3, [pc, #228]	(100 <Lcd_Cmd+0x100>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:172
+
+	if ( i & 0x01)
+  1c:	f012 0f01 	tst.w	r2, #1	; 0x1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:170
+{
+    GPIO_ResetBits(LCD_PORT_RS, LCD_PIN_RS);
+
+    GPIO_ResetBits(GPIOB, LCD_PIN_D0 | LCD_PIN_D1 | LCD_PIN_D2 | LCD_PIN_D3 );
+
+	i = ((Command >> 4) & 0x0F);		//send higher nibble
+  20:	701a      	strb	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:172
+
+	if ( i & 0x01)
+  22:	d004      	beq.n	2e <Lcd_Cmd+0x2e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:173
+        GPIO_SetBits(LCD_PORT_D0, LCD_PIN_D0);
+  24:	4835      	ldr	r0, [pc, #212]	(fc <Lcd_Cmd+0xfc>)
+  26:	f44f 5180 	mov.w	r1, #4096	; 0x1000
+  2a:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:174
+	if ( i & 0x02)
+  2e:	4b34      	ldr	r3, [pc, #208]	(100 <Lcd_Cmd+0x100>)
+  30:	781b      	ldrb	r3, [r3, #0]
+  32:	f013 0f02 	tst.w	r3, #2	; 0x2
+  36:	d004      	beq.n	42 <Lcd_Cmd+0x42>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:175
+        GPIO_SetBits(LCD_PORT_D1, LCD_PIN_D1);
+  38:	4830      	ldr	r0, [pc, #192]	(fc <Lcd_Cmd+0xfc>)
+  3a:	f44f 5100 	mov.w	r1, #8192	; 0x2000
+  3e:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:176
+	if ( i & 0x04)
+  42:	4b2f      	ldr	r3, [pc, #188]	(100 <Lcd_Cmd+0x100>)
+  44:	781b      	ldrb	r3, [r3, #0]
+  46:	f013 0f04 	tst.w	r3, #4	; 0x4
+  4a:	d004      	beq.n	56 <Lcd_Cmd+0x56>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:177
+        GPIO_SetBits(LCD_PORT_D2, LCD_PIN_D2);
+  4c:	482b      	ldr	r0, [pc, #172]	(fc <Lcd_Cmd+0xfc>)
+  4e:	f44f 4180 	mov.w	r1, #16384	; 0x4000
+  52:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:178
+	if ( i & 0x08)
+  56:	4b2a      	ldr	r3, [pc, #168]	(100 <Lcd_Cmd+0x100>)
+  58:	781b      	ldrb	r3, [r3, #0]
+  5a:	f013 0f08 	tst.w	r3, #8	; 0x8
+  5e:	d004      	beq.n	6a <Lcd_Cmd+0x6a>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:179
+        GPIO_SetBits(LCD_PORT_D3, LCD_PIN_D3);
+  60:	4826      	ldr	r0, [pc, #152]	(fc <Lcd_Cmd+0xfc>)
+  62:	f44f 4100 	mov.w	r1, #32768	; 0x8000
+  66:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:181
+
+    GPIO_SetBits(LCD_PORT_E, LCD_PIN_E);
+  6a:	4824      	ldr	r0, [pc, #144]	(fc <Lcd_Cmd+0xfc>)
+  6c:	f44f 7100 	mov.w	r1, #512	; 0x200
+  70:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:182
+    GPIO_ResetBits(LCD_PORT_E, LCD_PIN_E);
+  74:	4821      	ldr	r0, [pc, #132]	(fc <Lcd_Cmd+0xfc>)
+  76:	f44f 7100 	mov.w	r1, #512	; 0x200
+  7a:	f7ff fffe 	bl	0 <GPIO_ResetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:184
+   
+    GPIO_ResetBits(GPIOB, LCD_PIN_D0 | LCD_PIN_D1 | LCD_PIN_D2 | LCD_PIN_D3 );
+  7e:	481f      	ldr	r0, [pc, #124]	(fc <Lcd_Cmd+0xfc>)
+  80:	f44f 4170 	mov.w	r1, #61440	; 0xf000
+  84:	f7ff fffe 	bl	0 <GPIO_ResetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:186
+
+	i = (Command & 0x0F);				//send lower nibble
+  88:	4b1d      	ldr	r3, [pc, #116]	(100 <Lcd_Cmd+0x100>)
+  8a:	f004 020f 	and.w	r2, r4, #15	; 0xf
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:188
+
+	if ( i & 0x01)
+  8e:	f014 0f01 	tst.w	r4, #1	; 0x1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:186
+    GPIO_SetBits(LCD_PORT_E, LCD_PIN_E);
+    GPIO_ResetBits(LCD_PORT_E, LCD_PIN_E);
+   
+    GPIO_ResetBits(GPIOB, LCD_PIN_D0 | LCD_PIN_D1 | LCD_PIN_D2 | LCD_PIN_D3 );
+
+	i = (Command & 0x0F);				//send lower nibble
+  92:	701a      	strb	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:188
+
+	if ( i & 0x01)
+  94:	d004      	beq.n	a0 <Lcd_Cmd+0xa0>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:189
+        GPIO_SetBits(LCD_PORT_D0, LCD_PIN_D0);
+  96:	4819      	ldr	r0, [pc, #100]	(fc <Lcd_Cmd+0xfc>)
+  98:	f44f 5180 	mov.w	r1, #4096	; 0x1000
+  9c:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:190
+	if ( i & 0x02)
+  a0:	4b17      	ldr	r3, [pc, #92]	(100 <Lcd_Cmd+0x100>)
+  a2:	781b      	ldrb	r3, [r3, #0]
+  a4:	f013 0f02 	tst.w	r3, #2	; 0x2
+  a8:	d004      	beq.n	b4 <Lcd_Cmd+0xb4>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:191
+        GPIO_SetBits(LCD_PORT_D1, LCD_PIN_D1);
+  aa:	4814      	ldr	r0, [pc, #80]	(fc <Lcd_Cmd+0xfc>)
+  ac:	f44f 5100 	mov.w	r1, #8192	; 0x2000
+  b0:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:192
+	if ( i & 0x04)
+  b4:	4b12      	ldr	r3, [pc, #72]	(100 <Lcd_Cmd+0x100>)
+  b6:	781b      	ldrb	r3, [r3, #0]
+  b8:	f013 0f04 	tst.w	r3, #4	; 0x4
+  bc:	d004      	beq.n	c8 <Lcd_Cmd+0xc8>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:193
+        GPIO_SetBits(LCD_PORT_D2, LCD_PIN_D2);
+  be:	480f      	ldr	r0, [pc, #60]	(fc <Lcd_Cmd+0xfc>)
+  c0:	f44f 4180 	mov.w	r1, #16384	; 0x4000
+  c4:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:194
+	if ( i & 0x08)
+  c8:	4b0d      	ldr	r3, [pc, #52]	(100 <Lcd_Cmd+0x100>)
+  ca:	781b      	ldrb	r3, [r3, #0]
+  cc:	f013 0f08 	tst.w	r3, #8	; 0x8
+  d0:	d004      	beq.n	dc <Lcd_Cmd+0xdc>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:195
+        GPIO_SetBits(LCD_PORT_D3, LCD_PIN_D3);
+  d2:	480a      	ldr	r0, [pc, #40]	(fc <Lcd_Cmd+0xfc>)
+  d4:	f44f 4100 	mov.w	r1, #32768	; 0x8000
+  d8:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:197
+
+    GPIO_SetBits(LCD_PORT_E, LCD_PIN_E);
+  dc:	4807      	ldr	r0, [pc, #28]	(fc <Lcd_Cmd+0xfc>)
+  de:	f44f 7100 	mov.w	r1, #512	; 0x200
+  e2:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:198
+    GPIO_ResetBits(LCD_PORT_E, LCD_PIN_E);
+  e6:	4805      	ldr	r0, [pc, #20]	(fc <Lcd_Cmd+0xfc>)
+  e8:	f44f 7100 	mov.w	r1, #512	; 0x200
+  ec:	f7ff fffe 	bl	0 <GPIO_ResetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:200
+
+	Lcd_Delay ( 5000 );							//delay 40 us
+  f0:	f241 3088 	movw	r0, #5000	; 0x1388
+  f4:	f7ff fffe 	bl	0 <Lcd_Cmd>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:201
+}
+  f8:	bd10      	pop	{r4, pc}
+  fa:	46c0      	nop			(mov r8, r8)
+  fc:	40010c00 	.word	0x40010c00
+ 100:	00000000 	.word	0x00000000
+Disassembly of section .text.Lcd_Clear:
+
+00000000 <Lcd_Clear>:
+Lcd_Clear():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:90
+* Input          : None
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Lcd_Clear ( void )
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:91
+	Lcd_Cmd ( 0x01 );
+   2:	2001      	movs	r0, #1
+   4:	f7ff fffe 	bl	0 <Lcd_Clear>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:92
+	Lcd_Delay ( 5000 );	//delay 1,6ms
+   8:	f241 3088 	movw	r0, #5000	; 0x1388
+   c:	f7ff fffe 	bl	0 <Lcd_Clear>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:93
+	Lcd_Cmd ( 0x0C );
+  10:	200c      	movs	r0, #12
+  12:	f7ff fffe 	bl	0 <Lcd_Clear>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:94
+}
+  16:	bd10      	pop	{r4, pc}
+Disassembly of section .text.Lcd_Data:
+
+00000000 <Lcd_Data>:
+Lcd_Data():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:119
+* Input          : 8 bit data value
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Lcd_Data ( uint8_t Data )
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:120
+    GPIO_SetBits(LCD_PORT_RS, LCD_PIN_RS);
+   2:	f44f 7180 	mov.w	r1, #256	; 0x100
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:119
+* Input          : 8 bit data value
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Lcd_Data ( uint8_t Data )
+{
+   6:	4604      	mov	r4, r0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:120
+    GPIO_SetBits(LCD_PORT_RS, LCD_PIN_RS);
+   8:	483b      	ldr	r0, [pc, #236]	(f8 <Lcd_Data+0xf8>)
+   a:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:122
+
+    GPIO_ResetBits(GPIOB, LCD_PIN_D0 | LCD_PIN_D1 | LCD_PIN_D2 | LCD_PIN_D3 );
+   e:	483a      	ldr	r0, [pc, #232]	(f8 <Lcd_Data+0xf8>)
+  10:	f44f 4170 	mov.w	r1, #61440	; 0xf000
+  14:	f7ff fffe 	bl	0 <GPIO_ResetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:124
+
+	i = ((Data >> 4) & 0x0F);		//send higher nibble
+  18:	0922      	lsrs	r2, r4, #4
+  1a:	4b38      	ldr	r3, [pc, #224]	(fc <Lcd_Data+0xfc>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:126
+
+	if ( i & 0x01)
+  1c:	f012 0f01 	tst.w	r2, #1	; 0x1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:124
+{
+    GPIO_SetBits(LCD_PORT_RS, LCD_PIN_RS);
+
+    GPIO_ResetBits(GPIOB, LCD_PIN_D0 | LCD_PIN_D1 | LCD_PIN_D2 | LCD_PIN_D3 );
+
+	i = ((Data >> 4) & 0x0F);		//send higher nibble
+  20:	701a      	strb	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:126
+
+	if ( i & 0x01)
+  22:	d004      	beq.n	2e <Lcd_Data+0x2e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:127
+        GPIO_SetBits(LCD_PORT_D0, LCD_PIN_D0);
+  24:	4834      	ldr	r0, [pc, #208]	(f8 <Lcd_Data+0xf8>)
+  26:	f44f 5180 	mov.w	r1, #4096	; 0x1000
+  2a:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:128
+	if ( i & 0x02)
+  2e:	4b33      	ldr	r3, [pc, #204]	(fc <Lcd_Data+0xfc>)
+  30:	781b      	ldrb	r3, [r3, #0]
+  32:	f013 0f02 	tst.w	r3, #2	; 0x2
+  36:	d004      	beq.n	42 <Lcd_Data+0x42>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:129
+        GPIO_SetBits(LCD_PORT_D1, LCD_PIN_D1);
+  38:	482f      	ldr	r0, [pc, #188]	(f8 <Lcd_Data+0xf8>)
+  3a:	f44f 5100 	mov.w	r1, #8192	; 0x2000
+  3e:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:130
+	if ( i & 0x04)
+  42:	4b2e      	ldr	r3, [pc, #184]	(fc <Lcd_Data+0xfc>)
+  44:	781b      	ldrb	r3, [r3, #0]
+  46:	f013 0f04 	tst.w	r3, #4	; 0x4
+  4a:	d004      	beq.n	56 <Lcd_Data+0x56>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:131
+        GPIO_SetBits(LCD_PORT_D2, LCD_PIN_D2);
+  4c:	482a      	ldr	r0, [pc, #168]	(f8 <Lcd_Data+0xf8>)
+  4e:	f44f 4180 	mov.w	r1, #16384	; 0x4000
+  52:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:132
+	if ( i & 0x08)
+  56:	4b29      	ldr	r3, [pc, #164]	(fc <Lcd_Data+0xfc>)
+  58:	781b      	ldrb	r3, [r3, #0]
+  5a:	f013 0f08 	tst.w	r3, #8	; 0x8
+  5e:	d004      	beq.n	6a <Lcd_Data+0x6a>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:133
+        GPIO_SetBits(LCD_PORT_D3, LCD_PIN_D3);
+  60:	4825      	ldr	r0, [pc, #148]	(f8 <Lcd_Data+0xf8>)
+  62:	f44f 4100 	mov.w	r1, #32768	; 0x8000
+  66:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:135
+
+    GPIO_SetBits(LCD_PORT_E, LCD_PIN_E);
+  6a:	4823      	ldr	r0, [pc, #140]	(f8 <Lcd_Data+0xf8>)
+  6c:	f44f 7100 	mov.w	r1, #512	; 0x200
+  70:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:136
+    GPIO_ResetBits(LCD_PORT_E, LCD_PIN_E);
+  74:	4820      	ldr	r0, [pc, #128]	(f8 <Lcd_Data+0xf8>)
+  76:	f44f 7100 	mov.w	r1, #512	; 0x200
+  7a:	f7ff fffe 	bl	0 <GPIO_ResetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:138
+   
+    GPIO_ResetBits(GPIOB, LCD_PIN_D0 | LCD_PIN_D1 | LCD_PIN_D2 | LCD_PIN_D3 );
+  7e:	481e      	ldr	r0, [pc, #120]	(f8 <Lcd_Data+0xf8>)
+  80:	f44f 4170 	mov.w	r1, #61440	; 0xf000
+  84:	f7ff fffe 	bl	0 <GPIO_ResetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:140
+
+	i = (Data & 0x0F);				//send lower nibble
+  88:	4b1c      	ldr	r3, [pc, #112]	(fc <Lcd_Data+0xfc>)
+  8a:	f004 020f 	and.w	r2, r4, #15	; 0xf
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:142
+
+	if ( i & 0x01)
+  8e:	f014 0f01 	tst.w	r4, #1	; 0x1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:140
+    GPIO_SetBits(LCD_PORT_E, LCD_PIN_E);
+    GPIO_ResetBits(LCD_PORT_E, LCD_PIN_E);
+   
+    GPIO_ResetBits(GPIOB, LCD_PIN_D0 | LCD_PIN_D1 | LCD_PIN_D2 | LCD_PIN_D3 );
+
+	i = (Data & 0x0F);				//send lower nibble
+  92:	701a      	strb	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:142
+
+	if ( i & 0x01)
+  94:	d004      	beq.n	a0 <Lcd_Data+0xa0>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:143
+        GPIO_SetBits(LCD_PORT_D0, LCD_PIN_D0);
+  96:	4818      	ldr	r0, [pc, #96]	(f8 <Lcd_Data+0xf8>)
+  98:	f44f 5180 	mov.w	r1, #4096	; 0x1000
+  9c:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:144
+	if ( i & 0x02)
+  a0:	4b16      	ldr	r3, [pc, #88]	(fc <Lcd_Data+0xfc>)
+  a2:	781b      	ldrb	r3, [r3, #0]
+  a4:	f013 0f02 	tst.w	r3, #2	; 0x2
+  a8:	d004      	beq.n	b4 <Lcd_Data+0xb4>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:145
+        GPIO_SetBits(LCD_PORT_D1, LCD_PIN_D1);
+  aa:	4813      	ldr	r0, [pc, #76]	(f8 <Lcd_Data+0xf8>)
+  ac:	f44f 5100 	mov.w	r1, #8192	; 0x2000
+  b0:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:146
+	if ( i & 0x04)
+  b4:	4b11      	ldr	r3, [pc, #68]	(fc <Lcd_Data+0xfc>)
+  b6:	781b      	ldrb	r3, [r3, #0]
+  b8:	f013 0f04 	tst.w	r3, #4	; 0x4
+  bc:	d004      	beq.n	c8 <Lcd_Data+0xc8>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:147
+        GPIO_SetBits(LCD_PORT_D2, LCD_PIN_D2);
+  be:	480e      	ldr	r0, [pc, #56]	(f8 <Lcd_Data+0xf8>)
+  c0:	f44f 4180 	mov.w	r1, #16384	; 0x4000
+  c4:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:148
+	if ( i & 0x08)
+  c8:	4b0c      	ldr	r3, [pc, #48]	(fc <Lcd_Data+0xfc>)
+  ca:	781b      	ldrb	r3, [r3, #0]
+  cc:	f013 0f08 	tst.w	r3, #8	; 0x8
+  d0:	d004      	beq.n	dc <Lcd_Data+0xdc>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:149
+        GPIO_SetBits(LCD_PORT_D3, LCD_PIN_D3);
+  d2:	4809      	ldr	r0, [pc, #36]	(f8 <Lcd_Data+0xf8>)
+  d4:	f44f 4100 	mov.w	r1, #32768	; 0x8000
+  d8:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:151
+
+    GPIO_SetBits(LCD_PORT_E, LCD_PIN_E);
+  dc:	4806      	ldr	r0, [pc, #24]	(f8 <Lcd_Data+0xf8>)
+  de:	f44f 7100 	mov.w	r1, #512	; 0x200
+  e2:	f7ff fffe 	bl	0 <GPIO_SetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:152
+    GPIO_ResetBits(LCD_PORT_E, LCD_PIN_E);
+  e6:	4804      	ldr	r0, [pc, #16]	(f8 <Lcd_Data+0xf8>)
+  e8:	f44f 7100 	mov.w	r1, #512	; 0x200
+  ec:	f7ff fffe 	bl	0 <GPIO_ResetBits>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:154
+
+	Lcd_Delay ( 240 );
+  f0:	20f0      	movs	r0, #240
+  f2:	f7ff fffe 	bl	0 <Lcd_Data>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:155
+}
+  f6:	bd10      	pop	{r4, pc}
+  f8:	40010c00 	.word	0x40010c00
+  fc:	00000000 	.word	0x00000000
+Disassembly of section .text.Lcd_Load_Buffer:
+
+00000000 <Lcd_Load_Buffer>:
+Lcd_Load_Buffer():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:270
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Lcd_Load_Buffer ( _Lcd_Buffer * Buffer )
+{
+    if ( Lcd_Write_Strobe == TRUE )
+   0:	4b16      	ldr	r3, [pc, #88]	(5c <Lcd_Load_Buffer+0x5c>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:269
+* Input          : Pointer to buffer to be sent
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Lcd_Load_Buffer ( _Lcd_Buffer * Buffer )
+{
+   2:	b570      	push	{r4, r5, r6, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:270
+    if ( Lcd_Write_Strobe == TRUE )
+   4:	781b      	ldrb	r3, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:269
+* Input          : Pointer to buffer to be sent
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Lcd_Load_Buffer ( _Lcd_Buffer * Buffer )
+{
+   6:	4605      	mov	r5, r0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:270
+    if ( Lcd_Write_Strobe == TRUE )
+   8:	2b01      	cmp	r3, #1
+   a:	d125      	bne.n	58 <Lcd_Load_Buffer+0x58>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:272
+    {
+        Lcd_Cmd(Lcd_Address_Base[Lcd_Write_Ptr]);    
+   c:	4b14      	ldr	r3, [pc, #80]	(60 <Lcd_Load_Buffer+0x60>)
+   e:	781a      	ldrb	r2, [r3, #0]
+  10:	4b14      	ldr	r3, [pc, #80]	(64 <Lcd_Load_Buffer+0x64>)
+  12:	5c98      	ldrb	r0, [r3, r2]
+  14:	f7ff fffe 	bl	0 <Lcd_Load_Buffer>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:274
+    
+        for ( j = 0; j < LCD_H_SIZE; j++ )
+  18:	4b13      	ldr	r3, [pc, #76]	(68 <Lcd_Load_Buffer+0x68>)
+  1a:	2200      	movs	r2, #0
+  1c:	701a      	strb	r2, [r3, #0]
+  1e:	e00b      	b.n	38 <Lcd_Load_Buffer+0x38>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:276
+        {
+            Lcd_Data ( Buffer->BufferTab[Lcd_Write_Ptr][j] );
+  20:	7813      	ldrb	r3, [r2, #0]
+  22:	7821      	ldrb	r1, [r4, #0]
+  24:	2214      	movs	r2, #20
+  26:	fb02 1303 	mla	r3, r2, r3, r1
+  2a:	5ce8      	ldrb	r0, [r5, r3]
+  2c:	f7ff fffe 	bl	0 <Lcd_Load_Buffer>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:274
+{
+    if ( Lcd_Write_Strobe == TRUE )
+    {
+        Lcd_Cmd(Lcd_Address_Base[Lcd_Write_Ptr]);    
+    
+        for ( j = 0; j < LCD_H_SIZE; j++ )
+  30:	7823      	ldrb	r3, [r4, #0]
+  32:	3301      	adds	r3, #1
+  34:	b2db      	uxtb	r3, r3
+  36:	7023      	strb	r3, [r4, #0]
+  38:	4c0b      	ldr	r4, [pc, #44]	(68 <Lcd_Load_Buffer+0x68>)
+  3a:	4a09      	ldr	r2, [pc, #36]	(60 <Lcd_Load_Buffer+0x60>)
+  3c:	7823      	ldrb	r3, [r4, #0]
+  3e:	2b13      	cmp	r3, #19
+  40:	d9ee      	bls.n	20 <Lcd_Load_Buffer+0x20>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:280
+        {
+            Lcd_Data ( Buffer->BufferTab[Lcd_Write_Ptr][j] );
+        }     
+
+     
+        Lcd_Write_Strobe = FALSE;
+  42:	4b06      	ldr	r3, [pc, #24]	(5c <Lcd_Load_Buffer+0x5c>)
+  44:	2100      	movs	r1, #0
+  46:	7019      	strb	r1, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:282
+
+        if (++Lcd_Write_Ptr == LCD_V_SIZE )
+  48:	7813      	ldrb	r3, [r2, #0]
+  4a:	3301      	adds	r3, #1
+  4c:	b2db      	uxtb	r3, r3
+  4e:	2b04      	cmp	r3, #4
+  50:	7013      	strb	r3, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:284
+        {
+            Enable_Lcd_Write = FALSE;
+  52:	bf04      	itt	eq
+  54:	4b05      	ldreq	r3, [pc, #20]	(6c <Lcd_Load_Buffer+0x6c>)
+  56:	7019      	strbeq	r1, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:287
+        }
+    }
+}
+  58:	bd70      	pop	{r4, r5, r6, pc}
+  5a:	46c0      	nop			(mov r8, r8)
+	...
+Disassembly of section .text.Lcd_Write_Text:
+
+00000000 <Lcd_Write_Text>:
+Lcd_Write_Text():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:211
+* Input          : pointer to string
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Lcd_Write_Text ( const uint8_t * string )
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	4605      	mov	r5, r0
+   4:	2400      	movs	r4, #0
+   6:	e001      	b.n	c <Lcd_Write_Text+0xc>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:214
+    while (*string != 0) 
+	{
+       	Lcd_Data(*(string++));
+   8:	f7ff fffe 	bl	0 <Lcd_Write_Text>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:212
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Lcd_Write_Text ( const uint8_t * string )
+{
+    while (*string != 0) 
+   c:	5d28      	ldrb	r0, [r5, r4]
+   e:	3401      	adds	r4, #1
+  10:	2800      	cmp	r0, #0
+  12:	d1f9      	bne.n	8 <Lcd_Write_Text+0x8>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:217
+	{
+       	Lcd_Data(*(string++));
+   	}
+
+}
+  14:	bd70      	pop	{r4, r5, r6, pc}
+  16:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.Lcd_Init:
+
+00000000 <Lcd_Init>:
+Lcd_Init():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:72
+* Input          : None
+* Output         : None
+* Return         : None
+*******************************************************************************/
+void Lcd_Init (void)
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:73
+    Lcd_Delay ( 65000 );//Wait for hardware LCD stabilization
+   2:	f64f 50e8 	movw	r0, #65000	; 0xfde8
+   6:	f7ff fffe 	bl	0 <Lcd_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:74
+	Lcd_Cmd ( 0x28 );	//4bit / 2lines / big_letters
+   a:	2028      	movs	r0, #40
+   c:	f7ff fffe 	bl	0 <Lcd_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:75
+	Lcd_Cmd ( 0x06 );	//inc / no_scroll
+  10:	2006      	movs	r0, #6
+  12:	f7ff fffe 	bl	0 <Lcd_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:76
+	Lcd_Cmd ( 0x01 );	//clear & reset
+  16:	2001      	movs	r0, #1
+  18:	f7ff fffe 	bl	0 <Lcd_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:77
+	Lcd_Delay ( 5000 );	//delay 1,6ms
+  1c:	f241 3088 	movw	r0, #5000	; 0x1388
+  20:	f7ff fffe 	bl	0 <Lcd_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:78
+	Lcd_Cmd ( 0x0C );	//screen / cursor / blink
+  24:	200c      	movs	r0, #12
+  26:	f7ff fffe 	bl	0 <Lcd_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:79
+    Lcd_Write_Text ( Init_Text );
+  2a:	4b02      	ldr	r3, [pc, #8]	(34 <Lcd_Init+0x34>)
+  2c:	6818      	ldr	r0, [r3, #0]
+  2e:	f7ff fffe 	bl	0 <Lcd_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/lcd.c:80
+}
+  32:	bd10      	pop	{r4, pc}
+  34:	00000000 	.word	0x00000000

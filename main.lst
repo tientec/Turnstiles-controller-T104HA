@@ -1,0 +1,60 @@
+
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\main.o:     file format elf32-littlearm
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\main.o
+
+Disassembly of section .text.main:
+
+00000000 <main>:
+main():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/main.c:38
+* Input          : None
+* Output         : None
+* Return         : None
+*******************************************************************************/
+int main(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/main.c:43
+#ifdef DEBUG
+    debug();
+#endif
+
+    Registers_Init();
+   2:	f7ff fffe 	bl	0 <Registers_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/main.c:44
+    Hardware_Init();
+   6:	f7ff fffe 	bl	0 <Hardware_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/main.c:45
+    Set_USBClock();
+   a:	f7ff fffe 	bl	0 <Set_USBClock>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/main.c:46
+    Lcd_Init();
+   e:	f7ff fffe 	bl	0 <Lcd_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/main.c:47
+    Gui_Init();
+  12:	f7ff fffe 	bl	0 <Gui_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/main.c:48
+    RTC_Init();
+  16:	f7ff fffe 	bl	0 <RTC_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/main.c:49
+    Sys_Init();
+  1a:	f7ff fffe 	bl	0 <Sys_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/main.c:50
+    WWDT_Init ();
+  1e:	f7ff fffe 	bl	0 <WWDT_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/main.c:51
+    USB_Init();
+  22:	f7ff fffe 	bl	0 <USB_Init>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/main.c:55
+
+    while (1)
+    {   
+        Gui();
+  26:	f7ff fffe 	bl	0 <Gui>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/main.c:56
+        Sys_sys();
+  2a:	f7ff fffe 	bl	0 <Sys_sys>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources/main.c:57
+        Control();
+  2e:	f7ff fffe 	bl	0 <Control>
+  32:	e7f8      	b.n	26 <Control+0x26>

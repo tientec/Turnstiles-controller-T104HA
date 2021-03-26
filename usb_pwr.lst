@@ -1,0 +1,382 @@
+
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_pwr.o:     file format elf32-littlearm
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_pwr.o
+
+Disassembly of section .text.PowerOn:
+
+00000000 <PowerOn>:
+PowerOn():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:56
+  /*** cable plugged-in ? ***///
+//USB_Cable_Config(ENABLE);
+
+  /*** CNTR_PWDN = 0 ***/
+  wRegVal = CNTR_FRES;
+  _SetCNTR(wRegVal);
+   0:	4906      	ldr	r1, [pc, #24]	(1c <PowerOn+0x1c>)
+   2:	2301      	movs	r3, #1
+   4:	600b      	str	r3, [r1, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:62
+
+  /*** CNTR_FRES = 0 ***/
+  wInterrupt_Mask = 0;
+  _SetCNTR(wInterrupt_Mask);
+  /*** Clear pending interrupts ***/
+  _SetISTR(0);
+   6:	4b06      	ldr	r3, [pc, #24]	(20 <PowerOn+0x20>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:60
+  wRegVal = CNTR_FRES;
+  _SetCNTR(wRegVal);
+
+  /*** CNTR_FRES = 0 ***/
+  wInterrupt_Mask = 0;
+  _SetCNTR(wInterrupt_Mask);
+   8:	2000      	movs	r0, #0
+   a:	6008      	str	r0, [r1, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:62
+  /*** Clear pending interrupts ***/
+  _SetISTR(0);
+   c:	6018      	str	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:64
+  /*** Set interrupt mask ***/
+  wInterrupt_Mask = CNTR_RESETM | CNTR_SUSPM | CNTR_WKUPM;
+   e:	4b05      	ldr	r3, [pc, #20]	(24 <PowerOn+0x24>)
+  10:	f44f 52e0 	mov.w	r2, #7168	; 0x1c00
+  14:	801a      	strh	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:65
+  _SetCNTR(wInterrupt_Mask);
+  16:	600a      	str	r2, [r1, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:68
+
+  return USB_SUCCESS;
+}
+  18:	4770      	bx	lr
+  1a:	46c0      	nop			(mov r8, r8)
+  1c:	5c40      	.short	0x5c40
+  1e:	4000      	.short	0x4000
+  20:	40005c44 	.word	0x40005c44
+  24:	00000000 	.word	0x00000000
+Disassembly of section .text.PowerOff:
+
+00000000 <PowerOff>:
+PowerOff():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:80
+* Return         : USB_SUCCESS.
+*******************************************************************************/
+RESULT PowerOff()
+{
+  /* disable all ints and force USB reset */
+  _SetCNTR(CNTR_FRES);
+   0:	4a04      	ldr	r2, [pc, #16]	(14 <wInterrupt_Mask+0x14>)
+   2:	2301      	movs	r3, #1
+   4:	6013      	str	r3, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:82
+  /* clear interrupt status register */
+  _SetISTR(0);
+   6:	4b04      	ldr	r3, [pc, #16]	(18 <wInterrupt_Mask+0x18>)
+   8:	2000      	movs	r0, #0
+   a:	6018      	str	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:86
+  /* Disable the Pull-Up*/
+//  USB_Cable_Config(DISABLE);
+  /* switch-off device */
+  _SetCNTR(CNTR_FRES + CNTR_PDWN);
+   c:	2303      	movs	r3, #3
+   e:	6013      	str	r3, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:91
+  /* sw variables reset */
+  /* ... */
+
+  return USB_SUCCESS;
+}
+  10:	4770      	bx	lr
+  12:	46c0      	nop			(mov r8, r8)
+  14:	40005c40 	.word	0x40005c40
+  18:	40005c44 	.word	0x40005c44
+Disassembly of section .text.Resume_Init:
+
+00000000 <Resume_Init>:
+Resume_Init():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:135
+* Input          : None.
+* Output         : None.
+* Return         : USB_SUCCESS.
+*******************************************************************************/
+void Resume_Init(void)
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:143
+  /* ------------------ ONLY WITH BUS-POWERED DEVICES ---------------------- */
+  /* restart the clocks */
+  /* ...  */
+
+  /* CNTR_LPMODE = 0 */
+  wCNTR = _GetCNTR();
+   2:	4c06      	ldr	r4, [pc, #24]	(1c <Resume_Init+0x1c>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:145
+  wCNTR &= (~CNTR_LPMODE);
+  _SetCNTR(wCNTR);
+   4:	f64f 73fb 	movw	r3, #65531	; 0xfffb
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:143
+  /* ------------------ ONLY WITH BUS-POWERED DEVICES ---------------------- */
+  /* restart the clocks */
+  /* ...  */
+
+  /* CNTR_LPMODE = 0 */
+  wCNTR = _GetCNTR();
+   8:	6822      	ldr	r2, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:145
+  wCNTR &= (~CNTR_LPMODE);
+  _SetCNTR(wCNTR);
+   a:	ea02 0303 	and.w	r3, r2, r3
+   e:	6023      	str	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:149
+
+  /* restore full power */
+  /* ... on connected devices */
+  Leave_LowPowerMode();
+  10:	f7ff fffe 	bl	0 <Leave_LowPowerMode>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:152
+
+  /* reset FSUSP bit */
+  _SetCNTR(IMR_MSK);
+  14:	f44f 433f 	mov.w	r3, #48896	; 0xbf00
+  18:	6023      	str	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:157
+
+  /* reverse suspend preparation */
+  /* ... */
+
+}
+  1a:	bd10      	pop	{r4, pc}
+  1c:	5c40      	.short	0x5c40
+  1e:	4000      	.short	0x4000
+Disassembly of section .text.Resume:
+
+00000000 <Resume>:
+Resume():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:175
+*******************************************************************************/
+void Resume(RESUME_STATE eResumeSetVal)
+{
+  u16 wCNTR;
+
+  if (eResumeSetVal != RESUME_ESOF)
+   0:	2807      	cmp	r0, #7
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:176
+    ResumeS.eState = eResumeSetVal;
+   2:	bf18      	it	ne
+   4:	4b1f      	ldrne	r3, [pc, #124]	(84 <Resume+0x84>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:172
+*                  decrementing of the ESOF counter in different states.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void Resume(RESUME_STATE eResumeSetVal)
+{
+   6:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:178
+  u16 wCNTR;
+
+  if (eResumeSetVal != RESUME_ESOF)
+    ResumeS.eState = eResumeSetVal;
+
+  switch (ResumeS.eState)
+   8:	4c1e      	ldr	r4, [pc, #120]	(84 <Resume+0x84>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:176
+void Resume(RESUME_STATE eResumeSetVal)
+{
+  u16 wCNTR;
+
+  if (eResumeSetVal != RESUME_ESOF)
+    ResumeS.eState = eResumeSetVal;
+   a:	bf18      	it	ne
+   c:	7018      	strbne	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:178
+
+  switch (ResumeS.eState)
+   e:	7823      	ldrb	r3, [r4, #0]
+  10:	2b05      	cmp	r3, #5
+  12:	d833      	bhi.n	7c <Resume+0x7c>
+  14:	e8df f003 	tbb	[pc, r3]
+  18:	0e0a0603 	.word	0x0e0a0603
+  1c:	2116      	.short	0x2116
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:181
+  {
+    case RESUME_EXTERNAL:
+      Resume_Init();
+  1e:	f7ff fffe 	bl	0 <Resume>
+  22:	e02b      	b.n	5a <Resume+0x5a>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:185
+      ResumeS.eState = RESUME_OFF;
+      break;
+    case RESUME_INTERNAL:
+      Resume_Init();
+  24:	f7ff fffe 	bl	0 <Resume>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:186
+      ResumeS.eState = RESUME_START;
+  28:	2304      	movs	r3, #4
+  2a:	e028      	b.n	7e <Resume+0x7e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:189
+      break;
+    case RESUME_LATER:
+      ResumeS.bESOFcnt = 2;
+  2c:	2302      	movs	r3, #2
+  2e:	7063      	strb	r3, [r4, #1]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:190
+      ResumeS.eState = RESUME_WAIT;
+  30:	3301      	adds	r3, #1
+  32:	e024      	b.n	7e <Resume+0x7e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:193
+      break;
+    case RESUME_WAIT:
+      ResumeS.bESOFcnt--;
+  34:	7863      	ldrb	r3, [r4, #1]
+  36:	3b01      	subs	r3, #1
+  38:	b2db      	uxtb	r3, r3
+  3a:	7063      	strb	r3, [r4, #1]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:194
+      if (ResumeS.bESOFcnt == 0)
+  3c:	7863      	ldrb	r3, [r4, #1]
+  3e:	b9fb      	cbnz	r3, 80 <Resume+0x80>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:195
+        ResumeS.eState = RESUME_START;
+  40:	2204      	movs	r2, #4
+  42:	e018      	b.n	76 <Resume+0x76>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:198
+      break;
+    case RESUME_START:
+      wCNTR = _GetCNTR();
+  44:	4a10      	ldr	r2, [pc, #64]	(88 <Resume+0x88>)
+  46:	6813      	ldr	r3, [r2, #0]
+  48:	b29b      	uxth	r3, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:200
+      wCNTR |= CNTR_RESUME;
+      _SetCNTR(wCNTR);
+  4a:	f043 0310 	orr.w	r3, r3, #16	; 0x10
+  4e:	6013      	str	r3, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:201
+      ResumeS.eState = RESUME_ON;
+  50:	2305      	movs	r3, #5
+  52:	7023      	strb	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:202
+      ResumeS.bESOFcnt = 10;
+  54:	18db      	adds	r3, r3, r3
+  56:	7063      	strb	r3, [r4, #1]
+  58:	e012      	b.n	80 <Resume+0x80>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:205
+      break;
+    case RESUME_ON:
+      ResumeS.bESOFcnt--;
+  5a:	7863      	ldrb	r3, [r4, #1]
+  5c:	3b01      	subs	r3, #1
+  5e:	b2db      	uxtb	r3, r3
+  60:	7063      	strb	r3, [r4, #1]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:206
+      if (ResumeS.bESOFcnt == 0)
+  62:	7863      	ldrb	r3, [r4, #1]
+  64:	b963      	cbnz	r3, 80 <Resume+0x80>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:208
+      {
+        wCNTR = _GetCNTR();
+  66:	4908      	ldr	r1, [pc, #32]	(88 <Resume+0x88>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:210
+        wCNTR &= (~CNTR_RESUME);
+        _SetCNTR(wCNTR);
+  68:	f64f 73ef 	movw	r3, #65519	; 0xffef
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:208
+      break;
+    case RESUME_ON:
+      ResumeS.bESOFcnt--;
+      if (ResumeS.bESOFcnt == 0)
+      {
+        wCNTR = _GetCNTR();
+  6c:	680a      	ldr	r2, [r1, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:210
+        wCNTR &= (~CNTR_RESUME);
+        _SetCNTR(wCNTR);
+  6e:	ea02 0303 	and.w	r3, r2, r3
+  72:	600b      	str	r3, [r1, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:211
+        ResumeS.eState = RESUME_OFF;
+  74:	2206      	movs	r2, #6
+  76:	4b03      	ldr	r3, [pc, #12]	(84 <Resume+0x84>)
+  78:	701a      	strb	r2, [r3, #0]
+  7a:	e001      	b.n	80 <Resume+0x80>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:217
+      }
+      break;
+    case RESUME_OFF:
+    case RESUME_ESOF:
+    default:
+      ResumeS.eState = RESUME_OFF;
+  7c:	2306      	movs	r3, #6
+  7e:	7023      	strb	r3, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:220
+      break;
+  }
+}
+  80:	bd10      	pop	{r4, pc}
+  82:	46c0      	nop			(mov r8, r8)
+  84:	00000000 	.word	0x00000000
+  88:	40005c40 	.word	0x40005c40
+Disassembly of section .text.Suspend:
+
+00000000 <Suspend>:
+Suspend():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:107
+  u16 wCNTR;
+  /* suspend preparation */
+  /* ... */
+
+  /* macrocell enters suspend mode */
+  wCNTR = _GetCNTR();
+   0:	4b07      	ldr	r3, [pc, #28]	(20 <Suspend+0x20>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:101
+* Input          : None.
+* Output         : None.
+* Return         : USB_SUCCESS.
+*******************************************************************************/
+void Suspend(void)
+{
+   2:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:107
+  u16 wCNTR;
+  /* suspend preparation */
+  /* ... */
+
+  /* macrocell enters suspend mode */
+  wCNTR = _GetCNTR();
+   4:	681a      	ldr	r2, [r3, #0]
+   6:	b292      	uxth	r2, r2
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:109
+  wCNTR |= CNTR_FSUSP;
+  _SetCNTR(wCNTR);
+   8:	f042 0208 	orr.w	r2, r2, #8	; 0x8
+   c:	601a      	str	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:117
+  /* power reduction */
+  /* ... on connected devices */
+
+
+  /* force low-power mode in the macrocell */
+  wCNTR = _GetCNTR();
+   e:	681a      	ldr	r2, [r3, #0]
+  10:	b292      	uxth	r2, r2
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:119
+  wCNTR |= CNTR_LPMODE;
+  _SetCNTR(wCNTR);
+  12:	f042 0204 	orr.w	r2, r2, #4	; 0x4
+  16:	601a      	str	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:123
+
+  /* switch-off the clocks */
+  /* ... */
+  Enter_LowPowerMode();
+  18:	f7ff fffe 	bl	0 <Enter_LowPowerMode>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_pwr.c:125
+
+}
+  1c:	bd10      	pop	{r4, pc}
+  1e:	46c0      	nop			(mov r8, r8)
+  20:	40005c40 	.word	0x40005c40

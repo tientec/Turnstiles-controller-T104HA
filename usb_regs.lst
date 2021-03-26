@@ -1,0 +1,1556 @@
+
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_regs.o:     file format elf32-littlearm
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_regs.o
+
+Disassembly of section .text.SetCNTR:
+
+00000000 <SetCNTR>:
+SetCNTR():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:36
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetCNTR(u16 wRegValue)
+{
+  _SetCNTR(wRegValue);
+   0:	4b01      	ldr	r3, [pc, #4]	(8 <SetCNTR+0x8>)
+   2:	6018      	str	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:37
+}
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+   8:	40005c40 	.word	0x40005c40
+Disassembly of section .text.GetCNTR:
+
+00000000 <GetCNTR>:
+GetCNTR():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:48
+* Output         : None.
+* Return         : CNTR register Value.
+*******************************************************************************/
+u16 GetCNTR(void)
+{
+  return(_GetCNTR());
+   0:	4b01      	ldr	r3, [pc, #4]	(8 <GetCNTR+0x8>)
+   2:	6818      	ldr	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:49
+}
+   4:	b280      	uxth	r0, r0
+   6:	4770      	bx	lr
+   8:	40005c40 	.word	0x40005c40
+Disassembly of section .text.SetISTR:
+
+00000000 <SetISTR>:
+SetISTR():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:60
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetISTR(u16 wRegValue)
+{
+  _SetISTR(wRegValue);
+   0:	4b01      	ldr	r3, [pc, #4]	(8 <SetISTR+0x8>)
+   2:	6018      	str	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:61
+}
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+   8:	40005c44 	.word	0x40005c44
+Disassembly of section .text.GetISTR:
+
+00000000 <GetISTR>:
+GetISTR():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:72
+* Output         : None.
+* Return         : ISTR register Value
+*******************************************************************************/
+u16 GetISTR(void)
+{
+  return(_GetISTR());
+   0:	4b01      	ldr	r3, [pc, #4]	(8 <GetISTR+0x8>)
+   2:	6818      	ldr	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:73
+}
+   4:	b280      	uxth	r0, r0
+   6:	4770      	bx	lr
+   8:	40005c44 	.word	0x40005c44
+Disassembly of section .text.GetFNR:
+
+00000000 <GetFNR>:
+GetFNR():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:84
+* Output         : None.
+* Return         : FNR register Value
+*******************************************************************************/
+u16 GetFNR(void)
+{
+  return(_GetFNR());
+   0:	4b01      	ldr	r3, [pc, #4]	(8 <GetFNR+0x8>)
+   2:	6818      	ldr	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:85
+}
+   4:	b280      	uxth	r0, r0
+   6:	4770      	bx	lr
+   8:	40005c48 	.word	0x40005c48
+Disassembly of section .text.SetDADDR:
+
+00000000 <SetDADDR>:
+SetDADDR():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:96
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetDADDR(u16 wRegValue)
+{
+  _SetDADDR(wRegValue);
+   0:	4b01      	ldr	r3, [pc, #4]	(8 <SetDADDR+0x8>)
+   2:	6018      	str	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:97
+}
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+   8:	40005c4c 	.word	0x40005c4c
+Disassembly of section .text.GetDADDR:
+
+00000000 <GetDADDR>:
+GetDADDR():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:108
+* Output         : None.
+* Return         : DADDR register Value
+*******************************************************************************/
+u16 GetDADDR(void)
+{
+  return(_GetDADDR());
+   0:	4b01      	ldr	r3, [pc, #4]	(8 <GetDADDR+0x8>)
+   2:	6818      	ldr	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:109
+}
+   4:	b280      	uxth	r0, r0
+   6:	4770      	bx	lr
+   8:	40005c4c 	.word	0x40005c4c
+Disassembly of section .text.SetBTABLE:
+
+00000000 <SetBTABLE>:
+SetBTABLE():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:120
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetBTABLE(u16 wRegValue)
+{
+  _SetBTABLE(wRegValue);
+   0:	f64f 73f8 	movw	r3, #65528	; 0xfff8
+   4:	4a02      	ldr	r2, [pc, #8]	(10 <SetBTABLE+0x10>)
+   6:	ea00 0303 	and.w	r3, r0, r3
+   a:	6013      	str	r3, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:121
+}
+   c:	4770      	bx	lr
+   e:	46c0      	nop			(mov r8, r8)
+  10:	40005c50 	.word	0x40005c50
+Disassembly of section .text.GetBTABLE:
+
+00000000 <GetBTABLE>:
+GetBTABLE():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:132
+* Output         : None.
+* Return         : BTABLE address.
+*******************************************************************************/
+u16 GetBTABLE(void)
+{
+  return(_GetBTABLE());
+   0:	4b01      	ldr	r3, [pc, #4]	(8 <GetBTABLE+0x8>)
+   2:	6818      	ldr	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:133
+}
+   4:	b280      	uxth	r0, r0
+   6:	4770      	bx	lr
+   8:	40005c50 	.word	0x40005c50
+Disassembly of section .text.SetENDPOINT:
+
+00000000 <SetENDPOINT>:
+SetENDPOINT():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:145
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetENDPOINT(u8 bEpNum, u16 wRegValue)
+{
+  _SetENDPOINT(bEpNum, wRegValue);
+   0:	4b01      	ldr	r3, [pc, #4]	(8 <SetENDPOINT+0x8>)
+   2:	f843 1020 	str.w	r1, [r3, r0, lsl #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:146
+}
+   6:	4770      	bx	lr
+   8:	40005c00 	.word	0x40005c00
+Disassembly of section .text.GetENDPOINT:
+
+00000000 <GetENDPOINT>:
+GetENDPOINT():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:157
+* Output         : None.
+* Return         : Endpoint register value.
+*******************************************************************************/
+u16 GetENDPOINT(u8 bEpNum)
+{
+  return(_GetENDPOINT(bEpNum));
+   0:	4b02      	ldr	r3, [pc, #8]	(c <GetENDPOINT+0xc>)
+   2:	f853 0020 	ldr.w	r0, [r3, r0, lsl #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:158
+}
+   6:	b280      	uxth	r0, r0
+   8:	4770      	bx	lr
+   a:	46c0      	nop			(mov r8, r8)
+   c:	40005c00 	.word	0x40005c00
+Disassembly of section .text.SetEPType:
+
+00000000 <SetEPType>:
+SetEPType():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:169
+*                  wType: type definition.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetEPType(u8 bEpNum, u16 wType)
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:170
+  _SetEPType(bEpNum, wType);
+   2:	4c05      	ldr	r4, [pc, #20]	(18 <SetEPType+0x18>)
+   4:	f648 138f 	movw	r3, #35215	; 0x898f
+   8:	f854 2020 	ldr.w	r2, [r4, r0, lsl #2]
+   c:	ea02 0303 	and.w	r3, r2, r3
+  10:	430b      	orrs	r3, r1
+  12:	f844 3020 	str.w	r3, [r4, r0, lsl #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:171
+}
+  16:	bd10      	pop	{r4, pc}
+  18:	40005c00 	.word	0x40005c00
+Disassembly of section .text.GetEPType:
+
+00000000 <GetEPType>:
+GetEPType():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:182
+* Output         : None.
+* Return         : Endpoint Type
+*******************************************************************************/
+u16 GetEPType(u8 bEpNum)
+{
+  return(_GetEPType(bEpNum));
+   0:	4b02      	ldr	r3, [pc, #8]	(c <GetEPType+0xc>)
+   2:	f853 0020 	ldr.w	r0, [r3, r0, lsl #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:183
+}
+   6:	f400 60c0 	and.w	r0, r0, #1536	; 0x600
+   a:	4770      	bx	lr
+   c:	40005c00 	.word	0x40005c00
+Disassembly of section .text.SetEPTxStatus:
+
+00000000 <SetEPTxStatus>:
+SetEPTxStatus():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:195
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetEPTxStatus(u8 bEpNum, u16 wState)
+{
+  _SetEPTxStatus(bEpNum, wState);
+   0:	0080      	lsls	r0, r0, #2
+   2:	f100 4080 	add.w	r0, r0, #1073741824	; 0x40000000
+   6:	f500 40b8 	add.w	r0, r0, #23552	; 0x5c00
+   a:	6803      	ldr	r3, [r0, #0]
+   c:	f648 72bf 	movw	r2, #36799	; 0x8fbf
+  10:	ea03 0202 	and.w	r2, r3, r2
+  14:	f011 0f10 	tst.w	r1, #16	; 0x10
+  18:	bf18      	it	ne
+  1a:	f082 0210 	eorne.w	r2, r2, #16	; 0x10
+  1e:	f011 0f20 	tst.w	r1, #32	; 0x20
+  22:	bf18      	it	ne
+  24:	f082 0220 	eorne.w	r2, r2, #32	; 0x20
+  28:	6002      	str	r2, [r0, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:196
+}
+  2a:	4770      	bx	lr
+Disassembly of section .text.SetEPRxStatus:
+
+00000000 <SetEPRxStatus>:
+SetEPRxStatus():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:208
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetEPRxStatus(u8 bEpNum, u16 wState)
+{
+  _SetEPRxStatus(bEpNum, wState);
+   0:	0080      	lsls	r0, r0, #2
+   2:	f100 4080 	add.w	r0, r0, #1073741824	; 0x40000000
+   6:	f500 40b8 	add.w	r0, r0, #23552	; 0x5c00
+   a:	6803      	ldr	r3, [r0, #0]
+   c:	f64b 728f 	movw	r2, #49039	; 0xbf8f
+  10:	ea03 0202 	and.w	r2, r3, r2
+  14:	f411 5f80 	tst.w	r1, #4096	; 0x1000
+  18:	bf18      	it	ne
+  1a:	f482 5280 	eorne.w	r2, r2, #4096	; 0x1000
+  1e:	f411 5f00 	tst.w	r1, #8192	; 0x2000
+  22:	bf18      	it	ne
+  24:	f482 5200 	eorne.w	r2, r2, #8192	; 0x2000
+  28:	6002      	str	r2, [r0, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:209
+}
+  2a:	4770      	bx	lr
+Disassembly of section .text.SetDouBleBuffEPStall:
+
+00000000 <SetDouBleBuffEPStall>:
+SetDouBleBuffEPStall():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:220
+*                  bDir: Endpoint direction.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetDouBleBuffEPStall(u8 bEpNum, u8 bDir)
+{
+   0:	b570      	push	{r4, r5, r6, lr}
+   2:	460c      	mov	r4, r1
+   4:	4605      	mov	r5, r0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:222
+  u16 Endpoint_DTOG_Status;
+  Endpoint_DTOG_Status = GetENDPOINT(bEpNum);
+   6:	f7ff fffe 	bl	0 <SetDouBleBuffEPStall>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:223
+  if (bDir == EP_DBUF_OUT)
+   a:	2c01      	cmp	r4, #1
+   c:	d107      	bne.n	1e <SetDouBleBuffEPStall+0x1e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:225
+  { /* OUT double buffered endpoint */
+    _SetENDPOINT(bEpNum, Endpoint_DTOG_Status & ~EPRX_DTOG1);
+   e:	00ab      	lsls	r3, r5, #2
+  10:	f103 4380 	add.w	r3, r3, #1073741824	; 0x40000000
+  14:	f503 43b8 	add.w	r3, r3, #23552	; 0x5c00
+  18:	f420 5280 	bic.w	r2, r0, #4096	; 0x1000
+  1c:	e008      	b.n	30 <SetDouBleBuffEPStall+0x30>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:227
+  }
+  else if (bDir == EP_DBUF_IN)
+  1e:	2c02      	cmp	r4, #2
+  20:	d107      	bne.n	32 <SetDouBleBuffEPStall+0x32>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:229
+  { /* IN double buffered endpoint */
+    _SetENDPOINT(bEpNum, Endpoint_DTOG_Status & ~EPTX_DTOG1);
+  22:	00ab      	lsls	r3, r5, #2
+  24:	f103 4380 	add.w	r3, r3, #1073741824	; 0x40000000
+  28:	f503 43b8 	add.w	r3, r3, #23552	; 0x5c00
+  2c:	f020 0210 	bic.w	r2, r0, #16	; 0x10
+  30:	601a      	str	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:231
+  }
+}
+  32:	bd70      	pop	{r4, r5, r6, pc}
+Disassembly of section .text.GetEPTxStatus:
+
+00000000 <GetEPTxStatus>:
+GetEPTxStatus():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:242
+* Output         : None.
+* Return         : Endpoint TX Status
+*******************************************************************************/
+u16 GetEPTxStatus(u8 bEpNum)
+{
+  return(_GetEPTxStatus(bEpNum));
+   0:	4b02      	ldr	r3, [pc, #8]	(c <GetEPTxStatus+0xc>)
+   2:	f853 0020 	ldr.w	r0, [r3, r0, lsl #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:243
+}
+   6:	f000 0030 	and.w	r0, r0, #48	; 0x30
+   a:	4770      	bx	lr
+   c:	40005c00 	.word	0x40005c00
+Disassembly of section .text.GetEPRxStatus:
+
+00000000 <GetEPRxStatus>:
+GetEPRxStatus():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:254
+* Output         : None.
+* Return         : Endpoint RX Status
+*******************************************************************************/
+u16 GetEPRxStatus(u8 bEpNum)
+{
+  return(_GetEPRxStatus(bEpNum));
+   0:	4b02      	ldr	r3, [pc, #8]	(c <GetEPRxStatus+0xc>)
+   2:	f853 0020 	ldr.w	r0, [r3, r0, lsl #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:255
+}
+   6:	f400 5040 	and.w	r0, r0, #12288	; 0x3000
+   a:	4770      	bx	lr
+   c:	40005c00 	.word	0x40005c00
+Disassembly of section .text.SetEPTxValid:
+
+00000000 <SetEPTxValid>:
+SetEPTxValid():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:266
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetEPTxValid(u8 bEpNum)
+{
+  _SetEPTxStatus(bEpNum, EP_TX_VALID);
+   0:	4905      	ldr	r1, [pc, #20]	(18 <SetEPTxValid+0x18>)
+   2:	f648 73bf 	movw	r3, #36799	; 0x8fbf
+   6:	f851 2020 	ldr.w	r2, [r1, r0, lsl #2]
+   a:	ea02 0303 	and.w	r3, r2, r3
+   e:	f083 0330 	eor.w	r3, r3, #48	; 0x30
+  12:	f841 3020 	str.w	r3, [r1, r0, lsl #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:267
+}
+  16:	4770      	bx	lr
+  18:	40005c00 	.word	0x40005c00
+Disassembly of section .text.SetEPRxValid:
+
+00000000 <SetEPRxValid>:
+SetEPRxValid():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:278
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetEPRxValid(u8 bEpNum)
+{
+  _SetEPRxStatus(bEpNum, EP_RX_VALID);
+   0:	4905      	ldr	r1, [pc, #20]	(18 <SetEPRxValid+0x18>)
+   2:	f64b 738f 	movw	r3, #49039	; 0xbf8f
+   6:	f851 2020 	ldr.w	r2, [r1, r0, lsl #2]
+   a:	ea02 0303 	and.w	r3, r2, r3
+   e:	f483 5340 	eor.w	r3, r3, #12288	; 0x3000
+  12:	f841 3020 	str.w	r3, [r1, r0, lsl #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:279
+}
+  16:	4770      	bx	lr
+  18:	40005c00 	.word	0x40005c00
+Disassembly of section .text.SetEP_KIND:
+
+00000000 <SetEP_KIND>:
+SetEP_KIND():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:290
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetEP_KIND(u8 bEpNum)
+{
+  _SetEP_KIND(bEpNum);
+   0:	4905      	ldr	r1, [pc, #20]	(18 <SetEP_KIND+0x18>)
+   2:	f648 638f 	movw	r3, #36495	; 0x8e8f
+   6:	f851 2020 	ldr.w	r2, [r1, r0, lsl #2]
+   a:	ea02 0303 	and.w	r3, r2, r3
+   e:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+  12:	f841 3020 	str.w	r3, [r1, r0, lsl #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:291
+}
+  16:	4770      	bx	lr
+  18:	40005c00 	.word	0x40005c00
+Disassembly of section .text.ClearEP_KIND:
+
+00000000 <ClearEP_KIND>:
+ClearEP_KIND():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:302
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void ClearEP_KIND(u8 bEpNum)
+{
+  _ClearEP_KIND(bEpNum);
+   0:	4904      	ldr	r1, [pc, #16]	(14 <ClearEP_KIND+0x14>)
+   2:	f648 638f 	movw	r3, #36495	; 0x8e8f
+   6:	f851 2020 	ldr.w	r2, [r1, r0, lsl #2]
+   a:	ea02 0303 	and.w	r3, r2, r3
+   e:	f841 3020 	str.w	r3, [r1, r0, lsl #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:303
+}
+  12:	4770      	bx	lr
+  14:	40005c00 	.word	0x40005c00
+Disassembly of section .text.Clear_Status_Out:
+
+00000000 <Clear_Status_Out>:
+Clear_Status_Out():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:313
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void Clear_Status_Out(u8 bEpNum)
+{
+  _ClearEP_KIND(bEpNum);
+   0:	4904      	ldr	r1, [pc, #16]	(14 <Clear_Status_Out+0x14>)
+   2:	f648 638f 	movw	r3, #36495	; 0x8e8f
+   6:	f851 2020 	ldr.w	r2, [r1, r0, lsl #2]
+   a:	ea02 0303 	and.w	r3, r2, r3
+   e:	f841 3020 	str.w	r3, [r1, r0, lsl #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:314
+}
+  12:	4770      	bx	lr
+  14:	40005c00 	.word	0x40005c00
+Disassembly of section .text.Set_Status_Out:
+
+00000000 <Set_Status_Out>:
+Set_Status_Out():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:324
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void Set_Status_Out(u8 bEpNum)
+{
+  _SetEP_KIND(bEpNum);
+   0:	4905      	ldr	r1, [pc, #20]	(18 <Set_Status_Out+0x18>)
+   2:	f648 638f 	movw	r3, #36495	; 0x8e8f
+   6:	f851 2020 	ldr.w	r2, [r1, r0, lsl #2]
+   a:	ea02 0303 	and.w	r3, r2, r3
+   e:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+  12:	f841 3020 	str.w	r3, [r1, r0, lsl #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:325
+}
+  16:	4770      	bx	lr
+  18:	40005c00 	.word	0x40005c00
+Disassembly of section .text.SetEPDoubleBuff:
+
+00000000 <SetEPDoubleBuff>:
+SetEPDoubleBuff():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:335
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetEPDoubleBuff(u8 bEpNum)
+{
+  _SetEP_KIND(bEpNum);
+   0:	4905      	ldr	r1, [pc, #20]	(18 <SetEPDoubleBuff+0x18>)
+   2:	f648 638f 	movw	r3, #36495	; 0x8e8f
+   6:	f851 2020 	ldr.w	r2, [r1, r0, lsl #2]
+   a:	ea02 0303 	and.w	r3, r2, r3
+   e:	f443 7380 	orr.w	r3, r3, #256	; 0x100
+  12:	f841 3020 	str.w	r3, [r1, r0, lsl #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:336
+}
+  16:	4770      	bx	lr
+  18:	40005c00 	.word	0x40005c00
+Disassembly of section .text.ClearEPDoubleBuff:
+
+00000000 <ClearEPDoubleBuff>:
+ClearEPDoubleBuff():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:346
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void ClearEPDoubleBuff(u8 bEpNum)
+{
+  _ClearEP_KIND(bEpNum);
+   0:	4904      	ldr	r1, [pc, #16]	(14 <ClearEPDoubleBuff+0x14>)
+   2:	f648 638f 	movw	r3, #36495	; 0x8e8f
+   6:	f851 2020 	ldr.w	r2, [r1, r0, lsl #2]
+   a:	ea02 0303 	and.w	r3, r2, r3
+   e:	f841 3020 	str.w	r3, [r1, r0, lsl #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:347
+}
+  12:	4770      	bx	lr
+  14:	40005c00 	.word	0x40005c00
+Disassembly of section .text.GetTxStallStatus:
+
+00000000 <GetTxStallStatus>:
+GetTxStallStatus():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:357
+* Output         : None.
+* Return         : Tx Stall status.
+*******************************************************************************/
+u16 GetTxStallStatus(u8 bEpNum)
+{
+  return(_GetTxStallStatus(bEpNum));
+   0:	4b04      	ldr	r3, [pc, #16]	(14 <GetTxStallStatus+0x14>)
+   2:	f853 0020 	ldr.w	r0, [r3, r0, lsl #2]
+   6:	f000 0030 	and.w	r0, r0, #48	; 0x30
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:358
+}
+   a:	2810      	cmp	r0, #16
+   c:	bf14      	ite	ne
+   e:	2000      	movne	r0, #0
+  10:	2001      	moveq	r0, #1
+  12:	4770      	bx	lr
+  14:	40005c00 	.word	0x40005c00
+Disassembly of section .text.GetRxStallStatus:
+
+00000000 <GetRxStallStatus>:
+GetRxStallStatus():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:368
+* Output         : None.
+* Return         : Rx Stall status.
+*******************************************************************************/
+u16 GetRxStallStatus(u8 bEpNum)
+{
+  return(_GetRxStallStatus(bEpNum));
+   0:	4b05      	ldr	r3, [pc, #20]	(18 <GetRxStallStatus+0x18>)
+   2:	f853 0020 	ldr.w	r0, [r3, r0, lsl #2]
+   6:	f400 5040 	and.w	r0, r0, #12288	; 0x3000
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:369
+}
+   a:	f5b0 5f80 	cmp.w	r0, #4096	; 0x1000
+   e:	bf14      	ite	ne
+  10:	2000      	movne	r0, #0
+  12:	2001      	moveq	r0, #1
+  14:	4770      	bx	lr
+  16:	46c0      	nop			(mov r8, r8)
+  18:	40005c00 	.word	0x40005c00
+Disassembly of section .text.ClearEP_CTR_RX:
+
+00000000 <ClearEP_CTR_RX>:
+ClearEP_CTR_RX():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:379
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void ClearEP_CTR_RX(u8 bEpNum)
+{
+  _ClearEP_CTR_RX(bEpNum);
+   0:	4904      	ldr	r1, [pc, #16]	(14 <ClearEP_CTR_RX+0x14>)
+   2:	f640 738f 	movw	r3, #3983	; 0xf8f
+   6:	f851 2020 	ldr.w	r2, [r1, r0, lsl #2]
+   a:	ea02 0303 	and.w	r3, r2, r3
+   e:	f841 3020 	str.w	r3, [r1, r0, lsl #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:380
+}
+  12:	4770      	bx	lr
+  14:	40005c00 	.word	0x40005c00
+Disassembly of section .text.ClearEP_CTR_TX:
+
+00000000 <ClearEP_CTR_TX>:
+ClearEP_CTR_TX():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:389
+* Input          : bEpNum: Endpoint Number. 
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void ClearEP_CTR_TX(u8 bEpNum)
+{
+   0:	4904      	ldr	r1, [pc, #16]	(14 <ClearEP_CTR_TX+0x14>)
+   2:	f648 730f 	movw	r3, #36623	; 0x8f0f
+   6:	f851 2020 	ldr.w	r2, [r1, r0, lsl #2]
+   a:	ea02 0303 	and.w	r3, r2, r3
+   e:	f841 3020 	str.w	r3, [r1, r0, lsl #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:391
+  _ClearEP_CTR_TX(bEpNum);
+}
+  12:	4770      	bx	lr
+  14:	40005c00 	.word	0x40005c00
+Disassembly of section .text.ToggleDTOG_RX:
+
+00000000 <ToggleDTOG_RX>:
+ToggleDTOG_RX():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:400
+* Input          : bEpNum: Endpoint Number. 
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void ToggleDTOG_RX(u8 bEpNum)
+{
+   0:	4905      	ldr	r1, [pc, #20]	(18 <ToggleDTOG_RX+0x18>)
+   2:	f648 738f 	movw	r3, #36751	; 0x8f8f
+   6:	f851 2020 	ldr.w	r2, [r1, r0, lsl #2]
+   a:	ea02 0303 	and.w	r3, r2, r3
+   e:	f443 4380 	orr.w	r3, r3, #16384	; 0x4000
+  12:	f841 3020 	str.w	r3, [r1, r0, lsl #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:402
+  _ToggleDTOG_RX(bEpNum);
+}
+  16:	4770      	bx	lr
+  18:	40005c00 	.word	0x40005c00
+Disassembly of section .text.ToggleDTOG_TX:
+
+00000000 <ToggleDTOG_TX>:
+ToggleDTOG_TX():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:411
+* Input          : bEpNum: Endpoint Number. 
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void ToggleDTOG_TX(u8 bEpNum)
+{
+   0:	4905      	ldr	r1, [pc, #20]	(18 <ToggleDTOG_TX+0x18>)
+   2:	f648 738f 	movw	r3, #36751	; 0x8f8f
+   6:	f851 2020 	ldr.w	r2, [r1, r0, lsl #2]
+   a:	ea02 0303 	and.w	r3, r2, r3
+   e:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+  12:	f841 3020 	str.w	r3, [r1, r0, lsl #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:413
+  _ToggleDTOG_TX(bEpNum);
+}
+  16:	4770      	bx	lr
+  18:	40005c00 	.word	0x40005c00
+Disassembly of section .text.ClearDTOG_RX:
+
+00000000 <ClearDTOG_RX>:
+ClearDTOG_RX():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:422
+* Input          : bEpNum: Endpoint Number. 
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void ClearDTOG_RX(u8 bEpNum)
+{
+   0:	0080      	lsls	r0, r0, #2
+   2:	f100 4080 	add.w	r0, r0, #1073741824	; 0x40000000
+   6:	f500 40b8 	add.w	r0, r0, #23552	; 0x5c00
+   a:	6803      	ldr	r3, [r0, #0]
+   c:	f413 4f80 	tst.w	r3, #16384	; 0x4000
+  10:	d007      	beq.n	22 <ClearDTOG_RX+0x22>
+  12:	6802      	ldr	r2, [r0, #0]
+  14:	f648 738f 	movw	r3, #36751	; 0x8f8f
+  18:	ea02 0303 	and.w	r3, r2, r3
+  1c:	f443 4380 	orr.w	r3, r3, #16384	; 0x4000
+  20:	6003      	str	r3, [r0, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:424
+  _ClearDTOG_RX(bEpNum);
+}
+  22:	4770      	bx	lr
+Disassembly of section .text.ClearDTOG_TX:
+
+00000000 <ClearDTOG_TX>:
+ClearDTOG_TX():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:433
+* Input          : bEpNum: Endpoint Number. 
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void ClearDTOG_TX(u8 bEpNum)
+{
+   0:	0080      	lsls	r0, r0, #2
+   2:	f100 4080 	add.w	r0, r0, #1073741824	; 0x40000000
+   6:	f500 40b8 	add.w	r0, r0, #23552	; 0x5c00
+   a:	6803      	ldr	r3, [r0, #0]
+   c:	f013 0f40 	tst.w	r3, #64	; 0x40
+  10:	d007      	beq.n	22 <ClearDTOG_TX+0x22>
+  12:	6802      	ldr	r2, [r0, #0]
+  14:	f648 738f 	movw	r3, #36751	; 0x8f8f
+  18:	ea02 0303 	and.w	r3, r2, r3
+  1c:	f043 0340 	orr.w	r3, r3, #64	; 0x40
+  20:	6003      	str	r3, [r0, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:435
+  _ClearDTOG_TX(bEpNum);
+}
+  22:	4770      	bx	lr
+Disassembly of section .text.SetEPAddress:
+
+00000000 <SetEPAddress>:
+SetEPAddress():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:445
+*                  bAddr: New endpoint address.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetEPAddress(u8 bEpNum, u8 bAddr)
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:446
+  _SetEPAddress(bEpNum, bAddr);
+   2:	4c05      	ldr	r4, [pc, #20]	(18 <SetEPAddress+0x18>)
+   4:	f648 738f 	movw	r3, #36751	; 0x8f8f
+   8:	f854 2020 	ldr.w	r2, [r4, r0, lsl #2]
+   c:	ea02 0303 	and.w	r3, r2, r3
+  10:	430b      	orrs	r3, r1
+  12:	f844 3020 	str.w	r3, [r4, r0, lsl #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:447
+}
+  16:	bd10      	pop	{r4, pc}
+  18:	40005c00 	.word	0x40005c00
+Disassembly of section .text.GetEPAddress:
+
+00000000 <GetEPAddress>:
+GetEPAddress():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:456
+* Input          : bEpNum: Endpoint Number. 
+* Output         : None.
+* Return         : Endpoint address.
+*******************************************************************************/
+u8 GetEPAddress(u8 bEpNum)
+{
+   0:	4b02      	ldr	r3, [pc, #8]	(c <GetEPAddress+0xc>)
+   2:	f853 0020 	ldr.w	r0, [r3, r0, lsl #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:458
+  return(_GetEPAddress(bEpNum));
+}
+   6:	f000 000f 	and.w	r0, r0, #15	; 0xf
+   a:	4770      	bx	lr
+   c:	40005c00 	.word	0x40005c00
+Disassembly of section .text.SetEPTxAddr:
+
+00000000 <SetEPTxAddr>:
+SetEPTxAddr():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:468
+*                  wAddr: new address. 
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetEPTxAddr(u8 bEpNum, u16 wAddr)
+{
+   0:	4b06      	ldr	r3, [pc, #24]	(1c <SetEPTxAddr+0x1c>)
+   2:	0849      	lsrs	r1, r1, #1
+   4:	681b      	ldr	r3, [r3, #0]
+   6:	0049      	lsls	r1, r1, #1
+   8:	b29b      	uxth	r3, r3
+   a:	eb03 03c0 	add.w	r3, r3, r0, lsl #3
+   e:	f103 5300 	add.w	r3, r3, #536870912	; 0x20000000
+  12:	f503 5340 	add.w	r3, r3, #12288	; 0x3000
+  16:	005b      	lsls	r3, r3, #1
+  18:	6019      	str	r1, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:470
+  _SetEPTxAddr(bEpNum, wAddr);
+}
+  1a:	4770      	bx	lr
+  1c:	40005c50 	.word	0x40005c50
+Disassembly of section .text.SetEPRxAddr:
+
+00000000 <SetEPRxAddr>:
+SetEPRxAddr():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:480
+*                  wAddr: new address.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetEPRxAddr(u8 bEpNum, u16 wAddr)
+{
+   0:	4b05      	ldr	r3, [pc, #20]	(18 <SetEPRxAddr+0x18>)
+   2:	4a06      	ldr	r2, [pc, #24]	(1c <SetEPRxAddr+0x1c>)
+   4:	681b      	ldr	r3, [r3, #0]
+   6:	0849      	lsrs	r1, r1, #1
+   8:	b29b      	uxth	r3, r3
+   a:	eb03 03c0 	add.w	r3, r3, r0, lsl #3
+   e:	189a      	adds	r2, r3, r2
+  10:	0052      	lsls	r2, r2, #1
+  12:	0049      	lsls	r1, r1, #1
+  14:	6011      	str	r1, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:482
+  _SetEPRxAddr(bEpNum, wAddr);
+}
+  16:	4770      	bx	lr
+  18:	40005c50 	.word	0x40005c50
+  1c:	20003004 	.word	0x20003004
+Disassembly of section .text.GetEPTxAddr:
+
+00000000 <GetEPTxAddr>:
+GetEPTxAddr():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:491
+* Input          : bEpNum: Endpoint Number. 
+* Output         : None.
+* Return         : Rx buffer address. 
+*******************************************************************************/
+u16 GetEPTxAddr(u8 bEpNum)
+{
+   0:	4b05      	ldr	r3, [pc, #20]	(18 <GetEPTxAddr+0x18>)
+   2:	681b      	ldr	r3, [r3, #0]
+   4:	b29b      	uxth	r3, r3
+   6:	eb03 03c0 	add.w	r3, r3, r0, lsl #3
+   a:	f103 5300 	add.w	r3, r3, #536870912	; 0x20000000
+   e:	f503 5340 	add.w	r3, r3, #12288	; 0x3000
+  12:	005b      	lsls	r3, r3, #1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:493
+  return(_GetEPTxAddr(bEpNum));
+}
+  14:	8818      	ldrh	r0, [r3, #0]
+  16:	4770      	bx	lr
+  18:	40005c50 	.word	0x40005c50
+Disassembly of section .text.GetEPRxAddr:
+
+00000000 <GetEPRxAddr>:
+GetEPRxAddr():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:502
+* Input          : bEpNum: Endpoint Number. 
+* Output         : None.
+* Return         : Rx buffer address.
+*******************************************************************************/
+u16 GetEPRxAddr(u8 bEpNum)
+{
+   0:	4b04      	ldr	r3, [pc, #16]	(14 <GetEPRxAddr+0x14>)
+   2:	681a      	ldr	r2, [r3, #0]
+   4:	4b04      	ldr	r3, [pc, #16]	(18 <GetEPRxAddr+0x18>)
+   6:	b292      	uxth	r2, r2
+   8:	eb02 02c0 	add.w	r2, r2, r0, lsl #3
+   c:	18d3      	adds	r3, r2, r3
+   e:	005b      	lsls	r3, r3, #1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:504
+  return(_GetEPRxAddr(bEpNum));
+}
+  10:	8818      	ldrh	r0, [r3, #0]
+  12:	4770      	bx	lr
+  14:	40005c50 	.word	0x40005c50
+  18:	20003004 	.word	0x20003004
+Disassembly of section .text.SetEPTxCount:
+
+00000000 <SetEPTxCount>:
+SetEPTxCount():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:514
+*                  wCount: new count value.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetEPTxCount(u8 bEpNum, u16 wCount)
+{
+   0:	4b04      	ldr	r3, [pc, #16]	(14 <SetEPTxCount+0x14>)
+   2:	681a      	ldr	r2, [r3, #0]
+   4:	4b04      	ldr	r3, [pc, #16]	(18 <SetEPTxCount+0x18>)
+   6:	b292      	uxth	r2, r2
+   8:	eb02 02c0 	add.w	r2, r2, r0, lsl #3
+   c:	18d3      	adds	r3, r2, r3
+   e:	005b      	lsls	r3, r3, #1
+  10:	6019      	str	r1, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:516
+  _SetEPTxCount(bEpNum, wCount);
+}
+  12:	4770      	bx	lr
+  14:	40005c50 	.word	0x40005c50
+  18:	20003002 	.word	0x20003002
+Disassembly of section .text.SetEPCountRxReg:
+
+00000000 <SetEPCountRxReg>:
+SetEPCountRxReg():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:526
+*                  wCount: the new register value.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetEPCountRxReg(u32 *pdwReg, u16 wCount)
+{
+   0:	293e      	cmp	r1, #62
+   2:	d909      	bls.n	18 <SetEPCountRxReg+0x18>
+   4:	094b      	lsrs	r3, r1, #5
+   6:	f011 0f1f 	tst.w	r1, #31	; 0x1f
+   a:	d101      	bne.n	10 <SetEPCountRxReg+0x10>
+   c:	3b01      	subs	r3, #1
+   e:	b29b      	uxth	r3, r3
+  10:	029b      	lsls	r3, r3, #10
+  12:	f443 4300 	orr.w	r3, r3, #32768	; 0x8000
+  16:	e005      	b.n	24 <SetEPCountRxReg+0x24>
+  18:	084b      	lsrs	r3, r1, #1
+  1a:	f011 0f01 	tst.w	r1, #1	; 0x1
+  1e:	bf18      	it	ne
+  20:	3301      	addne	r3, #1
+  22:	029b      	lsls	r3, r3, #10
+  24:	6003      	str	r3, [r0, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:528
+  _SetEPCountRxReg(dwReg, wCount);
+}
+  26:	4770      	bx	lr
+Disassembly of section .text.SetEPRxCount:
+
+00000000 <SetEPRxCount>:
+SetEPRxCount():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:538
+*                  wCount: the new count value.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetEPRxCount(u8 bEpNum, u16 wCount)
+{
+   0:	4b0d      	ldr	r3, [pc, #52]	(38 <SetEPRxCount+0x38>)
+   2:	681a      	ldr	r2, [r3, #0]
+   4:	4b0d      	ldr	r3, [pc, #52]	(3c <SetEPRxCount+0x3c>)
+   6:	b292      	uxth	r2, r2
+   8:	18d3      	adds	r3, r2, r3
+   a:	eb03 03c0 	add.w	r3, r3, r0, lsl #3
+   e:	005a      	lsls	r2, r3, #1
+  10:	293e      	cmp	r1, #62
+  12:	d909      	bls.n	28 <SetEPRxCount+0x28>
+  14:	094b      	lsrs	r3, r1, #5
+  16:	f011 0f1f 	tst.w	r1, #31	; 0x1f
+  1a:	d101      	bne.n	20 <SetEPRxCount+0x20>
+  1c:	3b01      	subs	r3, #1
+  1e:	b29b      	uxth	r3, r3
+  20:	029b      	lsls	r3, r3, #10
+  22:	f443 4300 	orr.w	r3, r3, #32768	; 0x8000
+  26:	e005      	b.n	34 <SetEPRxCount+0x34>
+  28:	084b      	lsrs	r3, r1, #1
+  2a:	f011 0f01 	tst.w	r1, #1	; 0x1
+  2e:	bf18      	it	ne
+  30:	3301      	addne	r3, #1
+  32:	029b      	lsls	r3, r3, #10
+  34:	6013      	str	r3, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:540
+  _SetEPRxCount(bEpNum, wCount);
+}
+  36:	4770      	bx	lr
+  38:	40005c50 	.word	0x40005c50
+  3c:	20003006 	.word	0x20003006
+Disassembly of section .text.GetEPTxCount:
+
+00000000 <GetEPTxCount>:
+GetEPTxCount():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:549
+* Input          : bEpNum: Endpoint Number. 
+* Output         : None
+* Return         : Tx count value.
+*******************************************************************************/
+u16 GetEPTxCount(u8 bEpNum)
+{
+   0:	4b05      	ldr	r3, [pc, #20]	(18 <GetEPTxCount+0x18>)
+   2:	681a      	ldr	r2, [r3, #0]
+   4:	4b05      	ldr	r3, [pc, #20]	(1c <GetEPTxCount+0x1c>)
+   6:	b292      	uxth	r2, r2
+   8:	eb02 02c0 	add.w	r2, r2, r0, lsl #3
+   c:	18d3      	adds	r3, r2, r3
+   e:	005b      	lsls	r3, r3, #1
+  10:	6818      	ldr	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:551
+  return(_GetEPTxCount(bEpNum));
+}
+  12:	0580      	lsls	r0, r0, #22
+  14:	0d80      	lsrs	r0, r0, #22
+  16:	4770      	bx	lr
+  18:	40005c50 	.word	0x40005c50
+  1c:	20003002 	.word	0x20003002
+Disassembly of section .text.GetEPRxCount:
+
+00000000 <GetEPRxCount>:
+GetEPRxCount():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:561
+* Output         : None.
+* Return         : Rx count value.
+*******************************************************************************/
+u16 GetEPRxCount(u8 bEpNum)
+{
+  return(_GetEPRxCount(bEpNum));
+   0:	4b05      	ldr	r3, [pc, #20]	(18 <GetEPRxCount+0x18>)
+   2:	681a      	ldr	r2, [r3, #0]
+   4:	4b05      	ldr	r3, [pc, #20]	(1c <GetEPRxCount+0x1c>)
+   6:	b292      	uxth	r2, r2
+   8:	eb02 02c0 	add.w	r2, r2, r0, lsl #3
+   c:	18d3      	adds	r3, r2, r3
+   e:	005b      	lsls	r3, r3, #1
+  10:	6818      	ldr	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:562
+}
+  12:	0580      	lsls	r0, r0, #22
+  14:	0d80      	lsrs	r0, r0, #22
+  16:	4770      	bx	lr
+  18:	40005c50 	.word	0x40005c50
+  1c:	20003006 	.word	0x20003006
+Disassembly of section .text.SetEPDblBuffAddr:
+
+00000000 <SetEPDblBuffAddr>:
+SetEPDblBuffAddr():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:573
+*                  wBuf1Addr: new address of buffer 1.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetEPDblBuffAddr(u8 bEpNum, u16 wBuf0Addr, u16 wBuf1Addr)
+{
+   0:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:574
+  _SetEPDblBuffAddr(bEpNum, wBuf0Addr, wBuf1Addr);
+   2:	4c0b      	ldr	r4, [pc, #44]	(30 <SetEPDblBuffAddr+0x30>)
+   4:	00c0      	lsls	r0, r0, #3
+   6:	6823      	ldr	r3, [r4, #0]
+   8:	0849      	lsrs	r1, r1, #1
+   a:	b29b      	uxth	r3, r3
+   c:	18c3      	adds	r3, r0, r3
+   e:	f103 5300 	add.w	r3, r3, #536870912	; 0x20000000
+  12:	f503 5340 	add.w	r3, r3, #12288	; 0x3000
+  16:	005b      	lsls	r3, r3, #1
+  18:	0049      	lsls	r1, r1, #1
+  1a:	6019      	str	r1, [r3, #0]
+  1c:	6823      	ldr	r3, [r4, #0]
+  1e:	0852      	lsrs	r2, r2, #1
+  20:	b29b      	uxth	r3, r3
+  22:	18c0      	adds	r0, r0, r3
+  24:	4b03      	ldr	r3, [pc, #12]	(34 <SetEPDblBuffAddr+0x34>)
+  26:	0052      	lsls	r2, r2, #1
+  28:	18c3      	adds	r3, r0, r3
+  2a:	005b      	lsls	r3, r3, #1
+  2c:	601a      	str	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:575
+}
+  2e:	bd10      	pop	{r4, pc}
+  30:	40005c50 	.word	0x40005c50
+  34:	20003004 	.word	0x20003004
+Disassembly of section .text.SetEPDblBuf0Addr:
+
+00000000 <SetEPDblBuf0Addr>:
+SetEPDblBuf0Addr():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:585
+*                  wBuf0Addr: new address.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetEPDblBuf0Addr(u8 bEpNum, u16 wBuf0Addr)
+{
+   0:	4b06      	ldr	r3, [pc, #24]	(1c <SetEPDblBuf0Addr+0x1c>)
+   2:	0849      	lsrs	r1, r1, #1
+   4:	681b      	ldr	r3, [r3, #0]
+   6:	0049      	lsls	r1, r1, #1
+   8:	b29b      	uxth	r3, r3
+   a:	eb03 03c0 	add.w	r3, r3, r0, lsl #3
+   e:	f103 5300 	add.w	r3, r3, #536870912	; 0x20000000
+  12:	f503 5340 	add.w	r3, r3, #12288	; 0x3000
+  16:	005b      	lsls	r3, r3, #1
+  18:	6019      	str	r1, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:587
+  _SetEPDblBuf0Addr(bEpNum, wBuf0Addr);
+}
+  1a:	4770      	bx	lr
+  1c:	40005c50 	.word	0x40005c50
+Disassembly of section .text.SetEPDblBuf1Addr:
+
+00000000 <SetEPDblBuf1Addr>:
+SetEPDblBuf1Addr():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:597
+*                  wBuf1Addr: new address.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetEPDblBuf1Addr(u8 bEpNum, u16 wBuf1Addr)
+{
+   0:	4b05      	ldr	r3, [pc, #20]	(18 <SetEPDblBuf1Addr+0x18>)
+   2:	4a06      	ldr	r2, [pc, #24]	(1c <SetEPDblBuf1Addr+0x1c>)
+   4:	681b      	ldr	r3, [r3, #0]
+   6:	0849      	lsrs	r1, r1, #1
+   8:	b29b      	uxth	r3, r3
+   a:	eb03 03c0 	add.w	r3, r3, r0, lsl #3
+   e:	189a      	adds	r2, r3, r2
+  10:	0052      	lsls	r2, r2, #1
+  12:	0049      	lsls	r1, r1, #1
+  14:	6011      	str	r1, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:599
+  _SetEPDblBuf1Addr(bEpNum, wBuf1Addr);
+}
+  16:	4770      	bx	lr
+  18:	40005c50 	.word	0x40005c50
+  1c:	20003004 	.word	0x20003004
+Disassembly of section .text.GetEPDblBuf0Addr:
+
+00000000 <GetEPDblBuf0Addr>:
+GetEPDblBuf0Addr():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:608
+* Input          : bEpNum: Endpoint Number.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+u16 GetEPDblBuf0Addr(u8 bEpNum)
+{
+   0:	4b05      	ldr	r3, [pc, #20]	(18 <GetEPDblBuf0Addr+0x18>)
+   2:	681b      	ldr	r3, [r3, #0]
+   4:	b29b      	uxth	r3, r3
+   6:	eb03 03c0 	add.w	r3, r3, r0, lsl #3
+   a:	f103 5300 	add.w	r3, r3, #536870912	; 0x20000000
+   e:	f503 5340 	add.w	r3, r3, #12288	; 0x3000
+  12:	005b      	lsls	r3, r3, #1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:610
+  return(_GetEPDblBuf0Addr(bEpNum));
+}
+  14:	8818      	ldrh	r0, [r3, #0]
+  16:	4770      	bx	lr
+  18:	40005c50 	.word	0x40005c50
+Disassembly of section .text.GetEPDblBuf1Addr:
+
+00000000 <GetEPDblBuf1Addr>:
+GetEPDblBuf1Addr():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:619
+* Input          : bEpNum: Endpoint Number.
+* Output         : None.
+* Return         : Address of the Buffer 1.
+*******************************************************************************/
+u16 GetEPDblBuf1Addr(u8 bEpNum)
+{
+   0:	4b04      	ldr	r3, [pc, #16]	(14 <GetEPDblBuf1Addr+0x14>)
+   2:	681a      	ldr	r2, [r3, #0]
+   4:	4b04      	ldr	r3, [pc, #16]	(18 <GetEPDblBuf1Addr+0x18>)
+   6:	b292      	uxth	r2, r2
+   8:	eb02 02c0 	add.w	r2, r2, r0, lsl #3
+   c:	18d3      	adds	r3, r2, r3
+   e:	005b      	lsls	r3, r3, #1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:621
+  return(_GetEPDblBuf1Addr(bEpNum));
+}
+  10:	8818      	ldrh	r0, [r3, #0]
+  12:	4770      	bx	lr
+  14:	40005c50 	.word	0x40005c50
+  18:	20003004 	.word	0x20003004
+Disassembly of section .text.SetEPDblBuffCount:
+
+00000000 <SetEPDblBuffCount>:
+SetEPDblBuffCount():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:631
+* Input          : bEpNum,bDir, wCount
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetEPDblBuffCount(u8 bEpNum, u8 bDir, u16 wCount)
+{
+   0:	2901      	cmp	r1, #1
+   2:	b510      	push	{r4, lr}
+   4:	4684      	mov	ip, r0
+   6:	4614      	mov	r4, r2
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:632
+  _SetEPDblBuffCount(bEpNum, bDir, wCount);
+   8:	d125      	bne.n	56 <SetEPDblBuffCount+0x56>
+   a:	4b26      	ldr	r3, [pc, #152]	(a4 <SetEPDblBuffCount+0xa4>)
+   c:	ea4f 00c0 	mov.w	r0, r0, lsl #3
+  10:	681a      	ldr	r2, [r3, #0]
+  12:	4b25      	ldr	r3, [pc, #148]	(a8 <SetEPDblBuffCount+0xa8>)
+  14:	b292      	uxth	r2, r2
+  16:	18d3      	adds	r3, r2, r3
+  18:	181b      	adds	r3, r3, r0
+  1a:	005a      	lsls	r2, r3, #1
+  1c:	2c3e      	cmp	r4, #62
+  1e:	d909      	bls.n	34 <SetEPDblBuffCount+0x34>
+  20:	0963      	lsrs	r3, r4, #5
+  22:	f014 0f1f 	tst.w	r4, #31	; 0x1f
+  26:	d101      	bne.n	2c <SetEPDblBuffCount+0x2c>
+  28:	3b01      	subs	r3, #1
+  2a:	b29b      	uxth	r3, r3
+  2c:	029b      	lsls	r3, r3, #10
+  2e:	f443 4300 	orr.w	r3, r3, #32768	; 0x8000
+  32:	e005      	b.n	40 <SetEPDblBuffCount+0x40>
+  34:	0863      	lsrs	r3, r4, #1
+  36:	f014 0f01 	tst.w	r4, #1	; 0x1
+  3a:	bf18      	it	ne
+  3c:	3301      	addne	r3, #1
+  3e:	029b      	lsls	r3, r3, #10
+  40:	6013      	str	r3, [r2, #0]
+  42:	4b18      	ldr	r3, [pc, #96]	(a4 <SetEPDblBuffCount+0xa4>)
+  44:	681a      	ldr	r2, [r3, #0]
+  46:	4b19      	ldr	r3, [pc, #100]	(ac <SetEPDblBuffCount+0xac>)
+  48:	b292      	uxth	r2, r2
+  4a:	18d3      	adds	r3, r2, r3
+  4c:	181b      	adds	r3, r3, r0
+  4e:	0058      	lsls	r0, r3, #1
+  50:	2c3e      	cmp	r4, #62
+  52:	d91e      	bls.n	92 <SetEPDblBuffCount+0x92>
+  54:	e013      	b.n	7e <SetEPDblBuffCount+0x7e>
+  56:	2902      	cmp	r1, #2
+  58:	d122      	bne.n	a0 <SetEPDblBuffCount+0xa0>
+  5a:	4812      	ldr	r0, [pc, #72]	(a4 <SetEPDblBuffCount+0xa4>)
+  5c:	ea4f 01cc 	mov.w	r1, ip, lsl #3
+  60:	6802      	ldr	r2, [r0, #0]
+  62:	4b11      	ldr	r3, [pc, #68]	(a8 <SetEPDblBuffCount+0xa8>)
+  64:	b292      	uxth	r2, r2
+  66:	188a      	adds	r2, r1, r2
+  68:	18d3      	adds	r3, r2, r3
+  6a:	005b      	lsls	r3, r3, #1
+  6c:	601c      	str	r4, [r3, #0]
+  6e:	6803      	ldr	r3, [r0, #0]
+  70:	b29b      	uxth	r3, r3
+  72:	18c9      	adds	r1, r1, r3
+  74:	4b0d      	ldr	r3, [pc, #52]	(ac <SetEPDblBuffCount+0xac>)
+  76:	18cb      	adds	r3, r1, r3
+  78:	005b      	lsls	r3, r3, #1
+  7a:	601c      	str	r4, [r3, #0]
+  7c:	e010      	b.n	a0 <SetEPDblBuffCount+0xa0>
+  7e:	0963      	lsrs	r3, r4, #5
+  80:	f014 0f1f 	tst.w	r4, #31	; 0x1f
+  84:	d101      	bne.n	8a <SetEPDblBuffCount+0x8a>
+  86:	3b01      	subs	r3, #1
+  88:	b29b      	uxth	r3, r3
+  8a:	029b      	lsls	r3, r3, #10
+  8c:	f443 4300 	orr.w	r3, r3, #32768	; 0x8000
+  90:	e005      	b.n	9e <SetEPDblBuffCount+0x9e>
+  92:	0863      	lsrs	r3, r4, #1
+  94:	f014 0f01 	tst.w	r4, #1	; 0x1
+  98:	bf18      	it	ne
+  9a:	3301      	addne	r3, #1
+  9c:	029b      	lsls	r3, r3, #10
+  9e:	6003      	str	r3, [r0, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:633
+}
+  a0:	bd10      	pop	{r4, pc}
+  a2:	46c0      	nop			(mov r8, r8)
+  a4:	40005c50 	.word	0x40005c50
+  a8:	20003002 	.word	0x20003002
+  ac:	20003006 	.word	0x20003006
+Disassembly of section .text.SetEPDblBuf0Count:
+
+00000000 <SetEPDblBuf0Count>:
+SetEPDblBuf0Count():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:643
+* Input          : bEpNum, bDir,  wCount
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetEPDblBuf0Count(u8 bEpNum, u8 bDir, u16 wCount)
+{
+   0:	2901      	cmp	r1, #1
+   2:	4684      	mov	ip, r0
+   4:	4610      	mov	r0, r2
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:644
+  _SetEPDblBuf0Count(bEpNum, bDir, wCount);
+   6:	d11b      	bne.n	40 <SetEPDblBuf0Count+0x40>
+   8:	4b13      	ldr	r3, [pc, #76]	(58 <SetEPDblBuf0Count+0x58>)
+   a:	681a      	ldr	r2, [r3, #0]
+   c:	4b13      	ldr	r3, [pc, #76]	(5c <SetEPDblBuf0Count+0x5c>)
+   e:	b292      	uxth	r2, r2
+  10:	18d3      	adds	r3, r2, r3
+  12:	eb03 03cc 	add.w	r3, r3, ip, lsl #3
+  16:	005a      	lsls	r2, r3, #1
+  18:	283e      	cmp	r0, #62
+  1a:	d909      	bls.n	30 <SetEPDblBuf0Count+0x30>
+  1c:	0943      	lsrs	r3, r0, #5
+  1e:	f010 0f1f 	tst.w	r0, #31	; 0x1f
+  22:	d101      	bne.n	28 <SetEPDblBuf0Count+0x28>
+  24:	3b01      	subs	r3, #1
+  26:	b29b      	uxth	r3, r3
+  28:	029b      	lsls	r3, r3, #10
+  2a:	f443 4300 	orr.w	r3, r3, #32768	; 0x8000
+  2e:	e005      	b.n	3c <SetEPDblBuf0Count+0x3c>
+  30:	0843      	lsrs	r3, r0, #1
+  32:	f010 0f01 	tst.w	r0, #1	; 0x1
+  36:	bf18      	it	ne
+  38:	3301      	addne	r3, #1
+  3a:	029b      	lsls	r3, r3, #10
+  3c:	6013      	str	r3, [r2, #0]
+  3e:	e00a      	b.n	56 <SetEPDblBuf0Count+0x56>
+  40:	2902      	cmp	r1, #2
+  42:	d108      	bne.n	56 <SetEPDblBuf0Count+0x56>
+  44:	4b04      	ldr	r3, [pc, #16]	(58 <SetEPDblBuf0Count+0x58>)
+  46:	681a      	ldr	r2, [r3, #0]
+  48:	4b04      	ldr	r3, [pc, #16]	(5c <SetEPDblBuf0Count+0x5c>)
+  4a:	b292      	uxth	r2, r2
+  4c:	eb02 02cc 	add.w	r2, r2, ip, lsl #3
+  50:	18d3      	adds	r3, r2, r3
+  52:	005b      	lsls	r3, r3, #1
+  54:	6018      	str	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:645
+}
+  56:	4770      	bx	lr
+  58:	40005c50 	.word	0x40005c50
+  5c:	20003002 	.word	0x20003002
+Disassembly of section .text.SetEPDblBuf1Count:
+
+00000000 <SetEPDblBuf1Count>:
+SetEPDblBuf1Count():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:655
+* Input          : bEpNum,  bDir,  wCount
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void SetEPDblBuf1Count(u8 bEpNum, u8 bDir, u16 wCount)
+{
+   0:	2901      	cmp	r1, #1
+   2:	4684      	mov	ip, r0
+   4:	4610      	mov	r0, r2
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:656
+  _SetEPDblBuf1Count(bEpNum, bDir, wCount);
+   6:	d11b      	bne.n	40 <SetEPDblBuf1Count+0x40>
+   8:	4b13      	ldr	r3, [pc, #76]	(58 <SetEPDblBuf1Count+0x58>)
+   a:	681a      	ldr	r2, [r3, #0]
+   c:	4b13      	ldr	r3, [pc, #76]	(5c <SetEPDblBuf1Count+0x5c>)
+   e:	b292      	uxth	r2, r2
+  10:	18d3      	adds	r3, r2, r3
+  12:	eb03 03cc 	add.w	r3, r3, ip, lsl #3
+  16:	005a      	lsls	r2, r3, #1
+  18:	283e      	cmp	r0, #62
+  1a:	d909      	bls.n	30 <SetEPDblBuf1Count+0x30>
+  1c:	0943      	lsrs	r3, r0, #5
+  1e:	f010 0f1f 	tst.w	r0, #31	; 0x1f
+  22:	d101      	bne.n	28 <SetEPDblBuf1Count+0x28>
+  24:	3b01      	subs	r3, #1
+  26:	b29b      	uxth	r3, r3
+  28:	029b      	lsls	r3, r3, #10
+  2a:	f443 4300 	orr.w	r3, r3, #32768	; 0x8000
+  2e:	e005      	b.n	3c <SetEPDblBuf1Count+0x3c>
+  30:	0843      	lsrs	r3, r0, #1
+  32:	f010 0f01 	tst.w	r0, #1	; 0x1
+  36:	bf18      	it	ne
+  38:	3301      	addne	r3, #1
+  3a:	029b      	lsls	r3, r3, #10
+  3c:	6013      	str	r3, [r2, #0]
+  3e:	e00a      	b.n	56 <SetEPDblBuf1Count+0x56>
+  40:	2902      	cmp	r1, #2
+  42:	d108      	bne.n	56 <SetEPDblBuf1Count+0x56>
+  44:	4b04      	ldr	r3, [pc, #16]	(58 <SetEPDblBuf1Count+0x58>)
+  46:	681a      	ldr	r2, [r3, #0]
+  48:	4b04      	ldr	r3, [pc, #16]	(5c <SetEPDblBuf1Count+0x5c>)
+  4a:	b292      	uxth	r2, r2
+  4c:	eb02 02cc 	add.w	r2, r2, ip, lsl #3
+  50:	18d3      	adds	r3, r2, r3
+  52:	005b      	lsls	r3, r3, #1
+  54:	6018      	str	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:657
+}
+  56:	4770      	bx	lr
+  58:	40005c50 	.word	0x40005c50
+  5c:	20003006 	.word	0x20003006
+Disassembly of section .text.GetEPDblBuf0Count:
+
+00000000 <GetEPDblBuf0Count>:
+GetEPDblBuf0Count():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:667
+* Input          : bEpNum: Endpoint Number.
+* Output         : None.
+* Return         : Endpoint Buffer 0 count
+*******************************************************************************/
+u16 GetEPDblBuf0Count(u8 bEpNum)
+{
+   0:	4b05      	ldr	r3, [pc, #20]	(18 <GetEPDblBuf0Count+0x18>)
+   2:	681a      	ldr	r2, [r3, #0]
+   4:	4b05      	ldr	r3, [pc, #20]	(1c <GetEPDblBuf0Count+0x1c>)
+   6:	b292      	uxth	r2, r2
+   8:	eb02 02c0 	add.w	r2, r2, r0, lsl #3
+   c:	18d3      	adds	r3, r2, r3
+   e:	005b      	lsls	r3, r3, #1
+  10:	6818      	ldr	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:669
+  return(_GetEPDblBuf0Count(bEpNum));
+}
+  12:	0580      	lsls	r0, r0, #22
+  14:	0d80      	lsrs	r0, r0, #22
+  16:	4770      	bx	lr
+  18:	40005c50 	.word	0x40005c50
+  1c:	20003002 	.word	0x20003002
+Disassembly of section .text.GetEPDblBuf1Count:
+
+00000000 <GetEPDblBuf1Count>:
+GetEPDblBuf1Count():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:679
+* Input          : bEpNum: Endpoint Number.
+* Output         : None.
+* Return         : Endpoint Buffer 1 count.
+*******************************************************************************/
+u16 GetEPDblBuf1Count(u8 bEpNum)
+{
+   0:	4b05      	ldr	r3, [pc, #20]	(18 <GetEPDblBuf1Count+0x18>)
+   2:	681a      	ldr	r2, [r3, #0]
+   4:	4b05      	ldr	r3, [pc, #20]	(1c <GetEPDblBuf1Count+0x1c>)
+   6:	b292      	uxth	r2, r2
+   8:	eb02 02c0 	add.w	r2, r2, r0, lsl #3
+   c:	18d3      	adds	r3, r2, r3
+   e:	005b      	lsls	r3, r3, #1
+  10:	6818      	ldr	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:681
+  return(_GetEPDblBuf1Count(bEpNum));
+}
+  12:	0580      	lsls	r0, r0, #22
+  14:	0d80      	lsrs	r0, r0, #22
+  16:	4770      	bx	lr
+  18:	40005c50 	.word	0x40005c50
+  1c:	20003006 	.word	0x20003006
+Disassembly of section .text.GetEPDblBufDir:
+
+00000000 <GetEPDblBufDir>:
+GetEPDblBufDir():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:691
+* Output         : None.
+* Return         : EP_DBUF_OUT, EP_DBUF_IN,
+*                  EP_DBUF_ERR if the endpoint counter not yet programmed.
+*******************************************************************************/
+EP_DBUF_DIR GetEPDblBufDir(u8 bEpNum)
+{
+   0:	490d      	ldr	r1, [pc, #52]	(38 <GetEPDblBufDir+0x38>)
+   2:	00c0      	lsls	r0, r0, #3
+   4:	680b      	ldr	r3, [r1, #0]
+   6:	4a0d      	ldr	r2, [pc, #52]	(3c <GetEPDblBufDir+0x3c>)
+   8:	b29b      	uxth	r3, r3
+   a:	18c3      	adds	r3, r0, r3
+   c:	189a      	adds	r2, r3, r2
+   e:	0052      	lsls	r2, r2, #1
+  10:	8813      	ldrh	r3, [r2, #0]
+  12:	f413 4f7c 	tst.w	r3, #64512	; 0xfc00
+  16:	d001      	beq.n	1c <GetEPDblBufDir+0x1c>
+  18:	2001      	movs	r0, #1
+  1a:	e00c      	b.n	36 <GetEPDblBufDir+0x36>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:694
+  if ((u16)(*_pEPRxCount(bEpNum) & 0xFC00) != 0)
+    return(EP_DBUF_OUT);
+  else if (((u16)(*_pEPTxCount(bEpNum)) & 0x03FF) != 0)
+  1c:	680b      	ldr	r3, [r1, #0]
+  1e:	4a08      	ldr	r2, [pc, #32]	(40 <GetEPDblBufDir+0x40>)
+  20:	b29b      	uxth	r3, r3
+  22:	18c3      	adds	r3, r0, r3
+  24:	189a      	adds	r2, r3, r2
+  26:	0052      	lsls	r2, r2, #1
+  28:	8813      	ldrh	r3, [r2, #0]
+  2a:	059b      	lsls	r3, r3, #22
+  2c:	0d9b      	lsrs	r3, r3, #22
+  2e:	2b00      	cmp	r3, #0
+  30:	bf14      	ite	ne
+  32:	2002      	movne	r0, #2
+  34:	2000      	moveq	r0, #0
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:698
+    return(EP_DBUF_IN);
+  else
+    return(EP_DBUF_ERR);
+}
+  36:	4770      	bx	lr
+  38:	40005c50 	.word	0x40005c50
+  3c:	20003006 	.word	0x20003006
+  40:	20003002 	.word	0x20003002
+Disassembly of section .text.FreeUserBuffer:
+
+00000000 <FreeUserBuffer>:
+FreeUserBuffer():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:708
+* Input          : bEpNum, bDir
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void FreeUserBuffer(u8 bEpNum, u8 bDir)
+{
+   0:	2901      	cmp	r1, #1
+   2:	d10c      	bne.n	1e <FreeUserBuffer+0x1e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:711
+  if (bDir == EP_DBUF_OUT)
+  { /* OUT double buffered endpoint */
+    _ToggleDTOG_TX(bEpNum);
+   4:	0083      	lsls	r3, r0, #2
+   6:	f103 4380 	add.w	r3, r3, #1073741824	; 0x40000000
+   a:	f503 43b8 	add.w	r3, r3, #23552	; 0x5c00
+   e:	6819      	ldr	r1, [r3, #0]
+  10:	f648 728f 	movw	r2, #36751	; 0x8f8f
+  14:	ea01 0202 	and.w	r2, r1, r2
+  18:	f042 0240 	orr.w	r2, r2, #64	; 0x40
+  1c:	e00d      	b.n	3a <FreeUserBuffer+0x3a>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:713
+  }
+  else if (bDir == EP_DBUF_IN)
+  1e:	2902      	cmp	r1, #2
+  20:	d10c      	bne.n	3c <FreeUserBuffer+0x3c>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:715
+  { /* IN double buffered endpoint */
+    _ToggleDTOG_RX(bEpNum);
+  22:	0083      	lsls	r3, r0, #2
+  24:	f103 4380 	add.w	r3, r3, #1073741824	; 0x40000000
+  28:	f503 43b8 	add.w	r3, r3, #23552	; 0x5c00
+  2c:	6819      	ldr	r1, [r3, #0]
+  2e:	f648 728f 	movw	r2, #36751	; 0x8f8f
+  32:	ea01 0202 	and.w	r2, r1, r2
+  36:	f442 4280 	orr.w	r2, r2, #16384	; 0x4000
+  3a:	601a      	str	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:717
+  }
+}
+  3c:	4770      	bx	lr
+  3e:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.ToWord:
+
+00000000 <ToWord>:
+ToWord():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:727
+* Input          : bh: byte high, bl: bytes low.
+* Output         : None.
+* Return         : resulted word.
+*******************************************************************************/
+u16 ToWord(u8 bh, u8 bl)
+{
+   0:	ea41 2000 	orr.w	r0, r1, r0, lsl #8
+   4:	4770      	bx	lr
+   6:	46c0      	nop			(mov r8, r8)
+Disassembly of section .text.ByteSwap:
+
+00000000 <ByteSwap>:
+ByteSwap():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:740
+* Input          : wSwW: word to Swap.
+* Output         : None.
+* Return         : resulted word.
+*******************************************************************************/
+u16 ByteSwap(u16 wSwW)
+{
+   0:	b2c3      	uxtb	r3, r0
+   2:	0a00      	lsrs	r0, r0, #8
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_regs.c:746
+  u8 bTemp;
+  u16 wRet;
+  bTemp = (u8)(wSwW & 0xff);
+  wRet =  (wSwW >> 8) | ((u16)bTemp << 8);
+  return(wRet);
+}
+   4:	ea40 2003 	orr.w	r0, r0, r3, lsl #8
+   8:	4770      	bx	lr
+   a:	46c0      	nop			(mov r8, r8)

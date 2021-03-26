@@ -1,0 +1,115 @@
+
+<ApplicationBuild Header="T104_GA_V100a" Extern=".\T104_GA_V100a.rapp" Path=".\T104_GA_V100a.rapp" OutputFile=".\T104_GA_V100a.elf" sate="96" >
+	<Group Header="APPLICATION" Marker="-1" OutputFile="" sate="96" >
+		<NodeC Path="..\DOCS\najnowszebiblioteki\Biblioteki\FWLib\library\src\stm32f10x_flash.c" Header="stm32f10x_flash.c" Marker="-1" OutputFile=".\stm32f10x_flash.o" sate="0" />
+		<NodeH Path=".\sources\control.h" Header="control.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeC Path=".\sources\control.c" Header="control.c" Marker="-1" OutputFile=".\control.o" sate="2" />
+		<NodeH Path=".\sources\sys.h" Header="sys.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\sources\stm32f10x_it.h" Header="stm32f10x_it.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\sources\RTC.h" Header="RTC.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\sources\stm32f10x_conf.h" Header="stm32f10x_conf.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\sources\main.h" Header="main.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\sources\lcd.h" Header="lcd.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\sources\hardware.h" Header="hardware.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\sources\includes.h" Header="includes.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeH Path=".\sources\gui.h" Header="gui.h" Marker="-1" OutputFile="" sate="0" />
+		<NodeC Path=".\sources\sys.c" Header="sys.c" Marker="-1" OutputFile=".\sys.o" sate="0" />
+		<NodeC Path=".\sources\stm32f10x_it.c" Header="stm32f10x_it.c" Marker="-1" OutputFile=".\stm32f10x_it.o" sate="0" />
+		<NodeC Path=".\sources\RTC.c" Header="RTC.c" Marker="-1" OutputFile=".\RTC.o" sate="0" />
+		<NodeC Path=".\sources\main.c" Header="main.c" Marker="-1" OutputFile=".\main.o" sate="0" />
+		<NodeC Path=".\sources\lcd.c" Header="lcd.c" Marker="-1" OutputFile=".\lcd.o" sate="0" />
+		<NodeC Path=".\sources\hardware.c" Header="hardware.c" Marker="-1" OutputFile=".\hardware.o" sate="0" />
+		<NodeC Path=".\sources\gui.c" Header="gui.c" Marker="-1" OutputFile=".\gui.o" sate="0" />
+																														
+	</Group>
+	<Group Header="USB_LIB" Marker="0" OutputFile="" sate="96" >
+		<NodeC Path=".\usb_library\src\usb_core.c" Header="usb_core.c" Marker="-1" OutputFile=".\usb_core.o" sate="0" />
+		<NodeC Path=".\usb_library\src\usb_init.c" Header="usb_init.c" Marker="-1" OutputFile=".\usb_init.o" sate="0" />
+		<NodeC Path=".\usb_library\src\usb_int.c" Header="usb_int.c" Marker="-1" OutputFile=".\usb_int.o" sate="0" />
+		<NodeC Path=".\usb_library\src\usb_mem.c" Header="usb_mem.c" Marker="-1" OutputFile=".\usb_mem.o" sate="0" />
+		<NodeC Path=".\usb_library\src\usb_regs.c" Header="usb_regs.c" Marker="-1" OutputFile=".\usb_regs.o" sate="0" />
+		<Options>
+			<Config Header="Standard" >
+				<Set Header="Group" >
+					<Section Header="Build" >
+						<Property Header="Exclude" Value="No" Removable="1" />
+						<Property Header="LinkExclude" Value="No" Removable="1" />
+																																																																																																																						
+					</Section>
+																																																																																																
+				</Set>
+																																																																						
+			</Config>
+																																																		
+		</Options>
+																														
+	</Group>
+	<Group Header="USB_HID" Marker="-1" OutputFile="" sate="96" >
+		<NodeC Path=".\usb_hid\source\usb_desc.c" Header="usb_desc.c" Marker="-1" OutputFile=".\usb_desc.o" sate="0" />
+		<NodeC Path=".\usb_hid\source\usb_istr.c" Header="usb_istr.c" Marker="-1" OutputFile=".\usb_istr.o" sate="0" />
+		<NodeC Path=".\usb_hid\source\usb_prop.c" Header="usb_prop.c" Marker="-1" OutputFile=".\usb_prop.o" sate="0" />
+		<NodeC Path=".\usb_hid\source\usb_pwr.c" Header="usb_pwr.c" Marker="-1" OutputFile=".\usb_pwr.o" sate="0" />
+		<NodeC Path=".\usb_hid\source\usb_endp.c" Header="usb_endp.c" Marker="-1" OutputFile=".\usb_endp.o" sate="0" />
+																											
+	</Group>
+	<Group Header="TEXT" Marker="-1" OutputFile="" sate="96" >
+		<NodeH Path=".\sources\Languages\Texts.h" Header="Texts.h" Marker="-1" OutputFile="" sate="0" />
+												
+	</Group>
+	<Options>
+		<Config Header="Standard" >
+			<Set Header="ApplicationBuild" >
+				<Section Header="General" >
+					<Property Header="TargetFamily" Value="ARM" />
+																																																																																																																																																																																		
+				</Section>
+				<Section Header="Directories" >
+					<Property Header="IncDir" Value="C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\library;C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\library\inc;C:\TieN\PROJEKTY\procesory\STM\T104_V100a_GASTOP\sources;C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\include;C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\inc" Removable="1" />
+					<Property Header="LibDir" Value="C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\library\src;$(RkitLib)\ARM" Removable="1" />
+							
+				</Section>
+					
+			</Set>
+			<Set Header="Target" >
+				<Section Header="ProcessorARM" >
+					<Property Header="Processor" Value="STM32F103RCT6" />
+																																																																																																										
+				</Section>
+				<Section Header="ToolSetARM" >
+					<Property Header="BuildToolSetARM" Value="ARM\\GNU.config" Removable="1" />
+																																																																																																																																																																																		
+				</Section>
+				<Section Header="DebugARM" >
+					<Property Header="DebugTool_CORTEX" Value="RLINK_CORTEX" Removable="1" />
+					<Property Header="CodeOffset" Value="0x0" Removable="1" />
+																																																																																																																																																							
+				</Section>
+																																																																																		
+			</Set>
+			<Set Header="LD" >
+				<Section Header="Startup" >
+					<Property Header="DEFAULTSTARTUP" Value="Yes" Removable="1" />
+					<Property Header="File" Value="" Removable="1" />
+																																		
+				</Section>
+				<Section Header="Scripts" >
+					<Property Header="StarterKitLimit" Value="No" Removable="1" />
+																																																																																																																																																							
+				</Section>
+				<Section Header="LIB" >
+					<Property Header="STLIB" Value="1" Removable="1" />
+					<Property Header="UART0PUTC" Value="1" Removable="1" />
+							
+				</Section>
+					
+			</Set>
+			<Set Header="GCC" >
+				<Section Header="OPTIMIZE" >
+					<Property Header="Optimize" Value="-Os" Removable="1" />
+																																		
+				</Section>
+																										
+			</Set>
+		</Config>
+	</Options>
+</ApplicationBuild>

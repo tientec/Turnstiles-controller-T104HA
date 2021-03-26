@@ -1,0 +1,162 @@
+
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_mem.o:     file format elf32-littlearm
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_mem.o
+
+Disassembly of section .text.UserToPMABufferCopy:
+
+00000000 <UserToPMABufferCopy>:
+UserToPMABufferCopy():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_mem.c:40
+void UserToPMABufferCopy(u8 *pbUsrBuf, u16 wPMABufAddr, u16 wNBytes)
+{
+  u32 n = (wNBytes + 1) >> 1;   /* n = (wNBytes + 1) / 2 */
+  u32 i, temp1, temp2;
+  u16 *pdwVal;
+  pdwVal = (u16 *)(wPMABufAddr * 2 + PMAAddr);
+   0:	f101 5100 	add.w	r1, r1, #536870912	; 0x20000000
+   4:	f501 5140 	add.w	r1, r1, #12288	; 0x3000
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_mem.c:37
+* Output         : None.
+* Return         : None	.
+*******************************************************************************/
+void UserToPMABufferCopy(u8 *pbUsrBuf, u16 wPMABufAddr, u16 wNBytes)
+{
+  u32 n = (wNBytes + 1) >> 1;   /* n = (wNBytes + 1) / 2 */
+   8:	3201      	adds	r2, #1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_mem.c:36
+*                  - wNBytes: no. of bytes to be copied.
+* Output         : None.
+* Return         : None	.
+*******************************************************************************/
+void UserToPMABufferCopy(u8 *pbUsrBuf, u16 wPMABufAddr, u16 wNBytes)
+{
+   a:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_mem.c:40
+  u32 n = (wNBytes + 1) >> 1;   /* n = (wNBytes + 1) / 2 */
+  u32 i, temp1, temp2;
+  u16 *pdwVal;
+  pdwVal = (u16 *)(wPMABufAddr * 2 + PMAAddr);
+   c:	f04f 0c00 	mov.w	ip, #0	; 0x0
+  10:	004c      	lsls	r4, r1, #1
+  12:	0851      	lsrs	r1, r2, #1
+  14:	e00b      	b.n	2e <UserToPMABufferCopy+0x2e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_mem.c:46
+  for (i = n; i != 0; i--)
+  {
+    temp1 = (u16) * pbUsrBuf;
+    pbUsrBuf++;
+    temp2 = temp1 | (u16) * pbUsrBuf << 8;
+    *pdwVal++ = temp2;
+  16:	eb00 030c 	add.w	r3, r0, ip
+  1a:	785a      	ldrb	r2, [r3, #1]
+  1c:	f810 300c 	ldrb.w	r3, [r0, ip]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_mem.c:41
+{
+  u32 n = (wNBytes + 1) >> 1;   /* n = (wNBytes + 1) / 2 */
+  u32 i, temp1, temp2;
+  u16 *pdwVal;
+  pdwVal = (u16 *)(wPMABufAddr * 2 + PMAAddr);
+  for (i = n; i != 0; i--)
+  20:	3901      	subs	r1, #1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_mem.c:46
+  {
+    temp1 = (u16) * pbUsrBuf;
+    pbUsrBuf++;
+    temp2 = temp1 | (u16) * pbUsrBuf << 8;
+    *pdwVal++ = temp2;
+  22:	ea43 2302 	orr.w	r3, r3, r2, lsl #8
+  26:	f824 301c 	strh.w	r3, [r4, ip, lsl #1]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_mem.c:41
+{
+  u32 n = (wNBytes + 1) >> 1;   /* n = (wNBytes + 1) / 2 */
+  u32 i, temp1, temp2;
+  u16 *pdwVal;
+  pdwVal = (u16 *)(wPMABufAddr * 2 + PMAAddr);
+  for (i = n; i != 0; i--)
+  2a:	f10c 0c02 	add.w	ip, ip, #2	; 0x2
+  2e:	2900      	cmp	r1, #0
+  30:	d1f1      	bne.n	16 <UserToPMABufferCopy+0x16>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_mem.c:50
+    temp2 = temp1 | (u16) * pbUsrBuf << 8;
+    *pdwVal++ = temp2;
+    pdwVal++;
+    pbUsrBuf++;
+  }
+}
+  32:	bd10      	pop	{r4, pc}
+Disassembly of section .text.PMAToUserBufferCopy:
+
+00000000 <PMAToUserBufferCopy>:
+PMAToUserBufferCopy():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_mem.c:65
+void PMAToUserBufferCopy(u8 *pbUsrBuf, u16 wPMABufAddr, u16 wNBytes)
+{
+  u32 n = (wNBytes + 1) >> 1;/* /2*/
+  u32 i;
+  u32 *pdwVal;
+  pdwVal = (u32 *)(wPMABufAddr * 2 + PMAAddr);
+   0:	f101 5100 	add.w	r1, r1, #536870912	; 0x20000000
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_mem.c:62
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void PMAToUserBufferCopy(u8 *pbUsrBuf, u16 wPMABufAddr, u16 wNBytes)
+{
+  u32 n = (wNBytes + 1) >> 1;/* /2*/
+   4:	3201      	adds	r2, #1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_mem.c:65
+  u32 i;
+  u32 *pdwVal;
+  pdwVal = (u32 *)(wPMABufAddr * 2 + PMAAddr);
+   6:	f501 5140 	add.w	r1, r1, #12288	; 0x3000
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_mem.c:61
+*                  - wNBytes     = no. of bytes to be copied.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void PMAToUserBufferCopy(u8 *pbUsrBuf, u16 wPMABufAddr, u16 wNBytes)
+{
+   a:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_mem.c:65
+  u32 n = (wNBytes + 1) >> 1;/* /2*/
+  u32 i;
+  u32 *pdwVal;
+  pdwVal = (u32 *)(wPMABufAddr * 2 + PMAAddr);
+   c:	0049      	lsls	r1, r1, #1
+   e:	0852      	lsrs	r2, r2, #1
+  10:	2300      	movs	r3, #0
+  12:	e004      	b.n	1e <PMAToUserBufferCopy+0x1e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_mem.c:68
+  for (i = n; i != 0; i--)
+  {
+    *(u16*)pbUsrBuf++ = *pdwVal++;
+  14:	f831 4013 	ldrh.w	r4, [r1, r3, lsl #1]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_mem.c:66
+{
+  u32 n = (wNBytes + 1) >> 1;/* /2*/
+  u32 i;
+  u32 *pdwVal;
+  pdwVal = (u32 *)(wPMABufAddr * 2 + PMAAddr);
+  for (i = n; i != 0; i--)
+  18:	3a01      	subs	r2, #1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_mem.c:68
+  {
+    *(u16*)pbUsrBuf++ = *pdwVal++;
+  1a:	52c4      	strh	r4, [r0, r3]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_mem.c:66
+{
+  u32 n = (wNBytes + 1) >> 1;/* /2*/
+  u32 i;
+  u32 *pdwVal;
+  pdwVal = (u32 *)(wPMABufAddr * 2 + PMAAddr);
+  for (i = n; i != 0; i--)
+  1c:	3302      	adds	r3, #2
+  1e:	2a00      	cmp	r2, #0
+  20:	d1f8      	bne.n	14 <PMAToUserBufferCopy+0x14>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_library\src/usb_mem.c:71
+  {
+    *(u16*)pbUsrBuf++ = *pdwVal++;
+    pbUsrBuf++;
+  }
+}
+  22:	bd10      	pop	{r4, pc}

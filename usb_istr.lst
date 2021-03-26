@@ -1,0 +1,215 @@
+
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_istr.o:     file format elf32-littlearm
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_istr.o
+
+Disassembly of section .text.USB_Istr:
+
+00000000 <USB_Istr>:
+USB_Istr():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:66
+* Return         :
+*******************************************************************************/
+void USB_Istr(void)
+{
+
+  wIstr = _GetISTR();
+   0:	4936      	ldr	r1, [pc, #216]	(dc <USB_Istr+0xdc>)
+   2:	4a37      	ldr	r2, [pc, #220]	(e0 <USB_Istr+0xe0>)
+   4:	680b      	ldr	r3, [r1, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:64
+* Input          :
+* Output         :
+* Return         :
+*******************************************************************************/
+void USB_Istr(void)
+{
+   6:	b510      	push	{r4, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:66
+
+  wIstr = _GetISTR();
+   8:	b29b      	uxth	r3, r3
+   a:	8013      	strh	r3, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:69
+
+#if (IMR_MSK & ISTR_RESET)
+  if (wIstr & ISTR_RESET & wInterrupt_Mask)
+   c:	4b35      	ldr	r3, [pc, #212]	(e4 <USB_Istr+0xe4>)
+   e:	8812      	ldrh	r2, [r2, #0]
+  10:	881b      	ldrh	r3, [r3, #0]
+  12:	4013      	ands	r3, r2
+  14:	f413 6f80 	tst.w	r3, #1024	; 0x400
+  18:	d005      	beq.n	26 <USB_Istr+0x26>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:71
+  {
+    _SetISTR((u16)CLR_RESET);
+  1a:	f64f 33ff 	movw	r3, #64511	; 0xfbff
+  1e:	600b      	str	r3, [r1, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:72
+    Device_Property.Reset();
+  20:	4b31      	ldr	r3, [pc, #196]	(e8 <USB_Istr+0xe8>)
+  22:	685b      	ldr	r3, [r3, #4]
+  24:	4798      	blx	r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:90
+#endif
+  }
+#endif
+  /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
+#if (IMR_MSK & ISTR_ERR)
+  if (wIstr & ISTR_ERR & wInterrupt_Mask)
+  26:	4b2e      	ldr	r3, [pc, #184]	(e0 <USB_Istr+0xe0>)
+  28:	4a2e      	ldr	r2, [pc, #184]	(e4 <USB_Istr+0xe4>)
+  2a:	881b      	ldrh	r3, [r3, #0]
+  2c:	8811      	ldrh	r1, [r2, #0]
+  2e:	ea01 0303 	and.w	r3, r1, r3
+  32:	f413 5f00 	tst.w	r3, #8192	; 0x2000
+  36:	d003      	beq.n	40 <USB_Istr+0x40>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:92
+  {
+    _SetISTR((u16)CLR_ERR);
+  38:	4b28      	ldr	r3, [pc, #160]	(dc <USB_Istr+0xdc>)
+  3a:	f64d 72ff 	movw	r2, #57343	; 0xdfff
+  3e:	601a      	str	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:100
+#endif
+  }
+#endif
+  /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
+#if (IMR_MSK & ISTR_WKUP)
+  if (wIstr & ISTR_WKUP & wInterrupt_Mask)
+  40:	4b27      	ldr	r3, [pc, #156]	(e0 <USB_Istr+0xe0>)
+  42:	881b      	ldrh	r3, [r3, #0]
+  44:	ea01 0303 	and.w	r3, r1, r3
+  48:	f413 5f80 	tst.w	r3, #4096	; 0x1000
+  4c:	d006      	beq.n	5c <USB_Istr+0x5c>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:102
+  {
+    _SetISTR((u16)CLR_WKUP);
+  4e:	4b23      	ldr	r3, [pc, #140]	(dc <USB_Istr+0xdc>)
+  50:	f64e 72ff 	movw	r2, #61439	; 0xefff
+  54:	601a      	str	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:103
+    Resume(RESUME_EXTERNAL);
+  56:	2000      	movs	r0, #0
+  58:	f7ff fffe 	bl	0 <Resume>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:111
+#endif
+  }
+#endif
+  /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
+#if (IMR_MSK & ISTR_SUSP)
+  if (wIstr & ISTR_SUSP & wInterrupt_Mask)
+  5c:	4b20      	ldr	r3, [pc, #128]	(e0 <USB_Istr+0xe0>)
+  5e:	881a      	ldrh	r2, [r3, #0]
+  60:	4b20      	ldr	r3, [pc, #128]	(e4 <USB_Istr+0xe4>)
+  62:	881b      	ldrh	r3, [r3, #0]
+  64:	4013      	ands	r3, r2
+  66:	f413 6f00 	tst.w	r3, #2048	; 0x800
+  6a:	d00c      	beq.n	86 <USB_Istr+0x86>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:115
+  {
+
+    /* check if SUSPEND is possible */
+    if (fSuspendEnabled)
+  6c:	4b1f      	ldr	r3, [pc, #124]	(ec <USB_Istr+0xec>)
+  6e:	781b      	ldrb	r3, [r3, #0]
+  70:	b113      	cbz	r3, 78 <USB_Istr+0x78>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:117
+    {
+      Suspend();
+  72:	f7ff fffe 	bl	0 <Suspend>
+  76:	e002      	b.n	7e <USB_Istr+0x7e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:122
+    }
+    else
+    {
+      /* if not possible then resume after xx ms */
+      Resume(RESUME_LATER);
+  78:	2002      	movs	r0, #2
+  7a:	f7ff fffe 	bl	0 <Resume>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:125
+    }
+    /* clear of the ISTR bit must be done after setting of CNTR_FSUSP */
+    _SetISTR((u16)CLR_SUSP);
+  7e:	4b17      	ldr	r3, [pc, #92]	(dc <USB_Istr+0xdc>)
+  80:	f24f 72ff 	movw	r2, #63487	; 0xf7ff
+  84:	601a      	str	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:133
+#endif
+  }
+#endif
+  /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
+#if (IMR_MSK & ISTR_SOF)
+  if (wIstr & ISTR_SOF & wInterrupt_Mask)
+  86:	4b16      	ldr	r3, [pc, #88]	(e0 <USB_Istr+0xe0>)
+  88:	4a16      	ldr	r2, [pc, #88]	(e4 <USB_Istr+0xe4>)
+  8a:	881b      	ldrh	r3, [r3, #0]
+  8c:	8811      	ldrh	r1, [r2, #0]
+  8e:	ea01 0303 	and.w	r3, r1, r3
+  92:	f413 7f00 	tst.w	r3, #512	; 0x200
+  96:	d008      	beq.n	aa <USB_Istr+0xaa>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:135
+  {
+    _SetISTR((u16)CLR_SOF);
+  98:	4b10      	ldr	r3, [pc, #64]	(dc <USB_Istr+0xdc>)
+  9a:	f64f 52ff 	movw	r2, #65023	; 0xfdff
+  9e:	601a      	str	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:136
+    bIntPackSOF++;
+  a0:	4a13      	ldr	r2, [pc, #76]	(f0 <USB_Istr+0xf0>)
+  a2:	7813      	ldrb	r3, [r2, #0]
+  a4:	3301      	adds	r3, #1
+  a6:	b2db      	uxtb	r3, r3
+  a8:	7013      	strb	r3, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:145
+#endif
+  }
+#endif
+  /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
+#if (IMR_MSK & ISTR_ESOF)
+  if (wIstr & ISTR_ESOF & wInterrupt_Mask)
+  aa:	4b0d      	ldr	r3, [pc, #52]	(e0 <USB_Istr+0xe0>)
+  ac:	881b      	ldrh	r3, [r3, #0]
+  ae:	ea01 0303 	and.w	r3, r1, r3
+  b2:	f413 7f80 	tst.w	r3, #256	; 0x100
+  b6:	d006      	beq.n	c6 <USB_Istr+0xc6>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:147
+  {
+    _SetISTR((u16)CLR_ESOF);
+  b8:	4b08      	ldr	r3, [pc, #32]	(dc <USB_Istr+0xdc>)
+  ba:	f64f 62ff 	movw	r2, #65279	; 0xfeff
+  be:	601a      	str	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:149
+    /* resume handling timing is made with ESOFs */
+    Resume(RESUME_ESOF); /* request without change of the machine state */
+  c0:	2007      	movs	r0, #7
+  c2:	f7ff fffe 	bl	0 <Resume>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:158
+#endif
+  }
+#endif
+  /*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
+#if (IMR_MSK & ISTR_CTR)
+  if (wIstr & ISTR_CTR & wInterrupt_Mask)
+  c6:	4b06      	ldr	r3, [pc, #24]	(e0 <USB_Istr+0xe0>)
+  c8:	881a      	ldrh	r2, [r3, #0]
+  ca:	4b06      	ldr	r3, [pc, #24]	(e4 <USB_Istr+0xe4>)
+  cc:	881b      	ldrh	r3, [r3, #0]
+  ce:	4013      	ands	r3, r2
+  d0:	f413 4f00 	tst.w	r3, #32768	; 0x8000
+  d4:	d001      	beq.n	6 <CTR_LP+0x6>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:162
+  {
+    /* servicing of the endpoint correct transfer interrupt */
+    /* clear of the CTR flag into the sub */
+    CTR_LP();
+  d6:	f7ff fffe 	bl	0 <CTR_LP>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_istr.c:168
+#ifdef CTR_CALLBACK
+    CTR_Callback();
+#endif
+  }
+#endif
+} /* USB_Istr */
+  da:	bd10      	pop	{r4, pc}
+  dc:	40005c44 	.word	0x40005c44
+	...

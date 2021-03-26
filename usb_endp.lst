@@ -1,0 +1,887 @@
+
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_endp.o:     file format elf32-littlearm
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_endp.o
+
+Disassembly of section .text.EP1_OUT_Callback:
+
+00000000 <EP1_OUT_Callback>:
+EP1_OUT_Callback():
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:41
+* Input          : None.
+* Output         : None.
+* Return         : None.
+*******************************************************************************/
+void EP1_OUT_Callback(void)
+{  
+   0:	b570      	push	{r4, r5, r6, lr}
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:42
+    PMAToUserBufferCopy(Usb_Rx_Buffer, ENDP1_RXADDR, 64);
+   2:	4c8f      	ldr	r4, [pc, #572]	(240 <EP1_OUT_Callback+0x240>)
+   4:	2240      	movs	r2, #64
+   6:	4620      	mov	r0, r4
+   8:	f44f 71a2 	mov.w	r1, #324	; 0x144
+   c:	f7ff fffe 	bl	0 <PMAToUserBufferCopy>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:44
+
+    if (Usb_Rx_Buffer[0] == USB_READ_DATA)
+  10:	7823      	ldrb	r3, [r4, #0]
+  12:	2b81      	cmp	r3, #129
+  14:	f040 810e 	bne.w	234 <EP1_OUT_Callback+0x234>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:46
+    {
+        Usb_Tx_Buffer[0] = USB_READ_DATA;
+  18:	4a8a      	ldr	r2, [pc, #552]	(244 <EP1_OUT_Callback+0x244>)
+  1a:	f06f 037e 	mvn.w	r3, #126	; 0x7e
+  1e:	7013      	strb	r3, [r2, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:47
+        Usb_Tx_Buffer[2] = TOTAL_PAGES;
+  20:	3385      	adds	r3, #133
+  22:	7093      	strb	r3, [r2, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:48
+        Usb_Tx_Buffer[3] = 0;
+  24:	2300      	movs	r3, #0
+  26:	70d3      	strb	r3, [r2, #3]
+  28:	4619      	mov	r1, r3
+  2a:	4618      	mov	r0, r3
+  2c:	e007      	b.n	3e <EP1_OUT_Callback+0x3e>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:52
+
+        for ( i=USB_SERVICE_VARIABLES_OFFSET_1, j=0;i<(USB_SERVICE_VARIABLES_OFFSET_1+sizeof(Service_Variables.Service_Tab8));i++, j++ )
+        {
+            Usb_Tx_Buf_Tab.Usb_Byte_Tab[i] = Service_Variables.Service_Tab8[j];
+  2e:	4b86      	ldr	r3, [pc, #536]	(248 <EP1_OUT_Callback+0x248>)
+  30:	5c1a      	ldrb	r2, [r3, r0]
+  32:	4b86      	ldr	r3, [pc, #536]	(24c <EP1_OUT_Callback+0x24c>)
+  34:	545a      	strb	r2, [r3, r1]
+  36:	1c4b      	adds	r3, r1, #1
+  38:	b299      	uxth	r1, r3
+  3a:	1c43      	adds	r3, r0, #1
+  3c:	b298      	uxth	r0, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:50
+    {
+        Usb_Tx_Buffer[0] = USB_READ_DATA;
+        Usb_Tx_Buffer[2] = TOTAL_PAGES;
+        Usb_Tx_Buffer[3] = 0;
+
+        for ( i=USB_SERVICE_VARIABLES_OFFSET_1, j=0;i<(USB_SERVICE_VARIABLES_OFFSET_1+sizeof(Service_Variables.Service_Tab8));i++, j++ )
+  3e:	297f      	cmp	r1, #127
+  40:	d9f5      	bls.n	2e <EP1_OUT_Callback+0x2e>
+  42:	21b4      	movs	r1, #180
+  44:	2000      	movs	r0, #0
+  46:	e007      	b.n	58 <EP1_OUT_Callback+0x58>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:57
+            Usb_Tx_Buf_Tab.Usb_Byte_Tab[i] = Service_Variables.Service_Tab8[j];
+        }
+  
+        for ( i=USB_CONTROLLING_VARIABLES_OFFSET, j=0;i<(USB_CONTROLLING_VARIABLES_OFFSET+sizeof(Controlling_Variables.Controlling_Tab8));i++, j++ )
+        {
+            Usb_Tx_Buf_Tab.Usb_Byte_Tab[i] = Controlling_Variables.Controlling_Tab8[j];
+  48:	4b81      	ldr	r3, [pc, #516]	(250 <EP1_OUT_Callback+0x250>)
+  4a:	5c1a      	ldrb	r2, [r3, r0]
+  4c:	4b7f      	ldr	r3, [pc, #508]	(24c <EP1_OUT_Callback+0x24c>)
+  4e:	545a      	strb	r2, [r3, r1]
+  50:	1c4b      	adds	r3, r1, #1
+  52:	b299      	uxth	r1, r3
+  54:	1c43      	adds	r3, r0, #1
+  56:	b298      	uxth	r0, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:55
+        for ( i=USB_SERVICE_VARIABLES_OFFSET_1, j=0;i<(USB_SERVICE_VARIABLES_OFFSET_1+sizeof(Service_Variables.Service_Tab8));i++, j++ )
+        {
+            Usb_Tx_Buf_Tab.Usb_Byte_Tab[i] = Service_Variables.Service_Tab8[j];
+        }
+  
+        for ( i=USB_CONTROLLING_VARIABLES_OFFSET, j=0;i<(USB_CONTROLLING_VARIABLES_OFFSET+sizeof(Controlling_Variables.Controlling_Tab8));i++, j++ )
+  58:	29d3      	cmp	r1, #211
+  5a:	d9f5      	bls.n	48 <EP1_OUT_Callback+0x48>
+  5c:	21f0      	movs	r1, #240
+  5e:	2000      	movs	r0, #0
+  60:	e007      	b.n	72 <EP1_OUT_Callback+0x72>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:62
+            Usb_Tx_Buf_Tab.Usb_Byte_Tab[i] = Controlling_Variables.Controlling_Tab8[j];
+        } 
+     
+        for ( i=USB_CONTROLLER_VARIABLES_OFFSET,j=0;i<(USB_CONTROLLER_VARIABLES_OFFSET+sizeof(Controller_Variables.Controller_Tab8));i++, j++ )
+        {
+            Usb_Tx_Buf_Tab.Usb_Byte_Tab[i] = Controller_Variables.Controller_Tab8[j];
+  62:	4b7c      	ldr	r3, [pc, #496]	(254 <EP1_OUT_Callback+0x254>)
+  64:	5c1a      	ldrb	r2, [r3, r0]
+  66:	4b79      	ldr	r3, [pc, #484]	(24c <EP1_OUT_Callback+0x24c>)
+  68:	545a      	strb	r2, [r3, r1]
+  6a:	1c4b      	adds	r3, r1, #1
+  6c:	b299      	uxth	r1, r3
+  6e:	1c43      	adds	r3, r0, #1
+  70:	b298      	uxth	r0, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:60
+        for ( i=USB_CONTROLLING_VARIABLES_OFFSET, j=0;i<(USB_CONTROLLING_VARIABLES_OFFSET+sizeof(Controlling_Variables.Controlling_Tab8));i++, j++ )
+        {
+            Usb_Tx_Buf_Tab.Usb_Byte_Tab[i] = Controlling_Variables.Controlling_Tab8[j];
+        } 
+     
+        for ( i=USB_CONTROLLER_VARIABLES_OFFSET,j=0;i<(USB_CONTROLLER_VARIABLES_OFFSET+sizeof(Controller_Variables.Controller_Tab8));i++, j++ )
+  72:	f5b1 7f88 	cmp.w	r1, #272	; 0x110
+  76:	d3f4      	bcc.n	62 <EP1_OUT_Callback+0x62>
+  78:	f44f 7196 	mov.w	r1, #300	; 0x12c
+  7c:	2000      	movs	r0, #0
+  7e:	e007      	b.n	90 <EP1_OUT_Callback+0x90>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:67
+            Usb_Tx_Buf_Tab.Usb_Byte_Tab[i] = Controller_Variables.Controller_Tab8[j];
+        }   
+  
+        for ( i=USB_COUNTERS_OFFSET,j=0;i<(USB_COUNTERS_OFFSET+sizeof(Counters_Variables.Counters_Tab8));i++, j++ )
+        {
+            Usb_Tx_Buf_Tab.Usb_Byte_Tab[i] = Counters_Variables.Counters_Tab8[j];
+  80:	4b75      	ldr	r3, [pc, #468]	(258 <EP1_OUT_Callback+0x258>)
+  82:	5c1a      	ldrb	r2, [r3, r0]
+  84:	4b71      	ldr	r3, [pc, #452]	(24c <EP1_OUT_Callback+0x24c>)
+  86:	545a      	strb	r2, [r3, r1]
+  88:	1c4b      	adds	r3, r1, #1
+  8a:	b299      	uxth	r1, r3
+  8c:	1c43      	adds	r3, r0, #1
+  8e:	b298      	uxth	r0, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:65
+        for ( i=USB_CONTROLLER_VARIABLES_OFFSET,j=0;i<(USB_CONTROLLER_VARIABLES_OFFSET+sizeof(Controller_Variables.Controller_Tab8));i++, j++ )
+        {
+            Usb_Tx_Buf_Tab.Usb_Byte_Tab[i] = Controller_Variables.Controller_Tab8[j];
+        }   
+  
+        for ( i=USB_COUNTERS_OFFSET,j=0;i<(USB_COUNTERS_OFFSET+sizeof(Counters_Variables.Counters_Tab8));i++, j++ )
+  90:	f5b1 7f9e 	cmp.w	r1, #316	; 0x13c
+  94:	d3f4      	bcc.n	80 <EP1_OUT_Callback+0x80>
+  96:	f44f 70b4 	mov.w	r0, #360	; 0x168
+  9a:	2100      	movs	r1, #0
+  9c:	e007      	b.n	ae <EP1_OUT_Callback+0xae>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:72
+            Usb_Tx_Buf_Tab.Usb_Byte_Tab[i] = Counters_Variables.Counters_Tab8[j];
+        } 
+  
+        for ( i=USB_OTHER_VARIABLES_OFFSET,j=0;i<(USB_OTHER_VARIABLES_OFFSET+sizeof(Other_Variables.Other_Variables_Tab8));i++, j++ )
+        {
+            Usb_Tx_Buf_Tab.Usb_Byte_Tab[i] = Other_Variables.Other_Variables_Tab8[j];
+  9e:	4b6f      	ldr	r3, [pc, #444]	(25c <EP1_OUT_Callback+0x25c>)
+  a0:	5c5a      	ldrb	r2, [r3, r1]
+  a2:	4b6a      	ldr	r3, [pc, #424]	(24c <EP1_OUT_Callback+0x24c>)
+  a4:	541a      	strb	r2, [r3, r0]
+  a6:	1c43      	adds	r3, r0, #1
+  a8:	b298      	uxth	r0, r3
+  aa:	1c4b      	adds	r3, r1, #1
+  ac:	b299      	uxth	r1, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:70
+        for ( i=USB_COUNTERS_OFFSET,j=0;i<(USB_COUNTERS_OFFSET+sizeof(Counters_Variables.Counters_Tab8));i++, j++ )
+        {
+            Usb_Tx_Buf_Tab.Usb_Byte_Tab[i] = Counters_Variables.Counters_Tab8[j];
+        } 
+  
+        for ( i=USB_OTHER_VARIABLES_OFFSET,j=0;i<(USB_OTHER_VARIABLES_OFFSET+sizeof(Other_Variables.Other_Variables_Tab8));i++, j++ )
+  ae:	f5b0 7fd2 	cmp.w	r0, #420	; 0x1a4
+  b2:	d3f4      	bcc.n	9e <EP1_OUT_Callback+0x9e>
+  b4:	4c6a      	ldr	r4, [pc, #424]	(260 <EP1_OUT_Callback+0x260>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:75
+        {
+            Usb_Tx_Buf_Tab.Usb_Byte_Tab[i] = Other_Variables.Other_Variables_Tab8[j];
+        } 
+    
+        if ( Usb_Rx_Buffer[1] == PAGE_1 )
+  b6:	4b62      	ldr	r3, [pc, #392]	(240 <EP1_OUT_Callback+0x240>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:70
+        for ( i=USB_COUNTERS_OFFSET,j=0;i<(USB_COUNTERS_OFFSET+sizeof(Counters_Variables.Counters_Tab8));i++, j++ )
+        {
+            Usb_Tx_Buf_Tab.Usb_Byte_Tab[i] = Counters_Variables.Counters_Tab8[j];
+        } 
+  
+        for ( i=USB_OTHER_VARIABLES_OFFSET,j=0;i<(USB_OTHER_VARIABLES_OFFSET+sizeof(Other_Variables.Other_Variables_Tab8));i++, j++ )
+  b8:	8021      	strh	r1, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:75
+        {
+            Usb_Tx_Buf_Tab.Usb_Byte_Tab[i] = Other_Variables.Other_Variables_Tab8[j];
+        } 
+    
+        if ( Usb_Rx_Buffer[1] == PAGE_1 )
+  ba:	785a      	ldrb	r2, [r3, #1]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:70
+        for ( i=USB_COUNTERS_OFFSET,j=0;i<(USB_COUNTERS_OFFSET+sizeof(Counters_Variables.Counters_Tab8));i++, j++ )
+        {
+            Usb_Tx_Buf_Tab.Usb_Byte_Tab[i] = Counters_Variables.Counters_Tab8[j];
+        } 
+  
+        for ( i=USB_OTHER_VARIABLES_OFFSET,j=0;i<(USB_OTHER_VARIABLES_OFFSET+sizeof(Other_Variables.Other_Variables_Tab8));i++, j++ )
+  bc:	4969      	ldr	r1, [pc, #420]	(264 <EP1_OUT_Callback+0x264>)
+  be:	8008      	strh	r0, [r1, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:75
+        {
+            Usb_Tx_Buf_Tab.Usb_Byte_Tab[i] = Other_Variables.Other_Variables_Tab8[j];
+        } 
+    
+        if ( Usb_Rx_Buffer[1] == PAGE_1 )
+  c0:	b99a      	cbnz	r2, ea <EP1_OUT_Callback+0xea>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:77
+        {    
+            Usb_Tx_Buffer[1] = PAGE_1;
+  c2:	4b60      	ldr	r3, [pc, #384]	(244 <EP1_OUT_Callback+0x244>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:79
+
+            for ( i=4, j=USB_SERVICE_VARIABLES_OFFSET_1 ;i<64;i++, j++ )
+  c4:	8022      	strh	r2, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:77
+            Usb_Tx_Buf_Tab.Usb_Byte_Tab[i] = Other_Variables.Other_Variables_Tab8[j];
+        } 
+    
+        if ( Usb_Rx_Buffer[1] == PAGE_1 )
+        {    
+            Usb_Tx_Buffer[1] = PAGE_1;
+  c6:	705a      	strb	r2, [r3, #1]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:79
+
+            for ( i=4, j=USB_SERVICE_VARIABLES_OFFSET_1 ;i<64;i++, j++ )
+  c8:	f04f 0304 	mov.w	r3, #4	; 0x4
+  cc:	800b      	strh	r3, [r1, #0]
+  ce:	4610      	mov	r0, r2
+  d0:	2104      	movs	r1, #4
+  d2:	e007      	b.n	e4 <EP1_OUT_Callback+0xe4>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:81
+            {
+                Usb_Tx_Buffer[i] = Usb_Tx_Buf_Tab.Usb_Byte_Tab[j];
+  d4:	4b5d      	ldr	r3, [pc, #372]	(24c <EP1_OUT_Callback+0x24c>)
+  d6:	5c1a      	ldrb	r2, [r3, r0]
+  d8:	4b5a      	ldr	r3, [pc, #360]	(244 <EP1_OUT_Callback+0x244>)
+  da:	545a      	strb	r2, [r3, r1]
+  dc:	1c43      	adds	r3, r0, #1
+  de:	b298      	uxth	r0, r3
+  e0:	1c4b      	adds	r3, r1, #1
+  e2:	b299      	uxth	r1, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:79
+    
+        if ( Usb_Rx_Buffer[1] == PAGE_1 )
+        {    
+            Usb_Tx_Buffer[1] = PAGE_1;
+
+            for ( i=4, j=USB_SERVICE_VARIABLES_OFFSET_1 ;i<64;i++, j++ )
+  e4:	293f      	cmp	r1, #63
+  e6:	d9f5      	bls.n	d4 <EP1_OUT_Callback+0xd4>
+  e8:	e02e      	b.n	148 <EP1_OUT_Callback+0x148>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:84
+            {
+                Usb_Tx_Buffer[i] = Usb_Tx_Buf_Tab.Usb_Byte_Tab[j];
+            }
+        }
+        else if ( Usb_Rx_Buffer[1] == PAGE_2 )
+  ea:	2a01      	cmp	r2, #1
+  ec:	d115      	bne.n	11a <EP1_OUT_Callback+0x11a>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:86
+        {    
+            Usb_Tx_Buffer[1] = PAGE_2;
+  ee:	4b55      	ldr	r3, [pc, #340]	(244 <EP1_OUT_Callback+0x244>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:88
+
+            for ( i=4, j=USB_SERVICE_VARIABLES_OFFSET_2 ;i<64;i++, j++ )
+  f0:	203c      	movs	r0, #60
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:86
+                Usb_Tx_Buffer[i] = Usb_Tx_Buf_Tab.Usb_Byte_Tab[j];
+            }
+        }
+        else if ( Usb_Rx_Buffer[1] == PAGE_2 )
+        {    
+            Usb_Tx_Buffer[1] = PAGE_2;
+  f2:	705a      	strb	r2, [r3, #1]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:88
+
+            for ( i=4, j=USB_SERVICE_VARIABLES_OFFSET_2 ;i<64;i++, j++ )
+  f4:	f04f 0304 	mov.w	r3, #4	; 0x4
+  f8:	800b      	strh	r3, [r1, #0]
+  fa:	f04f 033c 	mov.w	r3, #60	; 0x3c
+  fe:	8023      	strh	r3, [r4, #0]
+ 100:	2104      	movs	r1, #4
+ 102:	e007      	b.n	114 <EP1_OUT_Callback+0x114>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:90
+            {
+                Usb_Tx_Buffer[i] = Usb_Tx_Buf_Tab.Usb_Byte_Tab[j];
+ 104:	4b51      	ldr	r3, [pc, #324]	(24c <EP1_OUT_Callback+0x24c>)
+ 106:	5c1a      	ldrb	r2, [r3, r0]
+ 108:	4b4e      	ldr	r3, [pc, #312]	(244 <EP1_OUT_Callback+0x244>)
+ 10a:	545a      	strb	r2, [r3, r1]
+ 10c:	1c43      	adds	r3, r0, #1
+ 10e:	b298      	uxth	r0, r3
+ 110:	1c4b      	adds	r3, r1, #1
+ 112:	b299      	uxth	r1, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:88
+        }
+        else if ( Usb_Rx_Buffer[1] == PAGE_2 )
+        {    
+            Usb_Tx_Buffer[1] = PAGE_2;
+
+            for ( i=4, j=USB_SERVICE_VARIABLES_OFFSET_2 ;i<64;i++, j++ )
+ 114:	293f      	cmp	r1, #63
+ 116:	d9f5      	bls.n	104 <EP1_OUT_Callback+0x104>
+ 118:	e016      	b.n	148 <EP1_OUT_Callback+0x148>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:93
+            {
+                Usb_Tx_Buffer[i] = Usb_Tx_Buf_Tab.Usb_Byte_Tab[j];
+            }
+        }
+        else if ( Usb_Rx_Buffer[1] == PAGE_3 )
+ 11a:	2a02      	cmp	r2, #2
+ 11c:	d119      	bne.n	152 <EP1_OUT_Callback+0x152>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:95
+        {    
+            Usb_Tx_Buffer[1] = PAGE_3;
+ 11e:	4b49      	ldr	r3, [pc, #292]	(244 <EP1_OUT_Callback+0x244>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:97
+
+            for ( i=4, j=USB_SERVICE_VARIABLES_OFFSET_3 ;i<64;i++, j++ )
+ 120:	2078      	movs	r0, #120
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:95
+                Usb_Tx_Buffer[i] = Usb_Tx_Buf_Tab.Usb_Byte_Tab[j];
+            }
+        }
+        else if ( Usb_Rx_Buffer[1] == PAGE_3 )
+        {    
+            Usb_Tx_Buffer[1] = PAGE_3;
+ 122:	705a      	strb	r2, [r3, #1]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:97
+
+            for ( i=4, j=USB_SERVICE_VARIABLES_OFFSET_3 ;i<64;i++, j++ )
+ 124:	f04f 0304 	mov.w	r3, #4	; 0x4
+ 128:	800b      	strh	r3, [r1, #0]
+ 12a:	f04f 0378 	mov.w	r3, #120	; 0x78
+ 12e:	8023      	strh	r3, [r4, #0]
+ 130:	2104      	movs	r1, #4
+ 132:	e007      	b.n	144 <EP1_OUT_Callback+0x144>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:99
+            {
+                Usb_Tx_Buffer[i] = Usb_Tx_Buf_Tab.Usb_Byte_Tab[j];
+ 134:	4b45      	ldr	r3, [pc, #276]	(24c <EP1_OUT_Callback+0x24c>)
+ 136:	5c1a      	ldrb	r2, [r3, r0]
+ 138:	4b42      	ldr	r3, [pc, #264]	(244 <EP1_OUT_Callback+0x244>)
+ 13a:	545a      	strb	r2, [r3, r1]
+ 13c:	1c43      	adds	r3, r0, #1
+ 13e:	b298      	uxth	r0, r3
+ 140:	1c4b      	adds	r3, r1, #1
+ 142:	b299      	uxth	r1, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:97
+        }
+        else if ( Usb_Rx_Buffer[1] == PAGE_3 )
+        {    
+            Usb_Tx_Buffer[1] = PAGE_3;
+
+            for ( i=4, j=USB_SERVICE_VARIABLES_OFFSET_3 ;i<64;i++, j++ )
+ 144:	293f      	cmp	r1, #63
+ 146:	d9f5      	bls.n	134 <EP1_OUT_Callback+0x134>
+ 148:	4b45      	ldr	r3, [pc, #276]	(260 <EP1_OUT_Callback+0x260>)
+ 14a:	8018      	strh	r0, [r3, #0]
+ 14c:	4b45      	ldr	r3, [pc, #276]	(264 <EP1_OUT_Callback+0x264>)
+ 14e:	8019      	strh	r1, [r3, #0]
+ 150:	e062      	b.n	218 <EP1_OUT_Callback+0x218>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:102
+            {
+                Usb_Tx_Buffer[i] = Usb_Tx_Buf_Tab.Usb_Byte_Tab[j];
+            }
+        }    
+        else if ( Usb_Rx_Buffer[1] == PAGE_4 )
+ 152:	2a03      	cmp	r2, #3
+ 154:	d115      	bne.n	182 <EP1_OUT_Callback+0x182>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:104
+        {    
+            Usb_Tx_Buffer[1] = PAGE_4;
+ 156:	4b3b      	ldr	r3, [pc, #236]	(244 <EP1_OUT_Callback+0x244>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:106
+
+            for ( i=4, j=USB_CONTROLLING_VARIABLES_OFFSET; i<64; i++, j++ )
+ 158:	2004      	movs	r0, #4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:104
+                Usb_Tx_Buffer[i] = Usb_Tx_Buf_Tab.Usb_Byte_Tab[j];
+            }
+        }    
+        else if ( Usb_Rx_Buffer[1] == PAGE_4 )
+        {    
+            Usb_Tx_Buffer[1] = PAGE_4;
+ 15a:	705a      	strb	r2, [r3, #1]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:106
+
+            for ( i=4, j=USB_CONTROLLING_VARIABLES_OFFSET; i<64; i++, j++ )
+ 15c:	f04f 0304 	mov.w	r3, #4	; 0x4
+ 160:	800b      	strh	r3, [r1, #0]
+ 162:	f04f 03b4 	mov.w	r3, #180	; 0xb4
+ 166:	8023      	strh	r3, [r4, #0]
+ 168:	21b4      	movs	r1, #180
+ 16a:	e007      	b.n	17c <EP1_OUT_Callback+0x17c>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:108
+            {
+                Usb_Tx_Buffer[i] = Usb_Tx_Buf_Tab.Usb_Byte_Tab[j];
+ 16c:	4b37      	ldr	r3, [pc, #220]	(24c <EP1_OUT_Callback+0x24c>)
+ 16e:	5c5a      	ldrb	r2, [r3, r1]
+ 170:	4b34      	ldr	r3, [pc, #208]	(244 <EP1_OUT_Callback+0x244>)
+ 172:	541a      	strb	r2, [r3, r0]
+ 174:	1c43      	adds	r3, r0, #1
+ 176:	b298      	uxth	r0, r3
+ 178:	1c4b      	adds	r3, r1, #1
+ 17a:	b299      	uxth	r1, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:106
+        }    
+        else if ( Usb_Rx_Buffer[1] == PAGE_4 )
+        {    
+            Usb_Tx_Buffer[1] = PAGE_4;
+
+            for ( i=4, j=USB_CONTROLLING_VARIABLES_OFFSET; i<64; i++, j++ )
+ 17c:	283f      	cmp	r0, #63
+ 17e:	d9f5      	bls.n	16c <EP1_OUT_Callback+0x16c>
+ 180:	e046      	b.n	210 <EP1_OUT_Callback+0x210>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:111
+            {
+                Usb_Tx_Buffer[i] = Usb_Tx_Buf_Tab.Usb_Byte_Tab[j];
+            }
+        }   
+        else if ( Usb_Rx_Buffer[1] == PAGE_5 )
+ 182:	2a04      	cmp	r2, #4
+ 184:	d113      	bne.n	1ae <EP1_OUT_Callback+0x1ae>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:113
+        {    
+            Usb_Tx_Buffer[1] = PAGE_5;
+ 186:	4b2f      	ldr	r3, [pc, #188]	(244 <EP1_OUT_Callback+0x244>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:115
+
+            for ( i=4, j=USB_CONTROLLER_VARIABLES_OFFSET; i<64; i++, j++ )
+ 188:	800a      	strh	r2, [r1, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:113
+                Usb_Tx_Buffer[i] = Usb_Tx_Buf_Tab.Usb_Byte_Tab[j];
+            }
+        }   
+        else if ( Usb_Rx_Buffer[1] == PAGE_5 )
+        {    
+            Usb_Tx_Buffer[1] = PAGE_5;
+ 18a:	705a      	strb	r2, [r3, #1]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:115
+
+            for ( i=4, j=USB_CONTROLLER_VARIABLES_OFFSET; i<64; i++, j++ )
+ 18c:	f04f 03f0 	mov.w	r3, #240	; 0xf0
+ 190:	8023      	strh	r3, [r4, #0]
+ 192:	4610      	mov	r0, r2
+ 194:	21f0      	movs	r1, #240
+ 196:	e007      	b.n	1a8 <EP1_OUT_Callback+0x1a8>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:117
+            {
+                Usb_Tx_Buffer[i] = Usb_Tx_Buf_Tab.Usb_Byte_Tab[j];
+ 198:	4b2c      	ldr	r3, [pc, #176]	(24c <EP1_OUT_Callback+0x24c>)
+ 19a:	5c5a      	ldrb	r2, [r3, r1]
+ 19c:	4b29      	ldr	r3, [pc, #164]	(244 <EP1_OUT_Callback+0x244>)
+ 19e:	541a      	strb	r2, [r3, r0]
+ 1a0:	1c43      	adds	r3, r0, #1
+ 1a2:	b298      	uxth	r0, r3
+ 1a4:	1c4b      	adds	r3, r1, #1
+ 1a6:	b299      	uxth	r1, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:115
+        }   
+        else if ( Usb_Rx_Buffer[1] == PAGE_5 )
+        {    
+            Usb_Tx_Buffer[1] = PAGE_5;
+
+            for ( i=4, j=USB_CONTROLLER_VARIABLES_OFFSET; i<64; i++, j++ )
+ 1a8:	283f      	cmp	r0, #63
+ 1aa:	d9f5      	bls.n	198 <EP1_OUT_Callback+0x198>
+ 1ac:	e030      	b.n	210 <EP1_OUT_Callback+0x210>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:120
+            {
+                Usb_Tx_Buffer[i] = Usb_Tx_Buf_Tab.Usb_Byte_Tab[j];
+            }
+        } 
+        else if ( Usb_Rx_Buffer[1] == PAGE_6 )
+ 1ae:	2a05      	cmp	r2, #5
+ 1b0:	d116      	bne.n	1e0 <EP1_OUT_Callback+0x1e0>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:122
+        {    
+            Usb_Tx_Buffer[1] = PAGE_6;
+ 1b2:	4b24      	ldr	r3, [pc, #144]	(244 <EP1_OUT_Callback+0x244>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:124
+
+            for ( i=4, j=USB_COUNTERS_OFFSET; i<64; i++, j++ )
+ 1b4:	2004      	movs	r0, #4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:122
+                Usb_Tx_Buffer[i] = Usb_Tx_Buf_Tab.Usb_Byte_Tab[j];
+            }
+        } 
+        else if ( Usb_Rx_Buffer[1] == PAGE_6 )
+        {    
+            Usb_Tx_Buffer[1] = PAGE_6;
+ 1b6:	705a      	strb	r2, [r3, #1]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:124
+
+            for ( i=4, j=USB_COUNTERS_OFFSET; i<64; i++, j++ )
+ 1b8:	f04f 0304 	mov.w	r3, #4	; 0x4
+ 1bc:	800b      	strh	r3, [r1, #0]
+ 1be:	f44f 7396 	mov.w	r3, #300	; 0x12c
+ 1c2:	8023      	strh	r3, [r4, #0]
+ 1c4:	f44f 7196 	mov.w	r1, #300	; 0x12c
+ 1c8:	e007      	b.n	1da <EP1_OUT_Callback+0x1da>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:126
+            {
+                Usb_Tx_Buffer[i] = Usb_Tx_Buf_Tab.Usb_Byte_Tab[j];
+ 1ca:	4b20      	ldr	r3, [pc, #128]	(24c <EP1_OUT_Callback+0x24c>)
+ 1cc:	5c5a      	ldrb	r2, [r3, r1]
+ 1ce:	4b1d      	ldr	r3, [pc, #116]	(244 <EP1_OUT_Callback+0x244>)
+ 1d0:	541a      	strb	r2, [r3, r0]
+ 1d2:	1c43      	adds	r3, r0, #1
+ 1d4:	b298      	uxth	r0, r3
+ 1d6:	1c4b      	adds	r3, r1, #1
+ 1d8:	b299      	uxth	r1, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:124
+        } 
+        else if ( Usb_Rx_Buffer[1] == PAGE_6 )
+        {    
+            Usb_Tx_Buffer[1] = PAGE_6;
+
+            for ( i=4, j=USB_COUNTERS_OFFSET; i<64; i++, j++ )
+ 1da:	283f      	cmp	r0, #63
+ 1dc:	d9f5      	bls.n	1ca <EP1_OUT_Callback+0x1ca>
+ 1de:	e017      	b.n	210 <EP1_OUT_Callback+0x210>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:129
+            {
+                Usb_Tx_Buffer[i] = Usb_Tx_Buf_Tab.Usb_Byte_Tab[j];
+            }
+        } 
+        else if ( Usb_Rx_Buffer[1] == PAGE_7 )
+ 1e0:	2a06      	cmp	r2, #6
+ 1e2:	d119      	bne.n	218 <EP1_OUT_Callback+0x218>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:131
+        {    
+            Usb_Tx_Buffer[1] = PAGE_7;
+ 1e4:	4b17      	ldr	r3, [pc, #92]	(244 <EP1_OUT_Callback+0x244>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:133
+
+            for ( i=4, j=USB_OTHER_VARIABLES_OFFSET; i<64; i++, j++ )
+ 1e6:	2004      	movs	r0, #4
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:131
+                Usb_Tx_Buffer[i] = Usb_Tx_Buf_Tab.Usb_Byte_Tab[j];
+            }
+        } 
+        else if ( Usb_Rx_Buffer[1] == PAGE_7 )
+        {    
+            Usb_Tx_Buffer[1] = PAGE_7;
+ 1e8:	705a      	strb	r2, [r3, #1]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:133
+
+            for ( i=4, j=USB_OTHER_VARIABLES_OFFSET; i<64; i++, j++ )
+ 1ea:	f04f 0304 	mov.w	r3, #4	; 0x4
+ 1ee:	800b      	strh	r3, [r1, #0]
+ 1f0:	f44f 73b4 	mov.w	r3, #360	; 0x168
+ 1f4:	8023      	strh	r3, [r4, #0]
+ 1f6:	f44f 71b4 	mov.w	r1, #360	; 0x168
+ 1fa:	e007      	b.n	20c <EP1_OUT_Callback+0x20c>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:135
+            {
+                Usb_Tx_Buffer[i] = Usb_Tx_Buf_Tab.Usb_Byte_Tab[j];
+ 1fc:	4b13      	ldr	r3, [pc, #76]	(24c <EP1_OUT_Callback+0x24c>)
+ 1fe:	5c5a      	ldrb	r2, [r3, r1]
+ 200:	4b10      	ldr	r3, [pc, #64]	(244 <EP1_OUT_Callback+0x244>)
+ 202:	541a      	strb	r2, [r3, r0]
+ 204:	1c43      	adds	r3, r0, #1
+ 206:	b298      	uxth	r0, r3
+ 208:	1c4b      	adds	r3, r1, #1
+ 20a:	b299      	uxth	r1, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:133
+        } 
+        else if ( Usb_Rx_Buffer[1] == PAGE_7 )
+        {    
+            Usb_Tx_Buffer[1] = PAGE_7;
+
+            for ( i=4, j=USB_OTHER_VARIABLES_OFFSET; i<64; i++, j++ )
+ 20c:	283f      	cmp	r0, #63
+ 20e:	d9f5      	bls.n	1fc <EP1_OUT_Callback+0x1fc>
+ 210:	4b13      	ldr	r3, [pc, #76]	(260 <EP1_OUT_Callback+0x260>)
+ 212:	8019      	strh	r1, [r3, #0]
+ 214:	4b13      	ldr	r3, [pc, #76]	(264 <EP1_OUT_Callback+0x264>)
+ 216:	8018      	strh	r0, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:139
+            {
+                Usb_Tx_Buffer[i] = Usb_Tx_Buf_Tab.Usb_Byte_Tab[j];
+            }
+        }  
+    
+        UserToPMABufferCopy(Usb_Tx_Buffer, ENDP1_TXADDR, 64);
+ 218:	2240      	movs	r2, #64
+ 21a:	480a      	ldr	r0, [pc, #40]	(244 <EP1_OUT_Callback+0x244>)
+ 21c:	f44f 7180 	mov.w	r1, #256	; 0x100
+ 220:	f7ff fffe 	bl	0 <UserToPMABufferCopy>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:140
+        SetEPTxCount(ENDP1, 64);
+ 224:	2001      	movs	r0, #1
+ 226:	2140      	movs	r1, #64
+ 228:	f7ff fffe 	bl	0 <SetEPTxCount>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:141
+        SetEPTxValid(ENDP1);
+ 22c:	2001      	movs	r0, #1
+ 22e:	f7ff fffe 	bl	0 <SetEPTxValid>
+ 232:	e082      	b.n	33a <EP1_OUT_Callback+0x33a>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:144
+    }
+
+    else if (Usb_Rx_Buffer[0] == USB_WRITE_SN)
+ 234:	2b86      	cmp	r3, #134
+ 236:	d146      	bne.n	2c6 <EP1_OUT_Callback+0x2c6>
+ 238:	2108      	movs	r1, #8
+ 23a:	2209      	movs	r2, #9
+ 23c:	e01b      	b.n	276 <EP1_OUT_Callback+0x276>
+ 23e:	46c0      	nop			(mov r8, r8)
+	...
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:148
+    {
+        for( i = SOFTWARE_VER_OFFSET, j = (SOFTWARE_VER_OFFSET + 1); i < (SOFTWARE_VER_OFFSET + SOFTWARE_VER_SIZE); i++, j++)
+        {
+            Controller_Variables.Controller_Tab8[i] = Usb_Rx_Buffer[j];
+ 268:	4b37      	ldr	r3, [pc, #220]	(348 <EP1_OUT_Callback+0x348>)
+ 26a:	5c9b      	ldrb	r3, [r3, r2]
+ 26c:	546b      	strb	r3, [r5, r1]
+ 26e:	1c4b      	adds	r3, r1, #1
+ 270:	b299      	uxth	r1, r3
+ 272:	1c53      	adds	r3, r2, #1
+ 274:	b29a      	uxth	r2, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:146
+        SetEPTxValid(ENDP1);
+    }
+
+    else if (Usb_Rx_Buffer[0] == USB_WRITE_SN)
+    {
+        for( i = SOFTWARE_VER_OFFSET, j = (SOFTWARE_VER_OFFSET + 1); i < (SOFTWARE_VER_OFFSET + SOFTWARE_VER_SIZE); i++, j++)
+ 276:	2915      	cmp	r1, #21
+ 278:	4d34      	ldr	r5, [pc, #208]	(34c <EP1_OUT_Callback+0x34c>)
+ 27a:	d9f5      	bls.n	268 <EP1_OUT_Callback+0x268>
+ 27c:	4b34      	ldr	r3, [pc, #208]	(350 <EP1_OUT_Callback+0x350>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:152
+        {
+            Controller_Variables.Controller_Tab8[i] = Usb_Rx_Buffer[j];
+        }
+        Bkp_Reg_Temp = 0;
+        Bkp_Reg_Temp =  Controller_Variables.Controller_Vars.Software_Version[0] << 8;
+        Bkp_Reg_Temp |= Controller_Variables.Controller_Vars.Software_Version[1]; 
+ 27e:	4c35      	ldr	r4, [pc, #212]	(354 <EP1_OUT_Callback+0x354>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:146
+        SetEPTxValid(ENDP1);
+    }
+
+    else if (Usb_Rx_Buffer[0] == USB_WRITE_SN)
+    {
+        for( i = SOFTWARE_VER_OFFSET, j = (SOFTWARE_VER_OFFSET + 1); i < (SOFTWARE_VER_OFFSET + SOFTWARE_VER_SIZE); i++, j++)
+ 280:	801a      	strh	r2, [r3, #0]
+ 282:	4b35      	ldr	r3, [pc, #212]	(358 <EP1_OUT_Callback+0x358>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:153
+            Controller_Variables.Controller_Tab8[i] = Usb_Rx_Buffer[j];
+        }
+        Bkp_Reg_Temp = 0;
+        Bkp_Reg_Temp =  Controller_Variables.Controller_Vars.Software_Version[0] << 8;
+        Bkp_Reg_Temp |= Controller_Variables.Controller_Vars.Software_Version[1]; 
+        BKP_WriteBackupRegister(BKP_DR9, Bkp_Reg_Temp);
+ 284:	2024      	movs	r0, #36
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:146
+        SetEPTxValid(ENDP1);
+    }
+
+    else if (Usb_Rx_Buffer[0] == USB_WRITE_SN)
+    {
+        for( i = SOFTWARE_VER_OFFSET, j = (SOFTWARE_VER_OFFSET + 1); i < (SOFTWARE_VER_OFFSET + SOFTWARE_VER_SIZE); i++, j++)
+ 286:	8019      	strh	r1, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:152
+        {
+            Controller_Variables.Controller_Tab8[i] = Usb_Rx_Buffer[j];
+        }
+        Bkp_Reg_Temp = 0;
+        Bkp_Reg_Temp =  Controller_Variables.Controller_Vars.Software_Version[0] << 8;
+        Bkp_Reg_Temp |= Controller_Variables.Controller_Vars.Software_Version[1]; 
+ 288:	892b      	ldrh	r3, [r5, #8]
+ 28a:	8969      	ldrh	r1, [r5, #10]
+ 28c:	ea41 2103 	orr.w	r1, r1, r3, lsl #8
+ 290:	b289      	uxth	r1, r1
+ 292:	8021      	strh	r1, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:153
+        BKP_WriteBackupRegister(BKP_DR9, Bkp_Reg_Temp);
+ 294:	f7ff fffe 	bl	0 <BKP_WriteBackupRegister>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:156
+        Bkp_Reg_Temp = 0;
+        Bkp_Reg_Temp =  Controller_Variables.Controller_Vars.Software_Version[2] << 8;
+        Bkp_Reg_Temp |= Controller_Variables.Controller_Vars.Controller_Date[0]; 
+ 298:	89ab      	ldrh	r3, [r5, #12]
+ 29a:	89e9      	ldrh	r1, [r5, #14]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:157
+        BKP_WriteBackupRegister(BKP_DR10, Bkp_Reg_Temp);
+ 29c:	2028      	movs	r0, #40
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:156
+        Bkp_Reg_Temp =  Controller_Variables.Controller_Vars.Software_Version[0] << 8;
+        Bkp_Reg_Temp |= Controller_Variables.Controller_Vars.Software_Version[1]; 
+        BKP_WriteBackupRegister(BKP_DR9, Bkp_Reg_Temp);
+        Bkp_Reg_Temp = 0;
+        Bkp_Reg_Temp =  Controller_Variables.Controller_Vars.Software_Version[2] << 8;
+        Bkp_Reg_Temp |= Controller_Variables.Controller_Vars.Controller_Date[0]; 
+ 29e:	ea41 2103 	orr.w	r1, r1, r3, lsl #8
+ 2a2:	b289      	uxth	r1, r1
+ 2a4:	8021      	strh	r1, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:157
+        BKP_WriteBackupRegister(BKP_DR10, Bkp_Reg_Temp);
+ 2a6:	f7ff fffe 	bl	0 <BKP_WriteBackupRegister>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:160
+        Bkp_Reg_Temp = 0;
+        Bkp_Reg_Temp =  Controller_Variables.Controller_Vars.Controller_Date[1] << 8;
+        Bkp_Reg_Temp |= Controller_Variables.Controller_Vars.Controller_Date[2]; 
+ 2aa:	8a2b      	ldrh	r3, [r5, #16]
+ 2ac:	8a69      	ldrh	r1, [r5, #18]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:161
+        BKP_WriteBackupRegister(BKP_DR11, Bkp_Reg_Temp);
+ 2ae:	2040      	movs	r0, #64
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:160
+        Bkp_Reg_Temp =  Controller_Variables.Controller_Vars.Software_Version[2] << 8;
+        Bkp_Reg_Temp |= Controller_Variables.Controller_Vars.Controller_Date[0]; 
+        BKP_WriteBackupRegister(BKP_DR10, Bkp_Reg_Temp);
+        Bkp_Reg_Temp = 0;
+        Bkp_Reg_Temp =  Controller_Variables.Controller_Vars.Controller_Date[1] << 8;
+        Bkp_Reg_Temp |= Controller_Variables.Controller_Vars.Controller_Date[2]; 
+ 2b0:	ea41 2103 	orr.w	r1, r1, r3, lsl #8
+ 2b4:	b289      	uxth	r1, r1
+ 2b6:	8021      	strh	r1, [r4, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:161
+        BKP_WriteBackupRegister(BKP_DR11, Bkp_Reg_Temp);
+ 2b8:	f7ff fffe 	bl	0 <BKP_WriteBackupRegister>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:162
+        BKP_WriteBackupRegister(BKP_DR12, Controller_Variables.Controller_Vars.Serial_Number);
+ 2bc:	2044      	movs	r0, #68
+ 2be:	8aa9      	ldrh	r1, [r5, #20]
+ 2c0:	f7ff fffe 	bl	0 <BKP_WriteBackupRegister>
+ 2c4:	e039      	b.n	33a <EP1_OUT_Callback+0x33a>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:166
+
+    }
+
+    else if (Usb_Rx_Buffer[0] == USB_WRITE_TIME)
+ 2c6:	2b87      	cmp	r3, #135
+ 2c8:	d127      	bne.n	31a <EP1_OUT_Callback+0x31a>
+ 2ca:	2100      	movs	r1, #0
+ 2cc:	2001      	movs	r0, #1
+ 2ce:	e007      	b.n	2e0 <EP1_OUT_Callback+0x2e0>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:170
+    {
+        for( i = 1, j = 0; j < sizeof(Date_Set.Date_Tab); i++, j++)
+        {
+            Date_Set.Date_Tab[j] = Usb_Rx_Buffer[i];
+ 2d0:	4b1d      	ldr	r3, [pc, #116]	(348 <EP1_OUT_Callback+0x348>)
+ 2d2:	5c1a      	ldrb	r2, [r3, r0]
+ 2d4:	4b21      	ldr	r3, [pc, #132]	(35c <EP1_OUT_Callback+0x35c>)
+ 2d6:	545a      	strb	r2, [r3, r1]
+ 2d8:	1c4b      	adds	r3, r1, #1
+ 2da:	b299      	uxth	r1, r3
+ 2dc:	1c43      	adds	r3, r0, #1
+ 2de:	b298      	uxth	r0, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:168
+
+    }
+
+    else if (Usb_Rx_Buffer[0] == USB_WRITE_TIME)
+    {
+        for( i = 1, j = 0; j < sizeof(Date_Set.Date_Tab); i++, j++)
+ 2e0:	2904      	cmp	r1, #4
+ 2e2:	d9f5      	bls.n	2d0 <EP1_OUT_Callback+0x2d0>
+ 2e4:	2100      	movs	r1, #0
+ 2e6:	2206      	movs	r2, #6
+ 2e8:	e006      	b.n	2f8 <EP1_OUT_Callback+0x2f8>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:174
+        {
+            Date_Set.Date_Tab[j] = Usb_Rx_Buffer[i];
+        }
+        for( i = (sizeof(Date_Set.Date_Tab)+1), j = 0; j < sizeof(Time_Set.Time_Tab); i++, j++)
+        {
+            Time_Set.Time_Tab[j] = Usb_Rx_Buffer[i];
+ 2ea:	4b17      	ldr	r3, [pc, #92]	(348 <EP1_OUT_Callback+0x348>)
+ 2ec:	5c9b      	ldrb	r3, [r3, r2]
+ 2ee:	5463      	strb	r3, [r4, r1]
+ 2f0:	1c4b      	adds	r3, r1, #1
+ 2f2:	b299      	uxth	r1, r3
+ 2f4:	1c53      	adds	r3, r2, #1
+ 2f6:	b29a      	uxth	r2, r3
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:172
+    {
+        for( i = 1, j = 0; j < sizeof(Date_Set.Date_Tab); i++, j++)
+        {
+            Date_Set.Date_Tab[j] = Usb_Rx_Buffer[i];
+        }
+        for( i = (sizeof(Date_Set.Date_Tab)+1), j = 0; j < sizeof(Time_Set.Time_Tab); i++, j++)
+ 2f8:	2902      	cmp	r1, #2
+ 2fa:	4c19      	ldr	r4, [pc, #100]	(360 <EP1_OUT_Callback+0x360>)
+ 2fc:	d9f5      	bls.n	2ea <EP1_OUT_Callback+0x2ea>
+ 2fe:	4b16      	ldr	r3, [pc, #88]	(358 <EP1_OUT_Callback+0x358>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:177
+        {
+            Time_Set.Time_Tab[j] = Usb_Rx_Buffer[i];
+        }
+    
+        Date_Set.Date_Vars.Day_Of_Week--;
+ 300:	4816      	ldr	r0, [pc, #88]	(35c <EP1_OUT_Callback+0x35c>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:172
+    {
+        for( i = 1, j = 0; j < sizeof(Date_Set.Date_Tab); i++, j++)
+        {
+            Date_Set.Date_Tab[j] = Usb_Rx_Buffer[i];
+        }
+        for( i = (sizeof(Date_Set.Date_Tab)+1), j = 0; j < sizeof(Time_Set.Time_Tab); i++, j++)
+ 302:	801a      	strh	r2, [r3, #0]
+ 304:	4b12      	ldr	r3, [pc, #72]	(350 <EP1_OUT_Callback+0x350>)
+ 306:	8019      	strh	r1, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:177
+        {
+            Time_Set.Time_Tab[j] = Usb_Rx_Buffer[i];
+        }
+    
+        Date_Set.Date_Vars.Day_Of_Week--;
+ 308:	7883      	ldrb	r3, [r0, #2]
+ 30a:	3b01      	subs	r3, #1
+ 30c:	7083      	strb	r3, [r0, #2]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:178
+        Write_Date ( &Date_Set );
+ 30e:	f7ff fffe 	bl	0 <Write_Date>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:179
+        Update_Time ( &Time_Set );    
+ 312:	4620      	mov	r0, r4
+ 314:	f7ff fffe 	bl	0 <Update_Time>
+ 318:	e00f      	b.n	33a <EP1_OUT_Callback+0x33a>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:181
+    }
+    else if (Usb_Rx_Buffer[0] == USB_UNLOCK_FROM_TEST)
+ 31a:	2b88      	cmp	r3, #136
+ 31c:	d10d      	bne.n	33a <EP1_OUT_Callback+0x33a>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:183
+    {
+        Controller_Variables.Controller_Vars.Test_Marker = 0;
+ 31e:	4b0b      	ldr	r3, [pc, #44]	(34c <EP1_OUT_Callback+0x34c>)
+ 320:	2400      	movs	r4, #0
+ 322:	82dc      	strh	r4, [r3, #22]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:184
+        BKP_WriteBackupRegister(BKP_DR13, Controller_Variables.Controller_Vars.Test_Marker);
+ 324:	2048      	movs	r0, #72
+ 326:	4621      	mov	r1, r4
+ 328:	f7ff fffe 	bl	0 <BKP_WriteBackupRegister>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:185
+        Machine_State = STANDBY;
+ 32c:	4b0d      	ldr	r3, [pc, #52]	(364 <EP1_OUT_Callback+0x364>)
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:186
+        Screen_Number = CONTROLLER_ON;
+ 32e:	2201      	movs	r2, #1
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:185
+    }
+    else if (Usb_Rx_Buffer[0] == USB_UNLOCK_FROM_TEST)
+    {
+        Controller_Variables.Controller_Vars.Test_Marker = 0;
+        BKP_WriteBackupRegister(BKP_DR13, Controller_Variables.Controller_Vars.Test_Marker);
+        Machine_State = STANDBY;
+ 330:	701c      	strb	r4, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:186
+        Screen_Number = CONTROLLER_ON;
+ 332:	4b0d      	ldr	r3, [pc, #52]	(368 <EP1_OUT_Callback+0x368>)
+ 334:	701a      	strb	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:187
+        Reload_Screen = TRUE;
+ 336:	4b0d      	ldr	r3, [pc, #52]	(36c <EP1_OUT_Callback+0x36c>)
+ 338:	701a      	strb	r2, [r3, #0]
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:190
+    }
+    
+    SetEPRxStatus(ENDP1, EP_RX_VALID);
+ 33a:	2001      	movs	r0, #1
+ 33c:	f44f 5140 	mov.w	r1, #12288	; 0x3000
+ 340:	f7ff fffe 	bl	0 <SetEPRxStatus>
+C:\tien\PROJEKTY\procesory\STM\T104_V100a_GASTOP\usb_hid\source/usb_endp.c:191
+}
+ 344:	bd70      	pop	{r4, r5, r6, pc}
+ 346:	46c0      	nop			(mov r8, r8)
+	...
